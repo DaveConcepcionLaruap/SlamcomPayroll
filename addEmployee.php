@@ -9,8 +9,8 @@
     <link rel="shortcut icon" href="img/favicon.png">
 
     <title>Form Component | Creative - Bootstrap 3 Responsive Admin Template</title>
-
-    <!-- Bootstrap CSS -->    
+<!--adskfjksdjfj-->
+    <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- bootstrap theme -->
     <link href="css/bootstrap-theme.css" rel="stylesheet">
@@ -19,9 +19,9 @@
     <link href="css/elegant-icons-style.css" rel="stylesheet" />
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <!-- date picker -->
-    
+
     <!-- color picker -->
-    
+
     <!-- Custom styles -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style-responsive.css" rel="stylesheet" />
@@ -38,7 +38,7 @@
 
   <!-- container section start -->
   <section id="container" class="">
-      
+
     <?php
         include("sidebar.php");
         include("header.php");
@@ -69,7 +69,7 @@
                                       <div class="col-sm-10">
                                           <input type="text" class="form-control" autofocus="" name="name" required>
                                       </div>
-                                      
+
                                   </div>
                                   <div class="form-group">
                                       <label class="col-sm-2 control-label">Position</label>
@@ -110,9 +110,9 @@
     <script src="js/bootstrap-switch.js"></script>
     <!--custom tagsinput-->
     <script src="js/jquery.tagsinput.js"></script>
-    
+
     <!-- colorpicker -->
-   
+
     <!-- bootstrap-wysiwyg -->
     <script src="js/jquery.hotkeys.js"></script>
     <script src="js/bootstrap-wysiwyg.js"></script>
