@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <?php
+        include('exe/database.php'); 
+    ?>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+    <meta name="author" content="GeeksLabs">
+    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <title>Creative - Bootstrap Admin Template</title>
+
+    <!-- Bootstrap CSS -->    
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap theme -->
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <!--external css-->
+    <!-- font icon -->
+    <link href="css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />    
+    <!-- full calendar css-->
+    <link href="assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
+	<link href="assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
+    <!-- easy pie chart-->
+    <link href="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
+	<link href="css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
+    <!-- Custom styles -->
+	<link rel="stylesheet" href="css/fullcalendar.css">
+	<link href="css/widgets.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet" />
+	<link href="css/xcharts.min.css" rel=" stylesheet">	
+	<link href="css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+    <!-- For Modal -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+      
+    <!-- =======================================================
+        Theme Name: NiceAdmin
+        Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+        Author: BootstrapMade
+        Author URL: https://bootstrapmade.com
+    ======================================================= -->
+  </head>
+
+  <body>
+  <!-- container section start -->
+  <section id="container" class="">
+     
+      
+            
+      <?php
+        include("sidebar.php");
+        include("header.php");
+      ?>
+      <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">            
+              <!--overview start-->
+			  <div class="row">
+				<div class="col-lg-12">
+					<h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
+					<ol class="breadcrumb">
+						<li><i class="fa fa-home"></i><a href="home.html">Home</a></li>
+						<li><i class="fa fa-laptop"></i>Dashboard</li>						  	
+					</ol>
+				</div>
+			</div>
+            <div class="col-lg-12">
+                  <table id="taskList" class="table table-hover table-striped" cellspacing="0" width="100%">
+                      <thead>
+                          <tr>
+                              <th>ID</th>
+                              <th>Due Date</th>
+                              <th>Task</th>
+                              <th>Status</th>
+                              <th>Action</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <?php
+                            $con = mysqli_connect("localhost","root","","payroll_slamcom");
+                            
+                            $query = 'SELECT `id`, `task`, `date`, `status` FROM task';
+                            $result = mysqli_query($con, $query);
+                          
+                            while($row = mysqli_fetch_array($result)){
+                                echo '<tr id='.$row[0].'>
+                                        <td>'.$row[0].'</td>
+                                        <td>'.$row[2].'</td>
+                                        <td>'.$row[1].'</td>
+                                        <td>'.$row[3].'</td>
+                                        <td><button class="btn btn-info id="finishBtn">Finished</button></td>
+                                     </tr>';
+                            }
+                          ?>
+                      </tbody>
+                  </table>
+              </div>
+              
+              <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addTask">Add Task</button>
+              <div class="modal fade" id="addTask" role="dialog">
+                <div class="modal-dialog">
+
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" id="taskModal" action="exe/addTask.php" method="post">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="date">Date</label>
+                                <div class="col-sm-10">
+                                    <input type="date" class="form-control" name="date" id="date">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="task">Task</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="task" id="task" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="status">Status</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="status" id="status" required>
+                                        <option value=""></option>
+                                        <option value="Option 1">Option 1</option>
+                                        <option value="Option 2">Option 2</option>
+                                        <option value="Option 3">Option 3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button id="taskAddButton" class="btn btn-default" type="Submit">Add Task</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <button id="editBtn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#editTaskModal" style="display: none"></button>
+              <div class="modal fade" id="editTaskModal" role="dialog">
+                <div class="modal-dialog">
+
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" id="editTaskModal" method="post">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="id">ID</label>
+                                <div class="col-sm-10">
+                                    <input type="integer" class="form-control" name="id" id="id" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="date">Date</label>
+                                <div class="col-sm-10">
+                                    <input type="date" class="form-control" name="editDate" id="editDate">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="task">Task</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="editTask" id="editTask" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="status">Status</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="editStatus" id="editStatus" required>
+                                        <option value=""></option>
+                                        <option value="Option 1">Option 1</option>
+                                        <option value="Option 2">Option 2</option>
+                                        <option value="Option 3">Option 3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button id="taskEditButton" class="btn btn-default">Edit Task</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+          </section>
+          <div class="text-right">
+            <div class="credits">
+                <!-- 
+                    All the links in the footer should remain intact. 
+                    You can delete the links only if you purchased the pro version.
+                    Licensing information: https://bootstrapmade.com/license/
+                    Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
+                -->
+                <a href="https://bootstrapmade.com/free-business-bootstrap-themes-website-templates/">Business Bootstrap Themes</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+        </div>
+      </section>
+              
+      </section>   
+		 
+      <!--main content end-->
+  <!-- container section start -->
+gfgf
+    <!-- javascripts -->
+    <script src="js/jquery.js"></script>
+	<script src="js/jquery-ui-1.10.4.min.js"></script>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.9.2.custom.min.js"></script>
+    <!-- bootstrap -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- nice scroll -->
+    <script src="js/jquery.scrollTo.min.js"></script>
+    <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+    <!-- charts scripts -->
+    <script src="assets/jquery-knob/js/jquery.knob.js"></script>
+    <script src="js/jquery.sparkline.js" type="text/javascript"></script>
+    <script src="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+    <script src="js/owl.carousel.js" ></script>
+    <!-- jQuery full calendar -->
+    <script src="js/fullcalendar.min.js"></script> <!-- Full Google Calendar - Calendar -->
+	<script src="assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
+    <!--script for this page only-->
+    <script src="js/calendar-custom.js"></script>
+	<script src="js/jquery.rateit.min.js"></script>
+    <!-- custom select -->
+    <script src="js/jquery.customSelect.min.js" ></script>
+	<script src="assets/chart-master/Chart.js"></script>
+   
+    <!--custome script for all page-->
+    <script src="js/scripts.js"></script>
+    <!-- custom script for this page-->
+    <script src="js/sparkline-chart.js"></script>
+    <script src="js/easy-pie-chart.js"></script>
+	<script src="js/jquery-jvectormap-1.2.2.min.js"></script>
+	<script src="js/jquery-jvectormap-world-mill-en.js"></script>
+	<script src="js/xcharts.min.js"></script>
+	<script src="js/jquery.autosize.min.js"></script>
+	<script src="js/jquery.placeholder.min.js"></script>
+	<script src="js/gdp-data.js"></script>	
+	<script src="js/morris.min.js"></script>
+	<script src="js/sparklines.js"></script>	
+	<script src="js/charts.js"></script>
+	<script src="js/jquery.slimscroll.min.js"></script>
+    <---Data Table--->
+    <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+      <- asd ->
+  <script>
+      
+      jQuery(document).ready(function(){
+          
+        var taskTable = $("#taskList").DataTable({
+            "bLengthChange":false,
+        });
+        
+        $("#taskModal").submit(function(){
+            $.ajax({
+                    data: $(this).serialize(),
+                    method: $(this).attr('POST'),
+                    success: function(){
+                        $("#date").val("");
+                        $("#task").val("");
+                        $("#status").val("");
+                    },
+                    error: function(){
+                        alert("Something went wrong");
+                    } 
+            });
+        }); 
+      
+        $("#taskList tbody").on("click","td", function(){
+            if($(this).index() == 4){
+                alert("welp");
+            }else{
+                data = taskTable.row($(this).parents('tr')).data();
+                $("#id").val(data[0]);
+                $("#editDate").val(data[1]);
+                $("#editTask").val(data[2]);
+                $("#editStatus").val(data[3]);
+                $("#editBtn").trigger("click");
+            }
+        });
+        
+      $("#taskEditButton").on("click",function(){
+          var id = $("#id").val();
+          var date = $("#editDate").val();
+          var task = $("#editTask").val();
+          var status = $("#editStatus").val();
+          
+          alert(id+" "+task);
+          
+          
+            $.ajax({
+                    url: "exe/editTask.php",
+                    method:'POST',
+                    data:{"userID" : id, "editDate" : date, "editTask" : task, "status" : status} ,
+                    success: function(data){
+                        $("#id").val("");
+                        $("#editDate").val("");
+                        $("#editTask").val("");
+                        $("#editStatus").val("");
+                        alert(data);
+                    },
+                    error: function(data){
+                        alert(data);
+                    } 
+            });
+          
+        });
+          
+      });
+    
+  </script>
+
+  </body>
+</html>
