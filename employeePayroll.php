@@ -91,8 +91,8 @@
                                             <td>'.$srow[3].'</td>
                                             <td>'.$srow[5].'</td>
                                             <td>'.$srow[6].'</td>
-                                            <td>100</td> /* calculated value */
-                                            <td>100</td> /* calculated value */
+                                            <td>100</td> <!-- calculated value -->
+                                            <td>100</td> <!-- calculated value -->
                                          </tr>';
                                 }
                             }
@@ -114,26 +114,26 @@
                     <div class="modal-body">
                         <form id="editTaskModal" method="post">
                             <div clas="form-group">
-                                <label class="col-sm-3 control-label" for="id">Work Days</label>
+                                <label class="col-sm-3 control-label" for="wordkDays">Work Days</label>
                                 <div class="col-sm-3">
-                                    <input type="text" id="id" class="form-control">
+                                    <input type="text" id="workDays" class="form-control">
                                 </div>
-                                    <label class="col-sm-3 control-label" for="name">Late</label>                                
+                                    <label class="col-sm-3 control-label" for="late">Late</label>                                
                                 <div class="col-sm-3">
-                                    <input type="text" id="name" class="form-control">
+                                    <input type="text" id="late" class="form-control">
                                 </div>
                             </div>
                             <br>
                             <br>
                             <br>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" for="salary">Absent</label>
+                                <label class="col-sm-3 control-label" for="absent">Absent</label>
                                 <div class="col-sm-3">
-                                    <input type="text" id="salary" class="form-control">
+                                    <input type="text" id="absent" class="form-control">
                                 </div>
-                                <label class="col-sm-3 control-label" for="basicPay">Overtime</label>
+                                <label class="col-sm-3 control-label" for="overtime">Overtime</label>
                                 <div class="col-sm-3">
-                                    <input type="text" id="basicPay" class="form-control">
+                                    <input type="text" id="overtime" class="form-control">
                                 </div>
                             </div>
                             <br>
@@ -163,9 +163,9 @@
                             <br>
                             <br>
                             <div class="form-group">
-                                <label class="col-sm-3" for="netPay">NP Hours</label>
+                                <label class="col-sm-3" for="npHours">NP Hours</label>
                                 <div class="col-sm-3">
-                                    <input type="text" id="netPay" class="form-control">
+                                    <input type="text" id="npHours" class="form-control">
                                 </div>
                                 <div class="col-sm-4">
                                     <button id="taskEditButton" class="btn btn-success">Update</button>
@@ -217,9 +217,11 @@
         });
         
         $("#employeeList tbody").on("click","td", function(){
-            data = taskTable.row($(this).parents('tr')).data();
-            
+            data = taskTable.row($(this).parents('tr')).data();            
             $("#editBtn").trigger("click");
+            //query here
+            //input data here
+            $("#workDays").val("test");
         });
         
         

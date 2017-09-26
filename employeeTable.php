@@ -9,7 +9,6 @@
     <link rel="shortcut icon" href="img/favicon.png">
 
     <title>Elements | Creative - Bootstrap 3 Responsive Admin Template</title>
-dfdfd
     <!-- Bootstrap CSS -->    
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- bootstrap theme -->

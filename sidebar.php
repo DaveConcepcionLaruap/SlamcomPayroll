@@ -30,12 +30,18 @@
                           <li><a class="" href="grids.html">Grids</a></li>
                       </ul>
                   </li>
-                  <li>
-                      <a class="" href="widgets.php">
-                          <i class="icon_genius"></i>
-                          <span>Widgets</span>
-                      </a>
-                  </li>
+                  <li class="sub-menu">
+                  <a href="javascript:;" class="">
+                      <i class="icon_desktop"></i>
+                      <span>Inventory</span>
+                      <span class="menu-arrow arrow_carrot-right"></span>
+                  </a>
+                  <ul class="sub">
+                      <li><a class="" href="InventoryList.php">Item List</a></li>
+                      <li><a class="" href="deduct.php">Item Deduct</a></li>
+                      <li><a class="" href="restock.php">Item Restock</a></li>
+                  </ul>
+              </li>
                   <li>                     
                       <a class="" href="chart-chartjs.html">
                           <i class="icon_piechart"></i>
