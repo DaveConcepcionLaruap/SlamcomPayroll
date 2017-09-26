@@ -1,8 +1,15 @@
+<?php
+session_start();
+  if(!$_SESSION['checker']){
+    header("Location:index.php ");
+  //echo "checker error";
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <?php
-        include('exe/database.php'); 
+        include('exe/database.php');
         include('scripts.html');
     ?>
     <meta charset="utf-8">
@@ -14,9 +21,9 @@
 
     <title>Creative - Bootstrap Admin Template</title>
 
-    
 
-      
+
+
     <!-- =======================================================
         Theme Name: NiceAdmin
         Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -28,23 +35,23 @@
   <body>
   <!-- container section start -->
   <section id="container" class="">
-     
-      
-            
+
+
+
       <?php
         include("sidebar.php");
         include("header.php");
       ?>
       <!--main content start-->
       <section id="main-content">
-          <section class="wrapper">            
+          <section class="wrapper">
               <!--overview start-->
 			  <div class="row">
 				<div class="col-lg-12">
 					<h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
 					<ol class="breadcrumb">
 						<li><i class="fa fa-home"></i><a href="home.html">Home</a></li>
-						<li><i class="fa fa-laptop"></i>Dashboard</li>						  	
+						<li><i class="fa fa-laptop"></i>Dashboard</li>
 					</ol>
 				</div>
 			</div>
@@ -62,10 +69,10 @@
                       <tbody>
                           <?php
                             $con = mysqli_connect("localhost","root","","payroll_slamcom");
-                            
+
                             $query = 'SELECT `id`, `task`, `date`, `status` FROM task';
                             $result = mysqli_query($con, $query);
-                          
+
                             while($row = mysqli_fetch_array($result)){
                                 echo '<tr id='.$row[0].'>
                                         <td>'.$row[0].'</td>
@@ -79,7 +86,7 @@
                       </tbody>
                   </table>
               </div>
-              
+
               <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addTask">Add Task</button>
               <div class="modal fade" id="addTask" role="dialog">
                 <div class="modal-dialog">
@@ -124,7 +131,7 @@
                   </div>
                 </div>
               </div>
-              
+
               <button id="editBtn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#editTaskModal" style="display: none"></button>
               <div class="modal fade" id="editTaskModal" role="dialog">
                 <div class="modal-dialog">
@@ -175,12 +182,12 @@
                   </div>
                 </div>
               </div>
-              
+
           </section>
           <div class="text-right">
             <div class="credits">
-                <!-- 
-                    All the links in the footer should remain intact. 
+                <!--
+                    All the links in the footer should remain intact.
                     You can delete the links only if you purchased the pro version.
                     Licensing information: https://bootstrapmade.com/license/
                     Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
@@ -189,21 +196,21 @@
             </div>
         </div>
       </section>
-              
-      </section>   
-		 
+
+      </section>
+
       <!--main content end-->
   <!-- container section start -->
 
-    
+
   <script>
-      
+
       jQuery(document).ready(function(){
-          
+
         var taskTable = $("#taskList").DataTable({
             "bLengthChange":false,
         });
-        
+
         $("#taskModal").submit(function(){
             $.ajax({
                     data: $(this).serialize(),
@@ -215,10 +222,10 @@
                     },
                     error: function(){
                         alert("Something went wrong");
-                    } 
+                    }
             });
-        }); 
-      
+        });
+
         $("#taskList tbody").on("click","td", function(){
             if($(this).index() == 4){
                 alert("welp");
@@ -231,16 +238,16 @@
                 $("#editBtn").trigger("click");
             }
         });
-        
+
       $("#taskEditButton").on("click",function(){
           var id = $("#id").val();
           var date = $("#editDate").val();
           var task = $("#editTask").val();
           var status = $("#editStatus").val();
-          
+
           alert(id+" "+task);
-          
-          
+
+
         $.ajax({
                 url: "exe/editTask.php",
                 method:'POST',
@@ -254,15 +261,15 @@
                 },
                 error: function(data){
                     alert(data);
-                } 
+                }
         });
 
 
-          
+
         });
-          
+
       });
-    
+
   </script>
 
   </body>

@@ -1,6 +1,5 @@
 <?php
-    session_start();
-    $_SESSION['checker'] = "false";
+
     error_reporting(0);
 
     $con = mysqli_connect("localhost","root","","payroll_slamcom");
