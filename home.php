@@ -2,7 +2,6 @@
 session_start();
   if(!$_SESSION['checker']){
     header("Location:index.php ");
-  //echo "checker error";
   }
 ?>
 <!DOCTYPE html>

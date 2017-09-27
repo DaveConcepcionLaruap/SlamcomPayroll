@@ -1,3 +1,9 @@
+<?php
+session_start();
+  if(!$_SESSION['checker']){
+    header("Location:index.php ");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -35,7 +41,7 @@
 			</div>
                 <button id="addBtn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#itemModal" >Add Item</button>
             <br>
-        
+
             <div>
                 <table id="itemList" class="table table-hover table-striped" cellspacing="0" width="100%">
                       <thead>
@@ -53,7 +59,7 @@
                             $con = mysqli_connect("localhost","root","","payroll_slamcom");
                             $query = 'SELECT `id`, `name`, `category`, `qty`, `itemDesc` FROM item';
                             $result = mysqli_query($con, $query);
-                          
+
                             while($row = mysqli_fetch_array($result)){
                                 echo '<tr id='.$row[0].'>
                                         <td>'.$row[0].'</td>
@@ -65,7 +71,7 @@
                             }
                           ?>
                       </tbody>
-                  </table>    
+                  </table>
             </div>
 
           </section>
@@ -107,8 +113,8 @@
     </div>
         <div class="text-right">
             <div class="credits">
-                <!-- 
-                    All the links in the footer should remain intact. 
+                <!--
+                    All the links in the footer should remain intact.
                     You can delete the links only if you purchased the pro version.
                     Licensing information: https://bootstrapmade.com/license/
                     Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
@@ -119,9 +125,9 @@
   </section>
   <!-- container section end -->
 
-    
+
   <script>
-      
+
     var taskTable;
       $(document).ready(function() {
         taskTable = $('#itemList').DataTable( {
@@ -131,13 +137,13 @@
             ]
         } );
       } );
-      
+
       $("#itemBtn").on("click",function(){
            var nametxt = $("#name").val();
            var categorytxt = $("#category").val();
            var qtytxt = $("#qty").val();
            var desctxt = $("#desc").val();
-           
+
             $.ajax({
                 url:"exe/addItem.php",
                 method:"POST",
@@ -151,14 +157,14 @@
                 }
             });
       });
-      
+
       $("#itemList tbody").on("click","td",function(){
           data = taskTable.row($(this).parent('tr')).data();
           window.location.href=("InventoryListUpdate.php?itemID="+data[0]);
       });
-      
-      
-      
+
+
+
   </script>
 
   </body>

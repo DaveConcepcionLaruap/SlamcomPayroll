@@ -1,3 +1,9 @@
+<?php
+session_start();
+  if(!$_SESSION['checker']){
+    header("Location:index.php ");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,7 +27,7 @@
     <!-- Custom styles -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style-responsive.css" rel="stylesheet" />
-      
+
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
     <!--[if lt IE 9]>
@@ -72,10 +78,10 @@
                       <tbody>
                           <?php
                             $con = mysqli_connect("localhost","root","","payroll_slamcom");
-                            
+
                             $query = 'SELECT `id`, `name`, `position`, `team` FROM employee';
                             $result = mysqli_query($con, $query);
-                          
+
                             while($row = mysqli_fetch_array($result)){
                                 $temp = $row[0];
                                 $squery = "SELECT * from employeeinfo WHERE id = '$temp'";
@@ -100,7 +106,7 @@
                       </tbody>
                   </table>
               </div>
-              
+
               <button id="editBtn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#editTaskModal" style="display: none"></button>
               <div class="modal fade" id="editTaskModal" role="dialog">
                 <div class="modal-dialog">
@@ -118,7 +124,7 @@
                                 <div class="col-sm-3">
                                     <input type="text" id="workDays" class="form-control">
                                 </div>
-                                    <label class="col-sm-3 control-label" for="late">Late</label>                                
+                                    <label class="col-sm-3 control-label" for="late">Late</label>
                                 <div class="col-sm-3">
                                     <input type="text" id="late" class="form-control">
                                 </div>
@@ -171,7 +177,7 @@
                                     <button id="taskEditButton" class="btn btn-success">Update</button>
                                 </div>
                             </div>
-                            
+
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -185,8 +191,8 @@
       <!--main content end-->
         <div class="text-right">
             <div class="credits">
-                <!-- 
-                    All the links in the footer should remain intact. 
+                <!--
+                    All the links in the footer should remain intact.
                     You can delete the links only if you purchased the pro version.
                     Licensing information: https://bootstrapmade.com/license/
                     Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
@@ -211,21 +217,21 @@
     <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 
     <script>
-        
+
             var taskTable = $("#employeeList").DataTable({
             "bLengthChange":false,
         });
-        
+
         $("#employeeList tbody").on("click","td", function(){
-            data = taskTable.row($(this).parents('tr')).data();            
+            data = taskTable.row($(this).parents('tr')).data();
             $("#editBtn").trigger("click");
             //query here
             //input data here
             $("#workDays").val("test");
         });
-        
-        
-        
+
+
+
     </script>
 
   </body>

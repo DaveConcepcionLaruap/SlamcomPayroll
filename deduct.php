@@ -1,3 +1,9 @@
+<?php
+session_start();
+  if(!$_SESSION['checker']){
+    header("Location:index.php ");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -66,7 +72,7 @@
                         </div></br>
 
                         <button type = "button" class = "btn btn-default">Cancel</button>
-                        <button type = "submit" id = "deductkBtn" class = "btn btn-primary">Submit</button> 
+                        <button type = "submit" id = "deductkBtn" class = "btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
@@ -93,7 +99,7 @@
                                     $con = mysqli_connect("localhost","root","","payroll_slamcom");
                                     $query = 'SELECT `id`, `name`, `category`, `qty`, `itemDesc` FROM item';
                                     $result = mysqli_query($con, $query);
-                                    
+
                                     while($row = mysqli_fetch_array($result)){
                                         echo '<tr id='.$row[0].'>
                                                 <td>'.$row[0].'</td>
@@ -105,7 +111,7 @@
                                     }
                                     ?>
                                 </tbody>
-                            </table>    
+                            </table>
                     </div>
                     </div>
                 </div>
@@ -114,11 +120,11 @@
           </section>
       </section>
       <!--main content end-->
-      
+
         <div class="text-right">
             <div class="credits">
-                <!-- 
-                    All the links in the footer should remain intact. 
+                <!--
+                    All the links in the footer should remain intact.
                     You can delete the links only if you purchased the pro version.
                     Licensing information: https://bootstrapmade.com/license/
                     Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
@@ -129,19 +135,19 @@
   </section>
   <!-- container section end -->
 
-    
+
   <script>
-      
+
       var taskTable = $("#itemList").DataTable({
         "bLengthChange":false,
     });
-      
+
       $("#itemBtn").on("click",function(){
            var nametxt = $("#name").val();
            var categorytxt = $("#category").val();
            var qtytxt = $("#qty").val();
            var desctxt = $("#desc").val();
-           
+
             $.ajax({
                 url:"exe/addItem.php",
                 method:"POST",
@@ -155,7 +161,7 @@
                 }
             });
       });
-      
+
       $("#itemList tbody").on("click","td",function(){
           data = taskTable.row($(this).parent('tr')).data();
 
@@ -164,14 +170,14 @@
           $("#itemCategory").val(data[2]);
           $("#itemQty").val(data[3]);
           $("#itemDesc").val(data[4]);
-          
+
       });
-      
+
       $("#deductkBtn").on("click",function(){
            var itemID = $("#itemID").val();
            var restockQty = $("#qty").val();
            var oldQty = $("#itemQty").val();
-           
+
             $.ajax({
                 url:"exe/itemStuff.php?deduct",
                 method:"POST",
@@ -184,8 +190,8 @@
                 }
             });
       });
-      
-      
+
+
   </script>
 
   </body>

@@ -1,3 +1,9 @@
+<?php
+session_start();
+  if(!$_SESSION['checker']){
+    header("Location:index.php ");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,7 +15,7 @@
     <link rel="shortcut icon" href="img/favicon.png">
 
     <title>Elements | Creative - Bootstrap 3 Responsive Admin Template</title>
-    <!-- Bootstrap CSS -->    
+    <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- bootstrap theme -->
     <link href="css/bootstrap-theme.css" rel="stylesheet">
@@ -28,7 +34,7 @@
 
   <!-- container section start -->
   <section id="container" class="">
-      
+
       <?php
         include("sidebar.php");
         include("header.php");
@@ -59,10 +65,10 @@
                       <tbody>
                           <?php
                             $con = mysqli_connect("localhost","root","","payroll_slamcom");
-                            
+
                             $query = 'SELECT `id`, `name`, `position`, `team` FROM employee';
                             $result = mysqli_query($con, $query);
-                          
+
                             while($row = mysqli_fetch_array($result)){
                                 echo '<tr id='.$row[0].'>
                                         <td>'.$row[0].'</td>
@@ -80,8 +86,8 @@
       <!--main content end-->
       <div class="text-right">
             <div class="credits">
-                <!-- 
-                    All the links in the footer should remain intact. 
+                <!--
+                    All the links in the footer should remain intact.
                     You can delete the links only if you purchased the pro version.
                     Licensing information: https://bootstrapmade.com/license/
                     Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
@@ -99,20 +105,20 @@
     <script src="js/jquery.scrollTo.min.js"></script>
     <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
     <!-- gritter -->
-   
+
     <!-- custom gritter script for this page only-->
     <script src="js/gritter.js" type="text/javascript"></script>
     <!--custome script for all page-->
     <script src="js/scripts.js"></script>
     <!-- Data Table-->
     <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-    
+
     <script>
         var data;
         $("#employeeList").DataTable({
             "bLengthChange":false,
         });
-        
+
         $("#employeeList tbody").on("click","td", function(){
             data = userTable.row($this).parents('tr').data();
         });

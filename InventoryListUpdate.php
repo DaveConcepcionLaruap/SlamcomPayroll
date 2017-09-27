@@ -1,3 +1,9 @@
+<?php
+session_start();
+  if(!$_SESSION['checker']){
+    header("Location:index.php ");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,7 +24,7 @@
   <body>
   <style>
       .dataTables_wrapper .dt-buttons{
-        float:none;  
+        float:none;
         text-align:left;
       }
   </style>
@@ -46,11 +52,11 @@
             <div>
                 <div>
                     <form >
-                    
+
                         <div class = "col-md-6">
                             <div class="form-group">
                                 <label>Item Name</label>
-                                <?php 
+                                <?php
                                     $result = mysqli_query($con,"SELECT name FROM item where id =".$_GET['itemID']);
                                     $row = mysqli_fetch_Array($result);
                                     echo'<input class="form-control" type="text" name="name" id="name" value="'.$row[0].'" required>';
@@ -58,7 +64,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Category</label>
-                                <?php 
+                                <?php
                                     $result = mysqli_query($con,"SELECT category FROM item where id =".$_GET['itemID']);
                                     $row = mysqli_fetch_Array($result);
                                     echo'<input class="form-control" type="text" name="category" id="category" value="'.$row[0].'" required>';
@@ -66,18 +72,18 @@
                             </div>
                             <div class="form-group">
                                 <label>Quantity</label>
-                                <?php 
+                                <?php
                                     $result = mysqli_query($con,"SELECT qty FROM item where id =".$_GET['itemID']);
                                     $row = mysqli_fetch_Array($result);
                                     echo'<input class="form-control" type="number" name="qty" id="qty" value="'.$row[0].'" required>';
                                 ?>
                             </div>
-                        
+
                         </div>
                         <div class = "col-md-6">
                             <div class="form-group">
                                 <label>Item Description</label>
-                                <?php 
+                                <?php
                                     $result = mysqli_query($con,"SELECT itemDesc FROM item where id =".$_GET['itemID']);
                                     $row = mysqli_fetch_Array($result);
                                     echo'<textarea class="form-control" rows="9.8" id="desc" name="desc">'.$row[0].'</textarea>';
@@ -88,14 +94,14 @@
                                 <button type="button" onclick="cancel()" class="btn">Cancel</button>
                                 <button type="submit" name="submit" id = "editbtn" class="btn btn-primary">Edit</button>
                             </div>
-                        
+
                         </div>
-                        
+
                     </form>
-                
+
                 </div>
-                
-                    
+
+
             </div>
 
           </section>
@@ -103,8 +109,8 @@
       <!--main content end-->
     <div class="text-right">
             <div class="credits">
-                <!-- 
-                    All the links in the footer should remain intact. 
+                <!--
+                    All the links in the footer should remain intact.
                     You can delete the links only if you purchased the pro version.
                     Licensing information: https://bootstrapmade.com/license/
                     Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
@@ -115,7 +121,7 @@
   </section>
   <!-- container section end -->
 
-    
+
   <script>
     $("#editbtn").on("click",function(){
         var name = $("#name").val();
@@ -130,15 +136,15 @@
             data: {name: name, category: category, qty: qty, desc: desc, itemID: itemID},
             success: function(data){
                 alert(data);
-                window.location.href="InventoryList.php";        
+                window.location.href="InventoryList.php";
             },
             error: function(data){
                 alert(data);
             }
         });
-       
+
     })
-                        
+
     function cancel() {
         window.location.href="InventoryList.php";
     }

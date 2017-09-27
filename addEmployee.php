@@ -1,3 +1,9 @@
+<?php
+session_start();
+  if(!$_SESSION['checker']){
+    header("Location:index.php ");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,7 +17,7 @@
     <title>Form Component | Creative - Bootstrap 3 Responsive Admin Template</title>
     <?php
     include('exe/database.php');
-    include('exe/checker.php'); 
+    include('exe/checker.php');
     include('scripts.html');
     ?>
   </head>
@@ -69,7 +75,7 @@
                                   </div>
                               </form>
                           </div>
-                         
+
                       </section>
                   </div>
               </div>
