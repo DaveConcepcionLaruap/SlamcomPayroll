@@ -14,7 +14,7 @@ session_start();
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>Widgets | Creative - Bootstrap 3 Responsive Admin Template</title>
+    <title>Slamcom</title>
     <?php
     include("scripts.html");
     ?>
