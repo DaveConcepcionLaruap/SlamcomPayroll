@@ -89,7 +89,7 @@ session_start();
                                     echo'<textarea class="form-control" rows="9.8" id="desc" name="desc">'.$row[0].'</textarea>';
                                 ?>
                             </div>
-                            <button type="button" class="btn btn-danger" id ="del_btn" onclick="delitem()">Delete</button>
+                            <button type="button" class="btn btn-danger" id ="del_btn" >Delete</button>
                             <div style="float:right">
                                 <button type="button" onclick="cancel()" class="btn">Cancel</button>
                                 <button type="submit" name="submit" id = "editbtn" class="btn btn-primary">Edit</button>
@@ -131,29 +131,42 @@ session_start();
         var itemID = <?php echo $_GET["itemID"]?>;
 
         $.ajax({
-            url: "exe/itemStuff.php?edit",
+            url: "exe/itemStuff.php",
             method: "POST",
             data: {name: name, category: category, qty: qty, desc: desc, itemID: itemID},
             success: function(data){
-                alert(data);
+                alert("Edit Success");
                 window.location.href="InventoryList.php";
             },
             error: function(data){
-                alert(data);
+                alert("Edit Error");
             }
         });
+      });
 
-    })
+      $("#del_btn").on("click",function(){
+          var itemID = <?php echo $_GET["itemID"]?>;
+
+          $.ajax({
+              url: "exe/itemDelete.php",
+              method: "POST",
+              data: {itemID: itemID},
+              success: function(data){
+                  alert("Delete Success");
+                  window.location.href="InventoryList.php";
+              },
+              error: function(data){
+                  alert("Delete Error");
+              }
+          });
+        });
+
+
 
     function cancel() {
         window.location.href="InventoryList.php";
     }
-    function delitem() {
-        window.location.href=("exe/itemStuff.php?del&itemID="+<?php echo $_GET['itemID']; ?>);
-    }
-    function edititem() {
-        window.location.href=("exe/itemStuff.php?edit&itemID="+<?php echo $_GET['itemID']; ?>);
-    }
+
   </script>
 
   </body>

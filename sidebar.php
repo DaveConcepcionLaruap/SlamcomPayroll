@@ -1,6 +1,6 @@
 <aside>
           <div id="sidebar"  class="nav-collapse ">
-              <ul class="sidebar-menu">                
+              <ul class="sidebar-menu">
                   <li class="active">
                       <a class="" href="home.php">
                           <i class="icon_house_alt"></i>
@@ -14,13 +14,13 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="addEmployee.php">Add Employee</a></li>                          
+                          <li><a class="" href="addEmployee.php">Add Employee</a></li>
                           <li><a class="" href="form_validation.html">Form Validation</a></li>
                       </ul>
-                  </li>       
+                  </li>
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon_desktop"></i>
+                          <i class="icon_profile"></i>
                           <span>Employee</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
@@ -32,7 +32,7 @@
                   </li>
                   <li class="sub-menu">
                   <a href="javascript:;" class="">
-                      <i class="icon_desktop"></i>
+                      <i class="icon_table"></i>
                       <span>Inventory</span>
                       <span class="menu-arrow arrow_carrot-right"></span>
                   </a>
@@ -42,11 +42,11 @@
                       <li><a class="" href="restock.php">Item Restock</a></li>
                   </ul>
               </li>
-                  <li>                     
+                  <li>
                       <a class="" href="chart-chartjs.html">
                           <i class="icon_piechart"></i>
                           <span>Charts</span>
-                      </a>                  
+                      </a>
                   </li>
               </ul>
           </div>

@@ -68,7 +68,7 @@ session_start();
                         </div></br>
                         <div class = "form-group">
                             <label class = "col-sm-3">Deduct</label>
-                            <input class = "col-sm-8" type = "number" id = "qty">
+                            <input class = "col-sm-8" type = "number" id = "deductQty">
                         </div></br>
 
                         <button type = "button" class = "btn btn-default">Cancel</button>
@@ -142,25 +142,6 @@ session_start();
         "bLengthChange":false,
     });
 
-      $("#itemBtn").on("click",function(){
-           var nametxt = $("#name").val();
-           var categorytxt = $("#category").val();
-           var qtytxt = $("#qty").val();
-           var desctxt = $("#desc").val();
-
-            $.ajax({
-                url:"exe/addItem.php",
-                method:"POST",
-                data: {name: nametxt, category: categorytxt, qty: qtytxt, desctxt: desctxt},
-                success: function(data){
-                    alert(data);
-                    window.location.href="InventoryList.php";
-                },
-                error: function(data){
-                    alert(data);
-                }
-            });
-      });
 
       $("#itemList tbody").on("click","td",function(){
           data = taskTable.row($(this).parent('tr')).data();
@@ -175,18 +156,35 @@ session_start();
 
       $("#deductkBtn").on("click",function(){
            var itemID = $("#itemID").val();
-           var restockQty = $("#qty").val();
+           var deductQty = $("#deductQty").val();
            var oldQty = $("#itemQty").val();
 
             $.ajax({
-                url:"exe/itemStuff.php?deduct",
+                url:"exe/deduct.php",
                 method:"POST",
-                data: {restockQty: restockQty, itemID: itemID, oldQty: oldQty},
+                data: {deductQty: deductQty, itemID: itemID, oldQty: oldQty},
                 success: function(data){
-                    window.location.href="restock.php";
+                  alert(data);
+                  window.location.href="deduct.php";
                 },
-                error: function(data){
-                    alert("Failed");
+                error: function(jqXHR, exception){
+                  var msg = '';
+                  if (jqXHR.status === 0) {
+                      msg = 'Not connect.\n Verify Network.';
+                  } else if (jqXHR.status == 404) {
+                      msg = 'Requested page not found. [404]';
+                  } else if (jqXHR.status == 500) {
+                      msg = 'Internal Server Error [500].';
+                  } else if (exception === 'parsererror') {
+                      msg = 'Requested JSON parse failed.';
+                  } else if (exception === 'timeout') {
+                      msg = 'Time out error.';
+                  } else if (exception === 'abort') {
+                      msg = 'Ajax request aborted.';
+                  } else {
+                      msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                  }
+                  alert(msg);
                 }
             });
       });

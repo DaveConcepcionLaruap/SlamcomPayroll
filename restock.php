@@ -141,25 +141,6 @@ session_start();
         "bLengthChange":false,
     });
 
-      $("#itemBtn").on("click",function(){
-           var nametxt = $("#name").val();
-           var categorytxt = $("#category").val();
-           var qtytxt = $("#qty").val();
-           var desctxt = $("#desc").val();
-
-            $.ajax({
-                url:"exe/addItem.php",
-                method:"POST",
-                data: {name: nametxt, category: categorytxt, qty: qtytxt, desctxt: desctxt},
-                success: function(data){
-                    alert(data);
-                    window.location.href="InventoryList.php";
-                },
-                error: function(data){
-                    alert(data);
-                }
-            });
-      });
 
       $("#itemList tbody").on("click","td",function(){
           data = taskTable.row($(this).parent('tr')).data();
@@ -177,17 +158,34 @@ session_start();
            var oldQty = $("#itemQty").val();
 
             $.ajax({
-                url:"exe/itemStuff.php?restock",
+                url:"exe/restock.php",
                 method:"POST",
                 data: {restockQty: restockQty, itemID: itemID, oldQty: oldQty},
                 success: function(data){
-                    alert(data);
-                    window.location.reload();
+                    alert("Restock Success");
+                    window.location.href="restock.php";
                 },
-                error: function(data){
-                   // alert("Failed");
-                    alert(data);
-                    window.location.reload();
+                error: function(jqXHR, exception){
+                  //  alert("Restock Error");
+                  //  window.location.href="restock.php";
+
+                   var msg = '';
+                   if (jqXHR.status === 0) {
+                       msg = 'Not connect.\n Verify Network.';
+                   } else if (jqXHR.status == 404) {
+                       msg = 'Requested page not found. [404]';
+                   } else if (jqXHR.status == 500) {
+                       msg = 'Internal Server Error [500].';
+                   } else if (exception === 'parsererror') {
+                       msg = 'Requested JSON parse failed.';
+                   } else if (exception === 'timeout') {
+                       msg = 'Time out error.';
+                   } else if (exception === 'abort') {
+                       msg = 'Ajax request aborted.';
+                   } else {
+                       msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                   }
+                   alert(msg);
                 }
             });
       });
