@@ -51,7 +51,7 @@ session_start();
           <hr>
             <div>
                 <div>
-                    <form >
+
 
                         <div class = "col-md-6">
                             <div class="form-group">
@@ -97,7 +97,7 @@ session_start();
 
                         </div>
 
-                    </form>
+
 
                 </div>
 
@@ -123,50 +123,55 @@ session_start();
 
 
   <script>
-    $("#editbtn").on("click",function(){
-        var name = $("#name").val();
-        var category = $("#category").val();
-        var qty = $("#qty").val();
-        var desc = $("#desc").val();
-        var itemID = <?php echo $_GET["itemID"]?>;
+    $(document).ready(function(){
 
-        $.ajax({
-            url: "exe/itemStuff.php",
-            method: "POST",
-            data: {name: name, category: category, qty: qty, desc: desc, itemID: itemID},
-            success: function(data){
-                alert("Edit Success");
-                window.location.href="InventoryList.php";
-            },
-            error: function(data){
-                alert("Edit Error");
-            }
-        });
-      });
 
-      $("#del_btn").on("click",function(){
+      $("#editbtn").on("click",function(){
+          var name = $("#name").val();
+          var category = $("#category").val();
+          var qty = $("#qty").val();
+          var desc = $("#desc").val();
           var itemID = <?php echo $_GET["itemID"]?>;
 
           $.ajax({
-              url: "exe/itemDelete.php",
+              url: "exe/itemEdit.php",
               method: "POST",
-              data: {itemID: itemID},
+              data: {name: name, category: category, qty: qty, desc: desc, itemID: itemID},
               success: function(data){
-                  alert("Delete Success");
-                  window.location.href="InventoryList.php";
+                  alert(data);
+                  window.location.replace("InventoryList.php");
               },
               error: function(data){
-                  alert("Delete Error");
+                  alert(data);
+                  alert("Edit Error");
+                  window.location.replace("InventoryList.php");
               }
-          });
+          })
         });
 
+        $("#del_btn").on("click",function(){
+            var itemID = <?php echo $_GET["itemID"]?>;
+
+            $.ajax({
+                url: "exe/itemDelete.php",
+                method: "POST",
+                data: {itemID: itemID},
+                success: function(data){
+                    alert("Delete Success");
+                    window.location.href="InventoryList.php";
+                },
+                error: function(data){
+                    alert("Delete Error");
+                }
+            });
+          });
 
 
-    function cancel() {
-        window.location.href="InventoryList.php";
-    }
 
+      function cancel() {
+          window.location.href="InventoryList.php";
+      }
+    });
   </script>
 
   </body>

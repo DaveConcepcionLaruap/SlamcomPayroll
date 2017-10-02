@@ -36,48 +36,47 @@ session_start();
 					<ol class="breadcrumb">
 						<li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
                         <li><i class="icon_genius"></i>Inventory</li>
-                        <li><i class="icon_genius"></i>Deduct</li>
+                        <li><i class="icon_genius"></i>Restock</li>
                     </ol>
 				</div>
             </div>
 
             <div class = "col-lg-6">
-            <div class = "panel panel-default">
-                <div class = "panel-heading">Restock</div>
-                <div class = "panel-body">
-                    <form>
-                    <div class = "form-group">
-                            <label class = "col-sm-3">Item ID:</label>
-                            <input class = "col-sm-8" id = "itemID" disabled></input>
-                        </div></br></br>
+                <div class = "panel panel-default">
+                    <div class = "panel-heading">Restock</div>
+                    <div class = "panel-body">
+                        <form>
                         <div class = "form-group">
-                            <label class = "col-sm-3">Item Name:</label>
-                            <input class = "col-sm-8" id = "itemName" disabled></input>
-                        </div></br>
-                        <div class = "form-group">
-                            <label class = "col-sm-3">Category:</label>
-                            <input class = "col-sm-8" id = "itemCategory" disabled></input>
-                        </div></br>
-                        <div class = "form-group">
-                            <label class = "col-sm-3">Quantity:</label>
-                            <input class = "col-sm-8" id = "itemQty" disabled></input>
-                        </div></br>
-                        <div class="form-group">
-                            <label>Item Description:</label>
-                            <textarea class="form-control" rows="9.8" id="itemDesc" disabled></textarea>
-                        </div></br>
-                        <div class = "form-group">
-                            <label class = "col-sm-3">Deduct</label>
-                            <input class = "col-sm-8" type = "number" id = "deductQty">
-                        </div></br>
+                                <label class = "col-sm-3">Item ID:</label>
+                                <input class = "col-sm-8" id = "itemID" disabled></input>
+                            </div></br></br>
+                            <div class = "form-group">
+                                <label class = "col-sm-3">Item Name:</label>
+                                <input class = "col-sm-8" id = "itemName" disabled></input>
+                            </div></br>
+                            <div class = "form-group">
+                                <label class = "col-sm-3">Category:</label>
+                                <input class = "col-sm-8" id = "itemCategory" disabled></input>
+                            </div></br>
+                            <div class = "form-group">
+                                <label class = "col-sm-3">Quantity:</label>
+                                <input class = "col-sm-8" id = "itemQty" disabled></input>
+                            </div></br>
+                            <div class="form-group">
+                                <label>Item Description:</label>
+                                <textarea class="form-control" rows="9.8" id="itemDesc" disabled></textarea>
+                            </div></br>
+                            <div class = "form-group">
+                                <label class = "col-sm-3">Restock</label>
+                                <input class = "col-sm-8" type = "number" id = "qty">
+                            </div></br>
 
-                        <button type = "button" class = "btn btn-default">Cancel</button>
-                        <button type = "submit" id = "deductkBtn" class = "btn btn-primary">Submit</button>
-                    </form>
+                            <button type = "button" class = "btn btn-default">Cancel</button>
+                            <button type = "submit" id = "restockBtn" class = "btn btn-primary">Submit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-
             <div class = "col-lg-6">
                 <div class = "panel panel-default">
                     <div class = "panel-heading">Item List</div>
@@ -137,7 +136,7 @@ session_start();
 
 
   <script>
-
+      var data;
       var taskTable = $("#itemList").DataTable({
         "bLengthChange":false,
     });
@@ -151,44 +150,45 @@ session_start();
           $("#itemCategory").val(data[2]);
           $("#itemQty").val(data[3]);
           $("#itemDesc").val(data[4]);
-
       });
 
-      $("#deductkBtn").on("click",function(){
+      $("#restockBtn").on("click",function(){
            var itemID = $("#itemID").val();
-           var deductQty = $("#deductQty").val();
+           var restockQty = $("#qty").val();
            var oldQty = $("#itemQty").val();
 
             $.ajax({
-                url:"exe/deduct.php",
+                url:"exe/restock.php",
                 method:"POST",
-                data: {deductQty: deductQty, itemID: itemID, oldQty: oldQty},
+                data: {restockQty: restockQty, itemID: itemID, oldQty: oldQty},
                 success: function(data){
-                  alert(data);
-                  window.location.href="deduct.php";
+                    alert("Restock Success");
+                    window.location.href="restock.php";
                 },
                 error: function(jqXHR, exception){
-                  var msg = '';
-                  if (jqXHR.status === 0) {
-                      msg = 'Not connect.\n Verify Network.';
-                  } else if (jqXHR.status == 404) {
-                      msg = 'Requested page not found. [404]';
-                  } else if (jqXHR.status == 500) {
-                      msg = 'Internal Server Error [500].';
-                  } else if (exception === 'parsererror') {
-                      msg = 'Requested JSON parse failed.';
-                  } else if (exception === 'timeout') {
-                      msg = 'Time out error.';
-                  } else if (exception === 'abort') {
-                      msg = 'Ajax request aborted.';
-                  } else {
-                      msg = 'Uncaught Error.\n' + jqXHR.responseText;
-                  }
-                  alert(msg);
+                  //  alert("Restock Error");
+                  //  window.location.href="restock.php";
+
+                   var msg = '';
+                   if (jqXHR.status === 0) {
+                       msg = 'Not connect.\n Verify Network.';
+                   } else if (jqXHR.status == 404) {
+                       msg = 'Requested page not found. [404]';
+                   } else if (jqXHR.status == 500) {
+                       msg = 'Internal Server Error [500].';
+                   } else if (exception === 'parsererror') {
+                       msg = 'Requested JSON parse failed.';
+                   } else if (exception === 'timeout') {
+                       msg = 'Time out error.';
+                   } else if (exception === 'abort') {
+                       msg = 'Ajax request aborted.';
+                   } else {
+                       msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                   }
+                   console.log(msg);
                 }
             });
       });
-
 
   </script>
 

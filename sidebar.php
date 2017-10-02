@@ -38,8 +38,8 @@
                   </a>
                   <ul class="sub">
                       <li><a class="" href="InventoryList.php">Item List</a></li>
-                      <li><a class="" href="deduct.php">Item Deduct</a></li>
-                      <li><a class="" href="restock.php">Item Restock</a></li>
+                      <li><a class="" href="deductPage.php">Item Deduct</a></li>
+                      <li><a class="" href="restockPage.php">Item Restock</a></li>
                   </ul>
               </li>
                   <li>
