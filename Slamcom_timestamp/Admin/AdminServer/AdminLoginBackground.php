@@ -33,7 +33,7 @@
         }
 
       }else{
-        echo "wrong password";
+        echo "yous a hacker bruh";
       }
       /*else{
 

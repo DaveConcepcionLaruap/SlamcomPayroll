@@ -1,7 +1,7 @@
 <?php
 
   $wednesdaySql = "SELECT `WednesdayShift`, `wednesdayTimeIn`, `wednesdayTimeOut`
-                FROM `userschedule`
+                FROM `teamschedule`
                 WHERE `TeamID` = '$teamID'";
 
   $result = mysqli_query($conn, $wednesdaySql);

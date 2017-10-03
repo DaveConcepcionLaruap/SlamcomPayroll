@@ -1,7 +1,7 @@
 <?php
 
   $mondaySql = "SELECT `MondayShift`, `mondayTimeIn`, `mondayTimeOut`
-                FROM `userschedule`
+                FROM `teamschedule`
                 WHERE `TeamID` = '$teamID'";
 
   $result = mysqli_query($conn, $mondaySql);

@@ -376,14 +376,15 @@
                           }
                       },
                       error: function(data){
-                        alert(data);
+                      //  alert(data);
+                        console.log(data);
                       }
                     })
                 });
 
 
               }else if($(this).index() == 8){
-
+                //if user team is 0, redirect to a different clocktimesave that saves in userschedule instead of teamsched
                 $("#"+LoginBtn).prop('disabled',false);
                 $("#"+LogoutBtn).prop('disabled',true);
 

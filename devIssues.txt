@@ -9,3 +9,6 @@ should be marked after every work month
 to do list:
 put a link to daves system in the sidebar that will connect to his whole system with one 
 link one primary link to his whole dashboard, dave should do the same thing
+
+in LoginOrSignup -- if user team is 0, redirect to a different clocktimesave php that saves
+in userschedule instead of teamschedule
