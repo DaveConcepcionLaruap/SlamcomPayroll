@@ -129,6 +129,12 @@
                     <li>
                         <a href="AdminTeamPage.php"><i class="fa fa-fw fa-edit"></i>Teams</a>
                     </li>
+                    <li>
+                        <a href="SpecialCasesPage.php"><i class="fa fa-fw fa-edit"></i>Special Cases</a>
+                    </li>
+                    <li>
+                        <a href="SlamcomPayroll.php"><i class="fa fa-fw fa-edit"></i>Slamcom Payroll</a>
+                    </li>
 
                 </ul>
             </div>

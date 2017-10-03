@@ -72,12 +72,51 @@ include("../AdminServer/AdminLoginVerification.php");
                         </ol>
                     </div>
                 </div>
+
+                <div class="table-responsive">
+                    <table id="NonActiveEmployeeTable" class="table table-hover table-striped" cellspacing="0" width="100%" style= "width: 80%">
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>First name</th>
+                                <th>Last name</th>
+                                <th>Email add</th>
+                                <th>Delete/edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <!-- turn this into a form so we can serialize and pass to ajax POST  -->
+                            <?php
+                                include("../AdminServer/DBconnect.php");
+                                $query = 'SELECT * FROM `totalhourspermonth` WHERE 1';
+
+
+                                $result = mysqli_query($conn,$query);
+
+                                if($result){
+                                  while($row = mysqli_fetch_array($result)){
+                                      $sql = 'SELECT *'
+                                      echo '<tr id='.$row[0].'>
+                                              <td>'.$row[0].'</td>
+                                              <td>'.$row[1].'</td>
+                                              <td>'.$row[2].'</td>
+                                              <td>'.$row[3].'</td>
+                                              <td><button id="resurrectButton" type="button" class="btn btn-sm btn-primary">Resurrect</button></td>
+
+                                              </tr>';
+                                  }
+                                }
+                            ?>
+
+                        </tbody>
+                    </table>
+                </div>
                 <!-- /.row -->
             <!-- /.container-fluid -->
-            <div id="calendar" class="calendarClass">
+            <!--<div id="calendar" class="calendarClass">
 
 
-            </div>
+            </div>-->
         </div>
 
         <!-- /#page-wrapper -->

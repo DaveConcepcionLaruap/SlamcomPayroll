@@ -324,11 +324,12 @@
                       if(data == "success"){
                         location.replace("Admin/AdminClient/AdminDashboard.php");
                       }else{
+                        console.log(data);
                         alert(data);
                       }
                     },
                     error: function(data){
-                      alert(data);
+                      console.log(data);
                     }
                   });
                 });

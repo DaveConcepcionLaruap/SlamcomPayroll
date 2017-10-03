@@ -28,7 +28,8 @@
           echo "success";
           //header("Location: AdminDashboard.php");
         }else{
-            header("Location: LoginOrSignup.php?err");
+            //header("Location: LoginOrSignup.php?err");
+            echo "failed";
         }
 
       }else{
