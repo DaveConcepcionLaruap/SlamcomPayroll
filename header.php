@@ -4,7 +4,7 @@
             </div>
 
             <!--logo start-->
-            <a href="index.html" class="logo">SLAM <span class="lite">COM</span></a>
+            <a href="home.php" class="logo">SLAM <span class="lite">COM</span></a>
             <!--logo end-->
 
             <div class="nav search-row" id="top_menu">
@@ -231,7 +231,7 @@
                         <ul class="dropdown-menu extended logout">
                             <div class="log-arrow-up"></div>
                             <li class="eborder-top">
-                                <a href="#"><i class="icon_profile"></i> My Profile</a>
+                                <a href="myProfile.php"><i class="icon_profile"></i> My Profile</a>
                             </li>
                             <li>
                                 <a href="#"><i class="icon_mail_alt"></i> My Inbox</a>

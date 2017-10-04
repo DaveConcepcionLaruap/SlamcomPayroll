@@ -78,7 +78,12 @@ session_start();
                                         <td>'.$row[2].'</td>
                                         <td>'.$row[1].'</td>
                                         <td>'.$row[3].'</td>
-                                        <td><button class="btn btn-info id="finishBtn">Finished</button></td>
+                                        <td>
+                                          <div class="btn-group">
+                                              <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
+                                              <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
+                                          </div>
+                                        </td>
                                      </tr>';
                             }
                           ?>
