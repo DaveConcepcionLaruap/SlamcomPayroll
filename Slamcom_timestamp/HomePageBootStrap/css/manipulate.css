@@ -1,0 +1,61 @@
+.form-div{
+    padding-left: 200px;
+    padding-right: 200px;
+}
+.signIn-div{
+    padding-left: 124px;
+    padding-right: 124px;
+}
+#LoginErrorAlert{
+    color: red;
+    font-size: 12px;
+}
+#divLoginError{
+    background-color: white;
+    opacity: 0.7;
+    border-left: 6px solid red;
+}
+div.hidden{
+    display: none;
+}
+#divFillFields{
+    background-color: white;
+    opacity: 0.7;
+    border-left: 6px solid red;
+}
+#FillFields{
+    color: red;
+    font-size: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.divErrorSignUp{
+    background-color: white;
+    opacity: 0.7;
+    border-left: 6px solid red;
+}
+#FillFieldsSignUp{
+    color: red;
+    font-size: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#PasswordConfErrorSignUp{
+    color: red;
+    font-size: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#PasswordLength{
+    color: red;
+    font-size: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#passwordReq{
+    color: red;
+    font-size: 11px;
+}
+
+

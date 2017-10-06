@@ -1,0 +1,62 @@
+.datepickerdemo md-content{
+    display: flex;
+
+}
+.datepickerdemo .validation-messages{
+    font-size: 11px;
+    color: darkred;
+    margin: 10px 0 0 25px;
+}
+.buttondemoBasicUsage section {
+    background: #f7f7f7;
+    border-radius: 3px;
+    text-align: center;
+    margin: 1em;
+    position: relative !important;
+    padding-bottom: 10px;
+}
+.buttondemoBasicUsage md-content {
+    margin-right: 7px;
+}
+.buttondemoBasicUsage section .md-button {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+.buttondemoBasicUsage .label {
+    position: absolute;
+    bottom: 5px;
+    left: 7px;
+    font-size: 14px;
+    opacity: 0.54;
+}
+.buttonSize{
+    width:20%;
+
+}
+#startDATE {
+    width: 48%;
+
+}
+#endDATE{
+    width: 38%;
+
+}
+.Row{
+    display: table;
+
+}
+.Column{
+    display: table-cell;
+}
+.FAB{
+  position: fixed;
+  bottom:0;
+  right:0;
+}
+#page-wrapper{
+    width: 85%;
+    height: 900px;
+}
+.modal-dialog{
+    width: 90%;
+}
