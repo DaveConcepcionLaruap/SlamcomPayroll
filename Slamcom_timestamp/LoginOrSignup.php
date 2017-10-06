@@ -100,18 +100,37 @@
                                       $result = mysqli_query($conn,$query);
 
                                       while($row = mysqli_fetch_array($result)){
-                                          $sql = 'SELECT `TeamName` FROM `team` WHERE `TeamID` = '.$row[4].'';
-                                          $teamresult = mysqli_query($conn, $sql);
-                                          while($teamrow = mysqli_fetch_array($teamresult)){
-                                            $LogInbtnID = $row[0].$row[4];
-                                            $LogOutbtnID = $row[0].$teamrow[0];
+                                            if($row[4] != 0){
+                                              $sql = 'SELECT `TeamName` FROM `team` WHERE `TeamID` = '.$row[4].'';
+                                              $teamresult = mysqli_query($conn, $sql);
+                                              $teamrow = mysqli_fetch_array($teamresult);
+                                                $LogInbtnID = $row[0].$row[4];
+                                                $LogOutbtnID = $row[0].$teamrow[0];
+                                                  echo '<tr id='.$row[0].'>
+                                                          <td>'.$row[0].'</td>
+                                                          <td>'.$row[1].'</td>
+                                                          <td>'.$row[2].'</td>
+                                                          <td>'.$row[3].'</td>
+                                                          <td>'.$row[4].'</td>
+                                                          <td>'.$teamrow[0].'</td>
+                                                          <td><button id="'.$LogInbtnID.'" type="button" data-toggle="modal" data-target="#EmployeeLoginValidationModal"
+                                                          class="btn btn-sm btn-primary" value="LogIn">Login</button></td>
+                                                          <td></td>
+                                                          <td><button id="'.$LogOutbtnID.'" type="button" class="btn btn-sm btn-primary"
+                                                          value="LogOut" disabled>Logout</button></td>
+                                                          <td></td>
+                                                          </tr>';
+
+                                          }else{
+                                              $LogInbtnID = $row[0].$row[4];
+                                              $LogOutbtnID = $row[0]."N/A";
                                               echo '<tr id='.$row[0].'>
                                                       <td>'.$row[0].'</td>
                                                       <td>'.$row[1].'</td>
                                                       <td>'.$row[2].'</td>
                                                       <td>'.$row[3].'</td>
                                                       <td>'.$row[4].'</td>
-                                                      <td>'.$teamrow[0].'</td>
+                                                      <td>'."N/A".'</td>
                                                       <td><button id="'.$LogInbtnID.'" type="button" data-toggle="modal" data-target="#EmployeeLoginValidationModal"
                                                       class="btn btn-sm btn-primary" value="LogIn">Login</button></td>
                                                       <td></td>
@@ -380,6 +399,8 @@
                         console.log(data);
                       }
                     })
+
+
                 });
 
 

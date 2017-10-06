@@ -35,6 +35,8 @@ include("../AdminServer/AdminLoginVerification.php");
 
     <link href="../../fullCalendar/css/fullcalendar.min.css" rel="stylesheet"/>
     <link href="../../fullCalendar/css/fullcalendar.print.min.css" rel="stylesheet" media="print"/>
+
+    <?php include("cssRefs.php") ?>
     <style>
       body {
     		margin: 40px 10px;
@@ -45,9 +47,13 @@ include("../AdminServer/AdminLoginVerification.php");
 
     	#calendar {
     		width: inherit;
-        height: inherit;
+            height: inherit;
     		margin: 0 auto;
     	}
+        #mainContent{
+            width: 85%;
+            margin-top: 20px;
+        }
     </style>
 </head>
 
@@ -57,7 +63,7 @@ include("../AdminServer/AdminLoginVerification.php");
 
         <?php include("sideBar.php"); ?>
 
-        <div id="page-wrapper">
+        <div id="mainContent">
 
             <div class="container-fluid">
                 <!--just make it a list of days where its special holiday-->
@@ -67,21 +73,21 @@ include("../AdminServer/AdminLoginVerification.php");
 
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Dashboard
+                                <i class="fa fa-dashboard"></i> Total hours per month for each user
                             </li>
                         </ol>
                     </div>
                 </div>
-
+                <button id="deleteDataMonthBtn">Reset month</button>
                 <div class="table-responsive">
-                    <table id="NonActiveEmployeeTable" class="table table-hover table-striped" cellspacing="0" width="100%" style= "width: 80%">
+                    <table id="TotalHoursperMonth" class="table table-hover table-striped" cellspacing="0" width="100%" style= "width: 80%">
                         <thead>
                             <tr>
-                                <th>User ID</th>
+                                <th>Total Late</th>
+                                <th>Total Hours Made</th>
+                                <th>Total Overtime</th>
                                 <th>First name</th>
                                 <th>Last name</th>
-                                <th>Email add</th>
-                                <th>Delete/edit</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -95,15 +101,21 @@ include("../AdminServer/AdminLoginVerification.php");
 
                                 if($result){
                                   while($row = mysqli_fetch_array($result)){
-                                      $sql = 'SELECT *'
-                                      echo '<tr id='.$row[0].'>
-                                              <td>'.$row[0].'</td>
-                                              <td>'.$row[1].'</td>
-                                              <td>'.$row[2].'</td>
-                                              <td>'.$row[3].'</td>
-                                              <td><button id="resurrectButton" type="button" class="btn btn-sm btn-primary">Resurrect</button></td>
+                                      $userID = $row["userID"];
+                                      $sql = "SELECT `firstname`, `lastname` FROM `user` WHERE `userID` = '$userID'";
 
-                                              </tr>';
+                                      $userResult = mysqli_query($conn,$sql);
+
+                                        if($userResult){
+                                            $userRow = mysqli_fetch_array($userResult);
+                                            echo '<tr id='.$row[0].'>
+                                                  <td>'.$row[0].'</td>
+                                                  <td>'.$row[1].'</td>
+                                                  <td>'.$row[2].'</td>
+                                                  <td>'.$userRow[0].'</td>
+                                                  <td>'.$userRow[1].'</td>
+                                                  </tr>';
+                                        }
                                   }
                                 }
                             ?>
@@ -133,6 +145,7 @@ include("../AdminServer/AdminLoginVerification.php");
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../../AdminPageBootStrap/js/bootstrap.js"></script>
+    <script type="text/javascript" charset="utf-8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
     <!-- Latest compiled and minified JavaScript -->
 
 
@@ -148,6 +161,11 @@ include("../AdminServer/AdminLoginVerification.php");
       			eventLimit: true // allow "more" link when too many events
 
       		});
+
+            $("#TotalHoursperMonth").DataTable();
+            $("#deleteDataMonthBtn").on("click",function(){
+                window.location.replace("../AdminServer/refreshMonthData.php");
+            });
         });
     </script>
 
