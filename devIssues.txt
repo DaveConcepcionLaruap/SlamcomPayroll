@@ -5,3 +5,7 @@ Robin issues
 should be marked after every work month
 - fix login bug - table doesn't display users with no team
 - Team Leader table issue
+
+to do list:
+put a link to daves system in the sidebar that will connect to his whole system with one 
+link one primary link to his whole dashboard, dave should do the same thing
