@@ -16,3 +16,6 @@ in userschedule instead of teamschedule
 
 prolly just use your login page as admin login, but we should collab to add sessions and shit na
 I guess next week
+
+
+loginsignup.php - maybe separate the onclick of the login from the rest of the table
