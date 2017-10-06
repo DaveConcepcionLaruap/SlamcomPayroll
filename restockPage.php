@@ -16,6 +16,7 @@ session_start();
 
     <title>Widgets | Creative - Bootstrap 3 Responsive Admin Template</title>
     <?php
+    include("exe/database.php");
     include("scripts.html");
     ?>
   </head>
@@ -95,7 +96,6 @@ session_start();
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $con = mysqli_connect("localhost","root","","payroll_slamcom");
                                     $query = 'SELECT `id`, `name`, `category`, `qty`, `itemDesc` FROM item';
                                     $result = mysqli_query($con, $query);
 

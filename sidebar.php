@@ -7,17 +7,6 @@
                           <span>Dashboard</span>
                       </a>
                   </li>
-				  <li class="sub-menu">
-                      <a href="javascript:;" class="">
-                          <i class="icon_document_alt"></i>
-                          <span>Forms</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
-                      </a>
-                      <ul class="sub">
-                          <li><a class="" href="addEmployee.php">Add Employee</a></li>
-                          <li><a class="" href="form_validation.html">Form Validation</a></li>
-                      </ul>
-                  </li>
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon_profile"></i>
@@ -27,7 +16,6 @@
                       <ul class="sub">
                           <li><a class="" href="employeeTable.php">Employee List</a></li>
                           <li><a class="" href="employeePayroll.php">Emplyee Payroll</a></li>
-                          <li><a class="" href="grids.html">Grids</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -42,12 +30,6 @@
                       <li><a class="" href="restockPage.php">Item Restock</a></li>
                   </ul>
               </li>
-                  <li>
-                      <a class="" href="chart-chartjs.html">
-                          <i class="icon_piechart"></i>
-                          <span>Charts</span>
-                      </a>
-                  </li>
               </ul>
           </div>
       </aside>

@@ -223,7 +223,7 @@
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                                <img alt="" src="img/avatar1_small.jpg">
+                                <img alt="" src="img/profile_mini.jpg">
                             </span>
                             <span class="username"><?php echo $_SESSION['user']; ?></span>
                             <b class="caret"></b>

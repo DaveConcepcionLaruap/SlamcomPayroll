@@ -9,7 +9,7 @@
 
 
 
-      $check = mysqli_query($con,"SELECT * FROM `admin` WHERE username = '$username'");
+      $check = mysqli_query($con,"SELECT * FROM `adminusers` WHERE username = '$username'");
       $row = mysqli_fetch_assoc($check);
 
 
@@ -18,7 +18,7 @@
 
               $_SESSION['user'] = $username;
               $_SESSION['checker'] = true;
-              $_SESSION['user'] = $row['username'];
+              $_SESSION['user'] = $row['firstname']." ".$row['lastname'];
               header("Location:../home.php");
 
 
