@@ -1,0 +1,189 @@
+$gutter: 20px;
+$zone: 20px;
+
+.jqs {
+  position: relative;
+  padding: $gutter*2 $gutter $gutter $gutter*3;
+  overflow-y: scroll;
+  font-family: system, -apple-system, Roboto, Helvetica Neue, Arial, Helvetica, Geneva, sans-serif;
+  box-sizing: border-box;
+
+  .jqs-table {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    margin-bottom: $gutter;
+    border-collapse: collapse;
+    border-spacing: 0;
+    box-sizing: content-box;
+    td,
+    th {
+      padding: 0;
+    }
+    td {
+      width: (100%/7);
+      border-left: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+    }
+  }
+
+  .jqs-grid {
+    position: absolute;
+    top: $gutter * 2;
+    left: $gutter * 3;
+    right: $gutter;
+    box-sizing: content-box;
+
+    .jqs-grid-head {
+      position: absolute;
+      top: -$gutter;
+      left: 0;
+      right: 0;
+      display: flex;
+    }
+
+    .jqs-grid-day {
+      width: (100%/7);
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .jqs-grid-line {
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid transparent;
+      position: relative;
+      height: $zone*2 - 2;
+      &:last-child {
+        height: 0;
+        border-bottom: none;
+      }
+      &:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        height: 1px;
+        width: 100%;
+        background: #eee;
+      }
+    }
+
+    .jqs-grid-hour {
+      position: absolute;
+      top: ($zone/2 - 3) * -1;
+      left: ($gutter * 2.5) * -1;
+      display: block;
+      width: 42px;
+      font-size: 12px;
+      text-align: right;
+    }
+  }
+
+  .jqs-wrapper {
+    width: 100%;
+    height: $zone* 2 * 24;
+    position: relative;
+  }
+
+  .jqs-period {
+    position: absolute;
+    width: 100%;
+    min-height: $zone;
+    line-height: 1;
+
+    .jqs-period-container {
+      position: absolute;
+      top: 2px;
+      bottom: 2px;
+      left: 2px;
+      right: 2px;
+      padding: 3px;
+      background: rgba(82, 155, 255, .5);
+      border: 1px solid #2a3cff;
+      border-radius: 3px;
+    }
+
+    .jqs-period-title {
+      font-size: 11px;
+    }
+
+    &:hover {
+      .jqs-remove {
+        display: block;
+      }
+    }
+  }
+
+  .jqs-remove {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 14px;
+    width: 14px;
+    cursor: pointer;
+    &:before,
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      height: 100%;
+      width: 2px;
+      left: 6px;
+      background: #2a3cff;
+    }
+    &:before {
+      transform: rotate(45deg);
+    }
+    &:after {
+      transform: rotate(-45deg);
+    }
+  }
+
+  .jqs-dialog-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: rgba(255, 255, 255, .5);
+  }
+
+  .jqs-dialog-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    z-index: 15;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .jqs-dialog {
+      padding: 25px;
+      background: #fff;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    }
+    .jqs-dialog-txt {
+      padding: 5px 0;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+    .jqs-dialog-yes,
+    .jqs-dialog-no {
+      display: inline-block;
+      cursor: pointer;
+      width: 100px;
+      text-align: center;
+      padding: 10px 20px;
+      color: #106CC8;
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      &:hover {
+        background: rgba(158, 158, 158, 0.2);
+      }
+    }
+  }
+}
