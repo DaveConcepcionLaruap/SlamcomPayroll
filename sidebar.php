@@ -30,6 +30,13 @@
                       <li><a class="" href="restockPage.php">Item Restock</a></li>
                   </ul>
               </li>
+
+              <li class="sub-menu">
+              <a href="Slamcom_timestamp/" class="">
+                  <i class="icon_clock_alt"></i>
+                  <span>Timestamp</span>
+              </a>
+          </li>
               </ul>
           </div>
       </aside>

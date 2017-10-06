@@ -8,26 +8,21 @@
   	$password = $_POST['pass'];
 
 
-
       $check = mysqli_query($con,"SELECT * FROM `adminusers` WHERE username = '$username'");
       $row = mysqli_fetch_assoc($check);
-
 
       if($row['username'] == $username){
           if($row['password'] == $password){
 
-              $_SESSION['user'] = $username;
+              $_SESSION['id'] = $row['userID'];
               $_SESSION['checker'] = true;
               $_SESSION['user'] = $row['firstname']." ".$row['lastname'];
               header("Location:../home.php");
 
-
           }else{
-              //header("Location:..");
               echo "password error";
           }
       }else{
-          //header("Location:..");
           echo "username error";
       }
     }else{

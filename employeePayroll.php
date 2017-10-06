@@ -7,6 +7,10 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <?php
+      include('exe/database.php');
+      include('scripts.html');
+    ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
@@ -14,27 +18,8 @@ session_start();
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>Widgets | Creative - Bootstrap 3 Responsive Admin Template</title>
+    <title>SLAMCOM - Employee Payroll</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- bootstrap theme -->
-    <link href="css/bootstrap-theme.css" rel="stylesheet">
-    <!-- external css -->
-    <!-- font icon -->
-    <link href="css/elegant-icons-style.css" rel="stylesheet" />
-    <link href="css/font-awesome.min.css" rel="stylesheet" />
-    <!-- Custom styles -->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet" />
-
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
-      <script src="js/lte-ie7.js"></script>
-    <![endif]-->
   </head>
 
   <body>
@@ -203,19 +188,6 @@ session_start();
   </section>
   <!-- container section end -->
 
-    <!-- javascripts -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- nice scroll -->
-    <script src="js/jquery.scrollTo.min.js"></script>
-    <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-    <!-- jquery knob -->
-    <script src="assets/jquery-knob/js/jquery.knob.js"></script>
-    <!--custome script for all page-->
-    <script src="js/scripts.js"></script>
-    <!-- Data Table-->
-    <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-
     <script>
 
             var taskTable = $("#employeeList").DataTable({
@@ -224,10 +196,7 @@ session_start();
 
         $("#employeeList tbody").on("click","td", function(){
             data = taskTable.row($(this).parents('tr')).data();
-            $("#editBtn").trigger("click");
-            //query here
-            //input data here
-            $("#workDays").val("test");
+            window.location.href=("employeePage.php?employeeID="+data[0]);
         });
 
 
