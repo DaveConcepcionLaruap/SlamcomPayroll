@@ -301,22 +301,11 @@
             var ActiveEmployeeTable = $("#ActiveEmployeeTable").DataTable();
             var AdminTable = $("#AdminTable").DataTable();
 
-            $(document).on('change','#DayofTheWeekSelector',function(){
+            /*$(document).on('change','#DayofTheWeekSelector',function(){
               var selectedDay = $("#DayofTheWeekSelector").find(":selected").text();
-              //alert(selectedDay);
 
-              /*$.ajax({
-                url: "../AdminServer/checkTeamsForToday.php",
-                method: "POST",
-                data: {dayOfTheWeek: selectedDay},
-                success: function(data){
+          });*/
 
-                },
-                error: function(data){
-
-                }
-              })*/
-            });
             $("#AdminTable").on("click", "td", function(){
               var data = AdminTable.row($(this).parents('tr')).data();
 
@@ -359,6 +348,7 @@
               }
             });
 
+
             $("#ActiveEmployeeTable").on("click", "td", function(){
               var data = ActiveEmployeeTable.row($(this).parents('tr')).data();
               var cell = ActiveEmployeeTable.cell($(this).parents('tr'), 7);
@@ -380,7 +370,7 @@
                       method: "POST",
                       data: {employeeID: data[0], employeePassword: password},
                       success: function(data){
-                          if(data == "user login secured"){
+                        if(data == "user login secured"){
                             $("#"+LoginBtn).prop('disabled',true);
                             $("#"+LogoutBtn).prop('disabled',false);
 
@@ -389,10 +379,10 @@
                             cell.data(getDateTime());
                             $("#EmployeeLoginCancelBtn").trigger("click");
                             $("#EmployeePassword").val("");
-                          }else{
+                        }else{
                             alert(data);
                             $("#EmployeePassword").val("");
-                          }
+                        }
                       },
                       error: function(data){
                       //  alert(data);
@@ -412,23 +402,26 @@
                 var TimeOutcell = ActiveEmployeeTable.cell($(this).parents('tr'), 9);
                 TimeOutcell.data(getDateTime());
                 var selectedDay = $("#DayofTheWeekSelector").find(":selected").text();
-                $.ajax({
-                  url: "EmployeeClockTimeSave.php",
-                  method: "POST",
-                  data: {"userID" : data[0],
-                  "timeIn" : data[7],
-                  "timeOut" : data[9],
-                  "teamID" : data[4],
-                  "selectedDay": selectedDay},
-                  success: function(data){
-                    alert(data);
+                if(data[4] != 0){
+                    $.ajax({
+                      url: "EmployeeClockTimeSaveTeam.php",
+                      method: "POST",
+                      data: {"userID" : data[0],
+                      "timeIn" : data[7],
+                      "timeOut" : data[9],
+                      "teamID" : data[4],
+                      "selectedDay": selectedDay},
+                      success: function(data){
+                        alert(data);
 
-                  },
-                  error: function(data){
-                    alert(data);
-                  }
-                });
-
+                      },
+                      error: function(data){
+                        alert(data);
+                      }
+                    });
+                }else{
+                    alert("nice");
+                }
               }else{
                 alert("shit");
               }
