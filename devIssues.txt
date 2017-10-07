@@ -2,13 +2,13 @@ Robin issues
 - add absent funcitonality
 - finish adding special cases module
 - make dashboard a page for marking rows in specific tables as finished ex: tableusersmonth
-should be marked after every work month
-- fix login bug - table doesn't display users with no team
+should be marked after every work month (fixed)
+- fix login bug - table doesn't display users with no team (fixed)
 - Team Leader table issue
 
 to do list:
 put a link to daves system in the sidebar that will connect to his whole system with one
-link one primary link to his whole dashboard, dave should do the same thing
+link one primary link to his whole dashboard, dave should do the same thing (fixed but needs sessions)
 
 in LoginOrSignup -- if user team is 0, redirect to a different clocktimesave php that saves
 in userschedule instead of teamschedule
@@ -18,4 +18,4 @@ prolly just use your login page as admin login, but we should collab to add sess
 I guess next week
 
 
-loginsignup.php - maybe separate the onclick of the login from the rest of the table
+loginsignup.php - maybe separate the onclick of the login from the rest of the table (fixed)
