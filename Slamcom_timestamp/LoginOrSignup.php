@@ -113,7 +113,7 @@
                                                           <td>'.$row[3].'</td>
                                                           <td>'.$row[4].'</td>
                                                           <td>'.$teamrow[0].'</td>
-                                                          <td><button id="'.$LogInbtnID.'" type="button" data-toggle="modal" data-target="#EmployeeLoginValidationModal"
+                                                          <td><button id="'.$LogInbtnID.'" type="button"
                                                           class="btn btn-sm btn-primary" value="LogIn">Login</button></td>
                                                           <td></td>
                                                           <td><button id="'.$LogOutbtnID.'" type="button" class="btn btn-sm btn-primary"
@@ -131,7 +131,7 @@
                                                       <td>'.$row[3].'</td>
                                                       <td>'.$row[4].'</td>
                                                       <td>'."N/A".'</td>
-                                                      <td><button id="'.$LogInbtnID.'" type="button" data-toggle="modal" data-target="#EmployeeLoginValidationModal"
+                                                      <td><button id="'.$LogInbtnID.'" type="button"
                                                       class="btn btn-sm btn-primary" value="LogIn">Login</button></td>
                                                       <td></td>
                                                       <td><button id="'.$LogOutbtnID.'" type="button" class="btn btn-sm btn-primary"
@@ -226,7 +226,7 @@
 
         </div>
     </div>
-  <!--  <button type="button" id="EmployeeLoginValidationModalButton" class="btn btn-info btn-lg" data-toggle="modal" data-target="#EmployeeLoginValidationModal" style="display: none">Open Modal</button>-->
+    <button type="button" id="EmployeeLoginValidationModalButton" class="btn btn-info btn-lg" data-toggle="modal" data-target="#EmployeeLoginValidationModal" style="display: none">Open Modal</button>
     <div class="modal fade" id="EmployeeLoginValidationModal" role="dialog">
         <div class="modal-dialog">
 
@@ -238,12 +238,7 @@
                           <div class="form-group">
                               <input class="form-control" id="EmployeeID" name="txt_EmployeeID" type="text" readonly="readonly">
                           </div>
-                          <div class="form-group">
-                              <input class="form-control" id="EmployeeFirstName" name="txt_Employeefirstname" type="text" readonly="readonly">
-                          </div>
-                          <div class="form-group">
-                              <input class="form-control" id="EmployeeLastName"  name="txt_Employeelastname" readonly="readonly">
-                          </div>
+
                           <div class="form-group">
 
                               <input class="form-control" id="EmployeePassword" placeholder="password" name="txt_Employeepassword" type="password" required autofocus>
@@ -327,6 +322,7 @@
                     url: "Admin/AdminServer/AdminLoginBackground.php",
                     method: "POST",
                     data: {AdminID: data[0],AdminPassword: Adminpass},
+                    cache: false,
                     success: function(data){
 
                       if(data == "success"){
@@ -348,7 +344,6 @@
               }
             });
 
-
             $("#ActiveEmployeeTable").on("click", "td", function(){
               var data = ActiveEmployeeTable.row($(this).parents('tr')).data();
               var cell = ActiveEmployeeTable.cell($(this).parents('tr'), 7);
@@ -360,22 +355,29 @@
                 $("#EmployeeFirstName").val(data[1]);
                 $("#EmployeeLastName").val(data[2]);
 
-                //$("#EmployeeLoginValidationModalButton").trigger("click");
+                $("#EmployeeLoginValidationModalButton").trigger("click");
 
-                $("#EmployeeLoginProceedBtn").on("click", function(){
+
+                $("#EmployeeLoginProceedBtn").unbind("click");
+                $("#EmployeeLoginProceedBtn").click(function(){
                     var password = $("#EmployeePassword").val();
+                    var request;
 
-                    $.ajax({
+                    if(request){
+                        request.abort();
+                    }
+                    request = $.ajax({
                       url: "EmployeeLoginBackground.php",
                       method: "POST",
-                      data: {employeeID: data[0], employeePassword: password},
+                      data: {employeeID: $("#EmployeeID").val(), employeePassword: password},
+                      cache: false,
                       success: function(data){
                         if(data == "user login secured"){
                             $("#"+LoginBtn).prop('disabled',true);
                             $("#"+LogoutBtn).prop('disabled',false);
 
 
-                            alert(data);
+                            //alert(data);
                             cell.data(getDateTime());
                             $("#EmployeeLoginCancelBtn").trigger("click");
                             $("#EmployeePassword").val("");
@@ -383,18 +385,22 @@
                             alert(data);
                             $("#EmployeePassword").val("");
                         }
+                        request = null;
                       },
                       error: function(data){
                       //  alert(data);
                         console.log(data);
-                      }
+                        },
+                        complete: function(xhr, status){
+                            request = null;
+                        }
                     })
 
 
                 });
 
 
-              }else if($(this).index() == 8){
+            }else if($(this).index() == 8){
                 //if user team is 0, redirect to a different clocktimesave that saves in userschedule instead of teamsched
                 $("#"+LoginBtn).prop('disabled',false);
                 $("#"+LogoutBtn).prop('disabled',true);
@@ -411,6 +417,7 @@
                       "timeOut" : data[9],
                       "teamID" : data[4],
                       "selectedDay": selectedDay},
+                      cache: false,
                       success: function(data){
                         alert(data);
 
@@ -427,6 +434,8 @@
               }
 
             });
+
+
             function getDateTime(){
               var datetime = new Date();
 
