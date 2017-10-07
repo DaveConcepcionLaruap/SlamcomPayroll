@@ -14,7 +14,7 @@ session_start();
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>Slamcom</title>
+    <title>Slamcom - Inventory</title>
     <?php
     include("exe/database.php");
     include("scripts.html");

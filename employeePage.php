@@ -59,56 +59,52 @@ session_start();
                             <div class = "form-group">
                                 <label class = "col-sm-3">Late</label>
                                 <input class = "col-sm-8" id = "late" disabled></input>
-                            </div></br>
+                            </div></br></br>
                             <div class = "form-group">
                                 <label class = "col-sm-3">Absent</label>
                                 <input class = "col-sm-8" id = "absent" disabled></input>
-                            </div></br>
+                            </div></br></br>
                             <div class = "form-group">
                                 <label class = "col-sm-3">Overtime</label>
                                 <input class = "col-sm-8" id = "overtime" disabled></input>
-                            </div></br>
+                            </div></br></br>
                             <div class = "form-group">
                                 <label class = "col-sm-3">Adjustment</label>
                                 <input class = "col-sm-8" id = "adjustment" disabled></input>
-                            </div></br>
+                            </div></br></br>
                     </div>
                 </div>
             </div>
             <div class = "col-lg-6">
                 <div class = "panel panel-default">
-                    <div class = "panel-body">
-                        <form>
+                    <div class = "panel-body" >
                         <div class = "form-group">
-                                <label class = "col-sm-3">Item ID:</label>
-                                <input class = "col-sm-8" id = "itemID" disabled></input>
+                                <label class = "col-sm-3">Work Days</label>
+                                <input class = "col-sm-8" id = "workDays" disabled></input>
                             </div></br></br>
                             <div class = "form-group">
-                                <label class = "col-sm-3">Item Name:</label>
-                                <input class = "col-sm-8" id = "itemName" disabled></input>
-                            </div></br>
+                                <label class = "col-sm-3">Late</label>
+                                <input class = "col-sm-8" id = "late" disabled></input>
+                            </div></br></br>
                             <div class = "form-group">
-                                <label class = "col-sm-3">Category:</label>
-                                <input class = "col-sm-8" id = "itemCategory" disabled></input>
-                            </div></br>
+                                <label class = "col-sm-3">Absent</label>
+                                <input class = "col-sm-8" id = "absent" disabled></input>
+                            </div></br></br>
                             <div class = "form-group">
-                                <label class = "col-sm-3">Quantity:</label>
-                                <input class = "col-sm-8" id = "itemQty" disabled></input>
-                            </div></br>
-                            <div class="form-group">
-                                <label>Item Description:</label>
-                                <textarea class="form-control" rows="9.8" id="itemDesc" disabled></textarea>
-                            </div></br>
+                                <label class = "col-sm-3">Overtime</label>
+                                <input class = "col-sm-8" id = "overtime" disabled></input>
+                            </div></br></br>
                             <div class = "form-group">
-                                <label class = "col-sm-3">Restock</label>
-                                <input class = "col-sm-8" type = "number" id = "qty">
-                            </div></br>
-
-                            <button type = "button" class = "btn btn-default">Cancel</button>
-                            <button type = "submit" id = "restockBtn" class = "btn btn-primary">Submit</button>
-                        </form>
+                                <label class = "col-sm-3">Adjustment</label>
+                                <input class = "col-sm-8" id = "adjustment" disabled></input>
+                            </div></br></br>
                     </div>
                 </div>
+            </div>
+            <br>
+
+
+              </div>
             </div>
           </section>
       </section>

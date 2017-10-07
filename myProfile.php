@@ -52,17 +52,6 @@
                               <div class="follow-ava">
                                   <img src="img/profile_mini.jpg"> <!-- img path here -->
                               </div>
-                              <h6>Administrator</h6>
-                            </div>
-                            <div class="col-lg-4 col-sm-4 follow-info">
-                                <p>Hello I’m Jenifer Smith, a leading expert in interactive and creative design.</p>
-                                <p>@jenifersmith</p>
-								<p><i class="fa fa-twitter">jenifertweet</i></p>
-                                <h6>
-                                    <span><i class="icon_clock_alt"></i>11:05 AM</span>
-                                    <span><i class="icon_calendar"></i>25.10.13</span>
-                                    <span><i class="icon_pin_alt"></i>NY</span>
-                                </h6>
                             </div>
                           </div>
                     </div>
@@ -74,12 +63,6 @@
                     <section class="panel">
                           <header class="panel-heading tab-bg-info">
                               <ul class="nav nav-tabs">
-                                  <li class="active">
-                                      <a data-toggle="tab" href="#recent-activity">
-                                          <i class="icon-home"></i>
-                                          Daily Activity
-                                      </a>
-                                  </li>
                                   <li>
                                       <a data-toggle="tab" href="#profile">
                                           <i class="icon-user"></i>
@@ -96,23 +79,8 @@
                           </header>
                           <div class="panel-body">
                               <div class="tab-content">
-                                <!-- Recent Activity -->
-                                  <div id="recent-activity" class="tab-pane active">
-                                      <div class="profile-activity">
-                                          <div class="act-time">
-                                              <div class="activity-body act-in">
-                                                  <span class="arrow"></span>
-                                                  <div class="text">
-                                                      <p class="attribution">30th October 2014</p>
-                                                      <p>Sample activity Here</p>
-                                                  </div>
-                                              </div>
-                                          </div>
-
-                                      </div>
-                                  </div>
                                   <!-- profile -->
-                                  <div id="profile" class="tab-pane">
+                                  <div id="profile" class="tab-pane active">
                                     <section class="panel">
                                       <div class="bio-graph-heading">
                                         Self Introduction Here
@@ -121,28 +89,46 @@
                                           <h1>Bio Graph</h1>
                                           <div class="row">
                                               <div class="bio-row">
-                                                  <p><span>First Name </span>: Jenifer </p>
+                                                <?php
+                                                  $result = mysqli_query($con,"SELECT firstname FROM adminusers where userID =".$_SESSION['id']);
+                                                  $row = mysqli_fetch_Array($result);
+                                                  echo '<p><span>First Name </span>: '.$row[0].'</p>';
+                                                ?>
                                               </div>
                                               <div class="bio-row">
-                                                  <p><span>Last Name </span>: Smith</p>
+                                                <?php
+                                                  $result = mysqli_query($con,"SELECT lastname FROM adminusers where userID =".$_SESSION['id']);
+                                                  $row = mysqli_fetch_Array($result);
+                                                  echo '<p><span>Last Name </span>: '.$row[0].'</p>';
+                                                ?>
                                               </div>
                                               <div class="bio-row">
-                                                  <p><span>Birthday</span>: 27 August 1987</p>
+                                                <?php
+                                                  $result = mysqli_query($con,"SELECT bday FROM adminusers where userID =".$_SESSION['id']);
+                                                  $row = mysqli_fetch_Array($result);
+                                                  echo '<p><span>Birthday </span>: '.$row[0].'</p>';
+                                                ?>
                                               </div>
                                               <div class="bio-row">
-                                                  <p><span>Country </span>: United</p>
+                                                <?php
+                                                  $result = mysqli_query($con,"SELECT address FROM adminusers where userID =".$_SESSION['id']);
+                                                  $row = mysqli_fetch_Array($result);
+                                                  echo '<p><span>Address </span>: '.$row[0].'</p>';
+                                                ?>
                                               </div>
                                               <div class="bio-row">
-                                                  <p><span>Occupation </span>: UI Designer</p>
+                                                <?php
+                                                  $result = mysqli_query($con,"SELECT mobileNo FROM adminusers where userID =".$_SESSION['id']);
+                                                  $row = mysqli_fetch_Array($result);
+                                                  echo '<p><span>Mobile No </span>: '.$row[0].'</p>';
+                                                ?>
                                               </div>
                                               <div class="bio-row">
-                                                  <p><span>Email </span>:jenifer@mailname.com</p>
-                                              </div>
-                                              <div class="bio-row">
-                                                  <p><span>Mobile </span>: (+6283) 456 789</p>
-                                              </div>
-                                              <div class="bio-row">
-                                                  <p><span>Phone </span>:  (+021) 956 789123</p>
+                                                <?php
+                                                  $result = mysqli_query($con,"SELECT email FROM adminusers where userID =".$_SESSION['id']);
+                                                  $row = mysqli_fetch_Array($result);
+                                                  echo '<p><span>Email Address </span>: '.$row[0].'</p>';
+                                                ?>
                                               </div>
                                           </div>
                                       </div>
@@ -161,61 +147,55 @@
                                                   <div class="form-group">
                                                       <label class="col-lg-2 control-label">First Name</label>
                                                       <div class="col-lg-6">
-                                                          <input type="text" class="form-control" id="f-name" placeholder=" ">
+                                                          <input type="text" class="form-control" id="firstname" placeholder=" ">
                                                       </div>
                                                   </div>
                                                   <div class="form-group">
                                                       <label class="col-lg-2 control-label">Last Name</label>
                                                       <div class="col-lg-6">
-                                                          <input type="text" class="form-control" id="l-name" placeholder=" ">
-                                                      </div>
-                                                  </div>
-                                                  <div class="form-group">
-                                                      <label class="col-lg-2 control-label">About Me</label>
-                                                      <div class="col-lg-10">
-                                                          <textarea name="" id="" class="form-control" cols="30" rows="5"></textarea>
-                                                      </div>
-                                                  </div>
-                                                  <div class="form-group">
-                                                      <label class="col-lg-2 control-label">Country</label>
-                                                      <div class="col-lg-6">
-                                                          <input type="text" class="form-control" id="c-name" placeholder=" ">
+                                                          <input type="text" class="form-control" id="lastname" placeholder=" ">
                                                       </div>
                                                   </div>
                                                   <div class="form-group">
                                                       <label class="col-lg-2 control-label">Birthday</label>
                                                       <div class="col-lg-6">
-                                                          <input type="text" class="form-control" id="b-day" placeholder=" ">
+                                                          <input type="text" class="form-control" id="bday" placeholder=" ">
                                                       </div>
                                                   </div>
                                                   <div class="form-group">
-                                                      <label class="col-lg-2 control-label">Occupation</label>
+                                                      <label class="col-lg-2 control-label">Address</label>
                                                       <div class="col-lg-6">
-                                                          <input type="text" class="form-control" id="occupation" placeholder=" ">
+                                                          <input type="text" class="form-control" id="address" placeholder=" ">
                                                       </div>
                                                   </div>
                                                   <div class="form-group">
                                                       <label class="col-lg-2 control-label">Email</label>
                                                       <div class="col-lg-6">
-                                                          <input type="text" class="form-control" id="email" placeholder=" ">
+                                                          <input type="email" class="form-control" id="email" placeholder=" ">
                                                       </div>
                                                   </div>
                                                   <div class="form-group">
-                                                      <label class="col-lg-2 control-label">Mobile</label>
+                                                      <label class="col-lg-2 control-label">Mobile Number</label>
                                                       <div class="col-lg-6">
-                                                          <input type="text" class="form-control" id="mobile" placeholder=" ">
+                                                          <input type="text" class="form-control" id="mobileNo" placeholder=" ">
                                                       </div>
                                                   </div>
                                                   <div class="form-group">
-                                                      <label class="col-lg-2 control-label">Website URL</label>
+                                                      <label class="col-lg-2 control-label">Username</label>
                                                       <div class="col-lg-6">
-                                                          <input type="text" class="form-control" id="url" placeholder="http://www.demowebsite.com ">
+                                                          <input type="text" class="form-control" id="username" placeholder=" ">
+                                                      </div>
+                                                  </div>
+                                                  <div class="form-group">
+                                                      <label class="col-lg-2 control-label">Password</label>
+                                                      <div class="col-lg-6">
+                                                          <input type="password" class="form-control" id="password">
                                                       </div>
                                                   </div>
 
                                                   <div class="form-group">
                                                       <div class="col-lg-offset-2 col-lg-10">
-                                                          <button type="submit" class="btn btn-primary">Save</button>
+                                                          <button type="submit" id="editbtn" class="btn btn-primary">Save</button>
                                                           <button type="button" class="btn btn-danger">Cancel</button>
                                                       </div>
                                                   </div>
