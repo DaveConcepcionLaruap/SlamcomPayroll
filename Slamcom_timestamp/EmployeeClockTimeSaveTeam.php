@@ -55,47 +55,40 @@
               VALUES ('$timeIn','$timeOut','$time','$userID')";
 
       if(mysqli_query($conn,$sql)){
-        if($selectedDay == "Monday"){
-          include("DayOfTheScheduling/MondaySchedule.php");
-        }else if($selectedDay == "Tuesday"){
-          include("DayOfTheScheduling/TuesdaySchedule.php");
-        }else if($selectedDay == "Wednesday"){
-          include("DayOfTheScheduling/WednesdaySchedule.php");
-        }else if($selectedDay == "Thursday"){
-          include("DayOfTheScheduling/ThursdaySchedule.php");
-        }else if($selectedDay == "Friday"){
-          include("DayOfTheScheduling/FridaySchedule.php");
-        }else if($selectedDay == "Saturday"){
-          include("DayOfTheScheduling/SaturdaySchedule.php");
+          if($teamID != 0){
+            if($selectedDay == "Monday"){
+              include("DayOfTheScheduling/MondaySchedule.php");
+            }else if($selectedDay == "Tuesday"){
+              include("DayOfTheScheduling/TuesdaySchedule.php");
+            }else if($selectedDay == "Wednesday"){
+              include("DayOfTheScheduling/WednesdaySchedule.php");
+            }else if($selectedDay == "Thursday"){
+              include("DayOfTheScheduling/ThursdaySchedule.php");
+            }else if($selectedDay == "Friday"){
+              include("DayOfTheScheduling/FridaySchedule.php");
+            }else if($selectedDay == "Saturday"){
+              include("DayOfTheScheduling/SaturdaySchedule.php");
+            }else{
+              include("DayOfTheScheduling/SundaySchedule.php");
+            }
         }else{
-          include("DayOfTheScheduling/SundaySchedule.php");
+            //scheduling for users with no team;
+            if($selectedDay == "Monday"){
+              include("DayOfTheSchedulingLoners/MondaySchedule.php");
+            }else if($selectedDay == "Tuesday"){
+              include("DayOfTheSchedulingLoners/TuesdaySchedule.php");
+            }else if($selectedDay == "Wednesday"){
+              include("DayOfTheSchedulingLoners/WednesdaySchedule.php");
+            }else if($selectedDay == "Thursday"){
+              include("DayOfTheSchedulingLoners/ThursdaySchedule.php");
+            }else if($selectedDay == "Friday"){
+              include("DayOfTheSchedulingLoners/FridaySchedule.php");
+            }else if($selectedDay == "Saturday"){
+              include("DayOfTheSchedulingLoners/SaturdaySchedule.php");
+            }else{
+              include("DayOfTheSchedulingLoners/SundaySchedule.php");
+            }
         }
-
-      //  echo "success";
-
-/*
-          $_SESSION['userID'] = array();
-          $_SESSION['LoginTime'] = array();
-
-          $_SESSION['userID'][] = $userID;
-          $_SESSION['LoginTime'][] = date('Y-m-d h:i:s a');
-*/
-/*
-          if(password_verify($password, $row['password'])){
-              $_SESSION['userID'] = $row['userID'];
-              $_SESSION['firstname'] = $row['firstname'];
-              $_SESSION['lastname'] = $row['lastname'];
-             // $_SESSION['email'] = $row['email'];
-
-
-              $_SESSION['LoginValid'] = true;
-              $_SESSION['LoginTime'] = date('Y-m-d h:i:s a');
-
-              header("Location: Home.php");
-          }else{
-              //echo "password does not exist";
-              header("Location: LoginOrSignup.php?err");
-          }*/
       }else{
 
       // header("Location: LoginOrSignup.php");

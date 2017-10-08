@@ -11,7 +11,7 @@ put a link to daves system in the sidebar that will connect to his whole system 
 link one primary link to his whole dashboard, dave should do the same thing (fixed but needs sessions)
 
 in LoginOrSignup -- if user team is 0, redirect to a different clocktimesave php that saves
-in userschedule instead of teamschedule
+in userschedule instead of teamschedule (fixed)
 
 
 prolly just use your login page as admin login, but we should collab to add sessions and shit na

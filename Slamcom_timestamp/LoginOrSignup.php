@@ -38,6 +38,9 @@
           padding-left: 50px;
           padding-right: 50px;
         }
+        .tabContent{
+            margin-top: 20px;
+        }
       </style>
 </head>
 
@@ -66,53 +69,73 @@
                 <md-tab id = "tab1">
                     <md-tab-label>{{data.firstLabel}}</md-tab-label>
                     <md-tab-body>
-                      <select id="DayofTheWeekSelector">
-                        <option value="Sunday">Sunday</option>
-                        <option value="Monday">Monday</option>
-                        <option value="Tuesday">Tuesday</option>
-                        <option value="Wednesday">Wednesday</option>
-                        <option value="Thursday">Thursday</option>
-                        <option value="Friday">Friday</option>
-                        <option value="Saturday">Saturday</option>
-                      </select>
-                      <div class="table-responsive">
-                          <table id="ActiveEmployeeTable" class="table table-hover table-striped" cellspacing="0" width="100%" style= "width: 80%">
-                              <thead>
-                                  <tr>
-                                      <th>User ID</th>
-                                      <th>First name</th>
-                                      <th>Last name</th>
-                                      <th>Email add</th>
-                                      <th>Team ID</th>
-                                      <th>Team</th>
-                                      <th>Login</th>
-                                      <th>Time In</th>
-                                      <th>Logout</th>
-                                      <th>Time Out</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                              <!-- turn this into a form so we can serialize and pass to ajax POST  -->
-                                  <?php
-                                      include("Admin/AdminServer/DBconnect.php");
-                                      $query = 'SELECT `userID`, `firstname`, `lastname`, `emailadd`, `TeamID` FROM `user` WHERE `active` = 1';
+                        <div class="tabContent">
+                            Day of the week
+                          <select id="DayofTheWeekSelector">
+                            <option value="Sunday">Sunday</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                          </select>
+                          <div class="table-responsive">
+                              <table id="ActiveEmployeeTable" class="table table-hover table-striped" cellspacing="0" width="100%" style= "width: 80%">
+                                  <thead>
+                                      <tr>
+                                          <th>User ID</th>
+                                          <th>First name</th>
+                                          <th>Last name</th>
+                                          <th>Email add</th>
+                                          <th>Team ID</th>
+                                          <th>Team</th>
+                                          <th>Login</th>
+                                          <th>Time In</th>
+                                          <th>Logout</th>
+                                          <th>Time Out</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                  <!-- turn this into a form so we can serialize and pass to ajax POST  -->
+                                      <?php
+                                          include("Admin/AdminServer/DBconnect.php");
+                                          $query = 'SELECT `userID`, `firstname`, `lastname`, `emailadd`, `TeamID` FROM `user` WHERE `active` = 1';
 
-                                      $result = mysqli_query($conn,$query);
+                                          $result = mysqli_query($conn,$query);
 
-                                      while($row = mysqli_fetch_array($result)){
-                                            if($row[4] != 0){
-                                              $sql = 'SELECT `TeamName` FROM `team` WHERE `TeamID` = '.$row[4].'';
-                                              $teamresult = mysqli_query($conn, $sql);
-                                              $teamrow = mysqli_fetch_array($teamresult);
-                                                $LogInbtnID = $row[0].$row[4];
-                                                $LogOutbtnID = $row[0].$teamrow[0];
+                                          while($row = mysqli_fetch_array($result)){
+                                                if($row[4] != 0){
+                                                  $sql = 'SELECT `TeamName` FROM `team` WHERE `TeamID` = '.$row[4].'';
+                                                  $teamresult = mysqli_query($conn, $sql);
+                                                  $teamrow = mysqli_fetch_array($teamresult);
+                                                    $LogInbtnID = $row[0].$row[4];
+                                                    $LogOutbtnID = $row[0].$teamrow[0];
+                                                      echo '<tr id='.$row[0].'>
+                                                              <td>'.$row[0].'</td>
+                                                              <td>'.$row[1].'</td>
+                                                              <td>'.$row[2].'</td>
+                                                              <td>'.$row[3].'</td>
+                                                              <td>'.$row[4].'</td>
+                                                              <td>'.$teamrow[0].'</td>
+                                                              <td><button id="'.$LogInbtnID.'" type="button"
+                                                              class="btn btn-sm btn-primary" value="LogIn">Login</button></td>
+                                                              <td></td>
+                                                              <td><button id="'.$LogOutbtnID.'" type="button" class="btn btn-sm btn-primary"
+                                                              value="LogOut" disabled>Logout</button></td>
+                                                              <td></td>
+                                                              </tr>';
+
+                                              }else{
+                                                  $LogInbtnID = $row[0].$row[4];
+                                                  $LogOutbtnID = $row[0]."N/A";
                                                   echo '<tr id='.$row[0].'>
                                                           <td>'.$row[0].'</td>
                                                           <td>'.$row[1].'</td>
                                                           <td>'.$row[2].'</td>
                                                           <td>'.$row[3].'</td>
                                                           <td>'.$row[4].'</td>
-                                                          <td>'.$teamrow[0].'</td>
+                                                          <td>'."N/A".'</td>
                                                           <td><button id="'.$LogInbtnID.'" type="button"
                                                           class="btn btn-sm btn-primary" value="LogIn">Login</button></td>
                                                           <td></td>
@@ -120,74 +143,59 @@
                                                           value="LogOut" disabled>Logout</button></td>
                                                           <td></td>
                                                           </tr>';
-
-                                          }else{
-                                              $LogInbtnID = $row[0].$row[4];
-                                              $LogOutbtnID = $row[0]."N/A";
-                                              echo '<tr id='.$row[0].'>
-                                                      <td>'.$row[0].'</td>
-                                                      <td>'.$row[1].'</td>
-                                                      <td>'.$row[2].'</td>
-                                                      <td>'.$row[3].'</td>
-                                                      <td>'.$row[4].'</td>
-                                                      <td>'."N/A".'</td>
-                                                      <td><button id="'.$LogInbtnID.'" type="button"
-                                                      class="btn btn-sm btn-primary" value="LogIn">Login</button></td>
-                                                      <td></td>
-                                                      <td><button id="'.$LogOutbtnID.'" type="button" class="btn btn-sm btn-primary"
-                                                      value="LogOut" disabled>Logout</button></td>
-                                                      <td></td>
-                                                      </tr>';
+                                              }
                                           }
-                                      }
-                                  ?>
-                              </tbody>
-                          </table>
+                                      ?>
+                                  </tbody>
+                              </table>
+                          </div>
                       </div>
                     </md-tab-body>
                 </md-tab>
                 <md-tab id = "tab2">
                     <md-tab-label>{{data.secondLabel}}</md-tab-label>
                     <md-tab-body>
-                      <table id="AdminTable" class="table table-hover table-striped" cellspacing="0" width="100%" style= "width: 80%">
-                          <thead>
-                              <tr>
-                                  <th>User ID</th>
-                                  <th>First name</th>
-                                  <th>Last name</th>
-                                  <th>Email add</th>
-                                  <th>Log in</th>
+                        <div class="tabContent">
+                          <table id="AdminTable" class="table table-hover table-striped" cellspacing="0" width="100%" style= "width: 80%">
+                              <thead>
+                                  <tr>
+                                      <th>User ID</th>
+                                      <th>First name</th>
+                                      <th>Last name</th>
+                                      <th>Email add</th>
+                                      <th>Log in</th>
 
-                              </tr>
-                          </thead>
-                          <tbody>
-                          <!-- turn this into a form so we can serialize and pass to ajax POST  -->
-                              <?php
-                                  include("Admin/AdminServer/DBconnect.php");
-                                  $query = "SELECT * FROM `adminusers` WHERE `Active` = 1";
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              <!-- turn this into a form so we can serialize and pass to ajax POST  -->
+                                  <?php
+                                      include("Admin/AdminServer/DBconnect.php");
+                                      $query = "SELECT * FROM `adminusers` WHERE `Active` = 1";
 
-                                  $result = mysqli_query($conn,$query);
+                                      $result = mysqli_query($conn,$query);
 
-                                  while($row = mysqli_fetch_array($result)){
+                                      while($row = mysqli_fetch_array($result)){
 
-                                          $LogInbtnID = $row[0].$row[1];
+                                              $LogInbtnID = $row[0].$row[1];
 
-                                          echo '<tr id='.$row[0].'>
-                                                  <td>'.$row[0].'</td>
-                                                  <td>'.$row[1].'</td>
-                                                  <td>'.$row[2].'</td>
-                                                  <td>'.$row[3].'</td>
+                                              echo '<tr id='.$row[0].'>
+                                                      <td>'.$row[0].'</td>
+                                                      <td>'.$row[1].'</td>
+                                                      <td>'.$row[2].'</td>
+                                                      <td>'.$row[3].'</td>
 
-                                                  <td><button id="'.$LogInbtnID.'" type="button"
-                                                  class="btn btn-sm btn-primary" value="LogIn">Login</button></td>
+                                                      <td><button id="'.$LogInbtnID.'" type="button"
+                                                      class="btn btn-sm btn-primary" value="LogIn">Login</button></td>
 
 
-                                                  </tr>';
+                                                      </tr>';
 
-                                  }
-                              ?>
-                          </tbody>
-                      </table>
+                                      }
+                                  ?>
+                              </tbody>
+                          </table>
+                      </div>
                     </md-tab-body>
                 </md-tab>
             </md-tabs>
