@@ -38,6 +38,9 @@
           padding-left: 50px;
           padding-right: 50px;
         }
+        .tabContent{
+            margin-top: 20px;
+        }
       </style>
 </head>
 
@@ -66,109 +69,133 @@
                 <md-tab id = "tab1">
                     <md-tab-label>{{data.firstLabel}}</md-tab-label>
                     <md-tab-body>
-                      <select id="DayofTheWeekSelector">
-                        <option value="Sunday">Sunday</option>
-                        <option value="Monday">Monday</option>
-                        <option value="Tuesday">Tuesday</option>
-                        <option value="Wednesday">Wednesday</option>
-                        <option value="Thursday">Thursday</option>
-                        <option value="Friday">Friday</option>
-                        <option value="Saturday">Saturday</option>
-                      </select>
-                      <div class="table-responsive">
-                          <table id="ActiveEmployeeTable" class="table table-hover table-striped" cellspacing="0" width="100%" style= "width: 80%">
-                              <thead>
-                                  <tr>
-                                      <th>User ID</th>
-                                      <th>First name</th>
-                                      <th>Last name</th>
-                                      <th>Email add</th>
-                                      <th>Team ID</th>
-                                      <th>Team</th>
-                                      <th>Login</th>
-                                      <th>Time In</th>
-                                      <th>Logout</th>
-                                      <th>Time Out</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                              <!-- turn this into a form so we can serialize and pass to ajax POST  -->
-                                  <?php
-                                      include("Admin/AdminServer/DBconnect.php");
-                                      $query = 'SELECT `userID`, `firstname`, `lastname`, `emailadd`, `TeamID` FROM `user` WHERE `active` = 1';
+                        <div class="tabContent">
+                            Day of the week
+                          <select id="DayofTheWeekSelector">
+                            <option value="Sunday">Sunday</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                          </select>
+                          <div class="table-responsive">
+                              <table id="ActiveEmployeeTable" class="table table-hover table-striped" cellspacing="0" width="100%" style= "width: 80%">
+                                  <thead>
+                                      <tr>
+                                          <th>User ID</th>
+                                          <th>First name</th>
+                                          <th>Last name</th>
+                                          <th>Email add</th>
+                                          <th>Team ID</th>
+                                          <th>Team</th>
+                                          <th>Login</th>
+                                          <th>Time In</th>
+                                          <th>Logout</th>
+                                          <th>Time Out</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                  <!-- turn this into a form so we can serialize and pass to ajax POST  -->
+                                      <?php
+                                          include("Admin/AdminServer/DBconnect.php");
+                                          $query = 'SELECT `userID`, `firstname`, `lastname`, `emailadd`, `TeamID` FROM `user` WHERE `active` = 1';
 
-                                      $result = mysqli_query($conn,$query);
+                                          $result = mysqli_query($conn,$query);
 
-                                      while($row = mysqli_fetch_array($result)){
-                                          $sql = 'SELECT `TeamName` FROM `team` WHERE `TeamID` = '.$row[4].'';
-                                          $teamresult = mysqli_query($conn, $sql);
-                                          while($teamrow = mysqli_fetch_array($teamresult)){
-                                            $LogInbtnID = $row[0].$row[4];
-                                            $LogOutbtnID = $row[0].$teamrow[0];
-                                              echo '<tr id='.$row[0].'>
-                                                      <td>'.$row[0].'</td>
-                                                      <td>'.$row[1].'</td>
-                                                      <td>'.$row[2].'</td>
-                                                      <td>'.$row[3].'</td>
-                                                      <td>'.$row[4].'</td>
-                                                      <td>'.$teamrow[0].'</td>
-                                                      <td><button id="'.$LogInbtnID.'" type="button" data-toggle="modal" data-target="#EmployeeLoginValidationModal"
-                                                      class="btn btn-sm btn-primary" value="LogIn">Login</button></td>
-                                                      <td></td>
-                                                      <td><button id="'.$LogOutbtnID.'" type="button" class="btn btn-sm btn-primary"
-                                                      value="LogOut" disabled>Logout</button></td>
-                                                      <td></td>
-                                                      </tr>';
+                                          while($row = mysqli_fetch_array($result)){
+                                                if($row[4] != 0){
+                                                  $sql = 'SELECT `TeamName` FROM `team` WHERE `TeamID` = '.$row[4].'';
+                                                  $teamresult = mysqli_query($conn, $sql);
+                                                  $teamrow = mysqli_fetch_array($teamresult);
+                                                    $LogInbtnID = $row[0].$row[4];
+                                                    $LogOutbtnID = $row[0].$teamrow[0];
+                                                      echo '<tr id='.$row[0].'>
+                                                              <td>'.$row[0].'</td>
+                                                              <td>'.$row[1].'</td>
+                                                              <td>'.$row[2].'</td>
+                                                              <td>'.$row[3].'</td>
+                                                              <td>'.$row[4].'</td>
+                                                              <td>'.$teamrow[0].'</td>
+                                                              <td><button id="'.$LogInbtnID.'" type="button"
+                                                              class="btn btn-sm btn-primary" value="LogIn">Login</button></td>
+                                                              <td></td>
+                                                              <td><button id="'.$LogOutbtnID.'" type="button" class="btn btn-sm btn-primary"
+                                                              value="LogOut" disabled>Logout</button></td>
+                                                              <td></td>
+                                                              </tr>';
+
+                                              }else{
+                                                  $LogInbtnID = $row[0].$row[4];
+                                                  $LogOutbtnID = $row[0]."N/A";
+                                                  echo '<tr id='.$row[0].'>
+                                                          <td>'.$row[0].'</td>
+                                                          <td>'.$row[1].'</td>
+                                                          <td>'.$row[2].'</td>
+                                                          <td>'.$row[3].'</td>
+                                                          <td>'.$row[4].'</td>
+                                                          <td>'."N/A".'</td>
+                                                          <td><button id="'.$LogInbtnID.'" type="button"
+                                                          class="btn btn-sm btn-primary" value="LogIn">Login</button></td>
+                                                          <td></td>
+                                                          <td><button id="'.$LogOutbtnID.'" type="button" class="btn btn-sm btn-primary"
+                                                          value="LogOut" disabled>Logout</button></td>
+                                                          <td></td>
+                                                          </tr>';
+                                              }
                                           }
-                                      }
-                                  ?>
-                              </tbody>
-                          </table>
+                                      ?>
+                                  </tbody>
+                              </table>
+                          </div>
                       </div>
                     </md-tab-body>
                 </md-tab>
                 <md-tab id = "tab2">
                     <md-tab-label>{{data.secondLabel}}</md-tab-label>
                     <md-tab-body>
-                      <table id="AdminTable" class="table table-hover table-striped" cellspacing="0" width="100%" style= "width: 80%">
-                          <thead>
-                              <tr>
-                                  <th>User ID</th>
-                                  <th>First name</th>
-                                  <th>Last name</th>
-                                  <th>Email add</th>
-                                  <th>Log in</th>
+                        <div class="tabContent">
+                          <table id="AdminTable" class="table table-hover table-striped" cellspacing="0" width="100%" style= "width: 80%">
+                              <thead>
+                                  <tr>
+                                      <th>User ID</th>
+                                      <th>First name</th>
+                                      <th>Last name</th>
+                                      <th>Email add</th>
+                                      <th>Log in</th>
 
-                              </tr>
-                          </thead>
-                          <tbody>
-                          <!-- turn this into a form so we can serialize and pass to ajax POST  -->
-                              <?php
-                                  include("Admin/AdminServer/DBconnect.php");
-                                  $query = "SELECT * FROM `adminusers` WHERE `Active` = 1";
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              <!-- turn this into a form so we can serialize and pass to ajax POST  -->
+                                  <?php
+                                      include("Admin/AdminServer/DBconnect.php");
+                                      $query = "SELECT * FROM `adminusers` WHERE `Active` = 1";
 
-                                  $result = mysqli_query($conn,$query);
+                                      $result = mysqli_query($conn,$query);
 
-                                  while($row = mysqli_fetch_array($result)){
+                                      while($row = mysqli_fetch_array($result)){
 
-                                          $LogInbtnID = $row[0].$row[1];
+                                              $LogInbtnID = $row[0].$row[1];
 
-                                          echo '<tr id='.$row[0].'>
-                                                  <td>'.$row[0].'</td>
-                                                  <td>'.$row[1].'</td>
-                                                  <td>'.$row[2].'</td>
-                                                  <td>'.$row[3].'</td>
+                                              echo '<tr id='.$row[0].'>
+                                                      <td>'.$row[0].'</td>
+                                                      <td>'.$row[1].'</td>
+                                                      <td>'.$row[2].'</td>
+                                                      <td>'.$row[3].'</td>
 
-                                                  <td><button id="'.$LogInbtnID.'" type="button"
-                                                  class="btn btn-sm btn-primary" value="LogIn">Login</button></td>
+                                                      <td><button id="'.$LogInbtnID.'" type="button"
+                                                      class="btn btn-sm btn-primary" value="LogIn">Login</button></td>
 
 
-                                                  </tr>';
+                                                      </tr>';
 
-                                  }
-                              ?>
-                          </tbody>
-                      </table>
+                                      }
+                                  ?>
+                              </tbody>
+                          </table>
+                      </div>
                     </md-tab-body>
                 </md-tab>
             </md-tabs>
@@ -207,7 +234,7 @@
 
         </div>
     </div>
-  <!--  <button type="button" id="EmployeeLoginValidationModalButton" class="btn btn-info btn-lg" data-toggle="modal" data-target="#EmployeeLoginValidationModal" style="display: none">Open Modal</button>-->
+    <button type="button" id="EmployeeLoginValidationModalButton" class="btn btn-info btn-lg" data-toggle="modal" data-target="#EmployeeLoginValidationModal" style="display: none">Open Modal</button>
     <div class="modal fade" id="EmployeeLoginValidationModal" role="dialog">
         <div class="modal-dialog">
 
@@ -219,12 +246,7 @@
                           <div class="form-group">
                               <input class="form-control" id="EmployeeID" name="txt_EmployeeID" type="text" readonly="readonly">
                           </div>
-                          <div class="form-group">
-                              <input class="form-control" id="EmployeeFirstName" name="txt_Employeefirstname" type="text" readonly="readonly">
-                          </div>
-                          <div class="form-group">
-                              <input class="form-control" id="EmployeeLastName"  name="txt_Employeelastname" readonly="readonly">
-                          </div>
+
                           <div class="form-group">
 
                               <input class="form-control" id="EmployeePassword" placeholder="password" name="txt_Employeepassword" type="password" required autofocus>
@@ -282,22 +304,11 @@
             var ActiveEmployeeTable = $("#ActiveEmployeeTable").DataTable();
             var AdminTable = $("#AdminTable").DataTable();
 
-            $(document).on('change','#DayofTheWeekSelector',function(){
+            /*$(document).on('change','#DayofTheWeekSelector',function(){
               var selectedDay = $("#DayofTheWeekSelector").find(":selected").text();
-              //alert(selectedDay);
 
-              /*$.ajax({
-                url: "../AdminServer/checkTeamsForToday.php",
-                method: "POST",
-                data: {dayOfTheWeek: selectedDay},
-                success: function(data){
+          });*/
 
-                },
-                error: function(data){
-
-                }
-              })*/
-            });
             $("#AdminTable").on("click", "td", function(){
               var data = AdminTable.row($(this).parents('tr')).data();
 
@@ -319,6 +330,7 @@
                     url: "Admin/AdminServer/AdminLoginBackground.php",
                     method: "POST",
                     data: {AdminID: data[0],AdminPassword: Adminpass},
+                    cache: false,
                     success: function(data){
 
                       if(data == "success"){
@@ -351,39 +363,52 @@
                 $("#EmployeeFirstName").val(data[1]);
                 $("#EmployeeLastName").val(data[2]);
 
-                //$("#EmployeeLoginValidationModalButton").trigger("click");
+                $("#EmployeeLoginValidationModalButton").trigger("click");
 
-                $("#EmployeeLoginProceedBtn").on("click", function(){
+
+                $("#EmployeeLoginProceedBtn").unbind("click");
+                $("#EmployeeLoginProceedBtn").click(function(){
                     var password = $("#EmployeePassword").val();
+                    var request;
 
-                    $.ajax({
+                    if(request){
+                        request.abort();
+                    }
+                    request = $.ajax({
                       url: "EmployeeLoginBackground.php",
                       method: "POST",
-                      data: {employeeID: data[0], employeePassword: password},
+                      data: {employeeID: $("#EmployeeID").val(), employeePassword: password},
+                      cache: false,
                       success: function(data){
-                          if(data == "user login secured"){
+                        if(data == "user login secured"){
                             $("#"+LoginBtn).prop('disabled',true);
                             $("#"+LogoutBtn).prop('disabled',false);
 
 
-                            alert(data);
+                            //alert(data);
                             cell.data(getDateTime());
                             $("#EmployeeLoginCancelBtn").trigger("click");
                             $("#EmployeePassword").val("");
-                          }else{
+                        }else{
                             alert(data);
                             $("#EmployeePassword").val("");
-                          }
+                        }
+                        request = null;
                       },
                       error: function(data){
                       //  alert(data);
                         console.log(data);
-                      }
+                        },
+                        complete: function(xhr, status){
+                            request = null;
+                        }
                     })
+
+
                 });
 
 
-              }else if($(this).index() == 8){
+            }else if($(this).index() == 8){
                 //if user team is 0, redirect to a different clocktimesave that saves in userschedule instead of teamsched
                 $("#"+LoginBtn).prop('disabled',false);
                 $("#"+LogoutBtn).prop('disabled',true);
@@ -391,28 +416,34 @@
                 var TimeOutcell = ActiveEmployeeTable.cell($(this).parents('tr'), 9);
                 TimeOutcell.data(getDateTime());
                 var selectedDay = $("#DayofTheWeekSelector").find(":selected").text();
-                $.ajax({
-                  url: "EmployeeClockTimeSave.php",
-                  method: "POST",
-                  data: {"userID" : data[0],
-                  "timeIn" : data[7],
-                  "timeOut" : data[9],
-                  "teamID" : data[4],
-                  "selectedDay": selectedDay},
-                  success: function(data){
-                    alert(data);
+                if(data[4] != 0){
+                    $.ajax({
+                      url: "EmployeeClockTimeSaveTeam.php",
+                      method: "POST",
+                      data: {"userID" : data[0],
+                      "timeIn" : data[7],
+                      "timeOut" : data[9],
+                      "teamID" : data[4],
+                      "selectedDay": selectedDay},
+                      cache: false,
+                      success: function(data){
+                        alert(data);
 
-                  },
-                  error: function(data){
-                    alert(data);
-                  }
-                });
-
+                      },
+                      error: function(data){
+                        alert(data);
+                      }
+                    });
+                }else{
+                    alert("nice");
+                }
               }else{
                 alert("shit");
               }
 
             });
+
+
             function getDateTime(){
               var datetime = new Date();
 

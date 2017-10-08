@@ -21,16 +21,16 @@
       //can keep track of who gets admin permissions.
           $row = mysqli_fetch_assoc($result);
 
-        if(password_verify($password, $row['password'])){
+        //if(password_verify($password, $row['password'])){
           $_SESSION['Adminfirstname'] = $row['firstname'];
           $_SESSION['Adminlastname'] = $row['lastname'];
           $_SESSION['AdminLoginValid'] = true;
           echo "success";
           //header("Location: AdminDashboard.php");
-        }else{
+        //}else{
             //header("Location: LoginOrSignup.php?err");
-            echo "failed";
-        }
+        //    echo "failed";
+    //    }
 
       }else{
         echo "yous a hacker bruh";
