@@ -17,7 +17,7 @@
     <title>SLAMCOM - Profile</title>
 
     <?php
-      include("scripts.html"); 
+      include("scripts.html");
       include("exe/database.php");
     ?>
   </head>
@@ -236,7 +236,7 @@
 
     $(document).ready(function(){
 
-        $("#ConfirmNewPassword").on("input",function(data){
+        $("#ConfirmNewPassword").on("input",function(){
           if($("#NewPassword").val() != $("#ConfirmNewPassword").val()){
             $("#ConfirmNewPassword").css('border-color', 'red');
             $("#ConfirmNewPassword").css('border-width', '2px');
@@ -244,6 +244,22 @@
             $("#ConfirmNewPassword").css('border-color', 'green');
           }
         });
+
+        function validateEmail($email){
+            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,6})?$/;
+
+            return ($email.length > 0 && emailReg.test($email));
+        }
+
+        $("#email").on("input",function(){
+          if(!validateEmail($("#email").val())){
+            $("#email").css('border-color', 'red');
+            $("#email").css('border-width', '2px');
+          }else{
+            $("#email").css('border-color', 'green');
+          }
+        });
+
     });
   </script>
 
