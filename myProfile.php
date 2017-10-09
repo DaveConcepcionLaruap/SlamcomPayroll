@@ -17,7 +17,7 @@
     <title>SLAMCOM - Profile</title>
 
     <?php
-      include("scripts.html");
+      include("scripts.html"); 
       include("exe/database.php");
     ?>
   </head>
@@ -143,7 +143,7 @@
                                     <section class="panel">
                                           <div class="panel-body bio-graph-info">
                                               <h1> Profile Info</h1>
-                                              <form class="form-horizontal" id = "edit_profile" role="form">
+                                              <div class="form-horizontal" id = "edit_profile" >
                                                   <div class="form-group">
                                                       <label class="col-lg-2 control-label">First Name</label>
                                                       <div class="col-lg-6">
@@ -183,7 +183,7 @@
                                                   <div class="form-group">
                                                       <label class="col-lg-2 control-label">Password</label>
                                                       <div class="col-lg-6">
-                                                          <input type="password" class="form-control" id="username" placeholder=" ">
+                                                          <input type="password" class="form-control" id="oldpassword" placeholder=" ">
                                                       </div>
                                                   </div>
                                                   <div class="form-group">
@@ -201,11 +201,11 @@
 
                                                   <div class="form-group">
                                                       <div class="col-lg-offset-2 col-lg-10">
-                                                          <button type="submit" id="editbtn" class="btn btn-primary">Save</button>
+                                                          <button type="button" id="editbtn" class="btn btn-primary">Save</button>
                                                           <button type="button" class="btn btn-danger">Cancel</button>
                                                       </div>
                                                   </div>
-                                              </form>
+                                              </div>
                                           </div>
                                       </section>
                                   </div>
@@ -233,21 +233,17 @@
   </section>
 
   <script>
-    $("edit_profile").validate({
-      rules:{
-        NewPassword: {
-          required: true,
-          minLength: 8
 
-        }
-      },
-      messages: {
-        NewPassword: {
-          required: "stuff";
-          minLength: "min";
-        }
-      }
+    $(document).ready(function(){
 
+        $("#ConfirmNewPassword").on("input",function(data){
+          if($("#NewPassword").val() != $("#ConfirmNewPassword").val()){
+            $("#ConfirmNewPassword").css('border-color', 'red');
+            $("#ConfirmNewPassword").css('border-width', '2px');
+          }else{
+            $("#ConfirmNewPassword").css('border-color', 'green');
+          }
+        });
     });
   </script>
 
