@@ -32,7 +32,7 @@
               </li>
 
               <li class="sub-menu">
-              <a href="Slamcom_timestamp/" class="">
+              <a href="Slamcom_timestamp/Admin/AdminClient/AdminDashboard.php" class="">
                   <i class="icon_clock_alt"></i>
                   <span>Timestamp</span>
               </a>

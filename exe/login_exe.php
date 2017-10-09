@@ -2,6 +2,7 @@
     if($_POST){
       session_start();
       $_SESSION['checker'] = false;
+      $_SESSION['AdminLoginValid'] = false;
       include('database.php');
 
   	$username = $_POST['user'];
@@ -16,7 +17,10 @@
 
               $_SESSION['id'] = $row['userID'];
               $_SESSION['checker'] = true;
+              $_SESSION['AdminLoginValid'] = true;
               $_SESSION['user'] = $row['firstname']." ".$row['lastname'];
+              $_SESSION['Adminfirstname'] = $row['firstname'];
+              $_SESSION['Adminlastname'] = $row['lastname'];
               header("Location:../home.php");
 
           }else{
