@@ -7,7 +7,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="AdminDashboard.php">SB Admin</a>
+                <a class="navbar-brand" href="AdminDashboard.php">Slam com</a>
             </div>
 
             <ul class="nav navbar-right top-nav">
@@ -99,7 +99,7 @@
                                                                                                             ?></small> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="../../../myProfile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>

@@ -23,26 +23,26 @@
 
     <div class="container">
 
-    <form class="login-form" action="exe/login_exe.php" method="post">
-
+    <!--<form class="login-form" action="exe/login_exe.php" method="post">-->
+        <div  class="login-form">
           <div class="login-wrap">
             <p class="login-img"><i class="icon_lock_alt"></i></p>
 
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon_profile"></i></span>
-                <input type="text" class="form-control" placeholder="Username" name="user" autofocus required>
+                <input type="text" class="form-control" id="emailadd" placeholder="email address" name="user" autofocus required>
             </div>
 
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                <input type="password" class="form-control" placeholder="Password" name="pass" required>
+                <input type="password" class="form-control" id="password" placeholder="password" name="pass" required>
             </div>
 
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+            <button class="btn btn-primary btn-lg btn-block" type="button" id="loginbtn">Login</button>
 
           </div>
-
-    </form>
+        </div>
+    <!--</form>-->
 
     <div class="text-right">
             <div class="credits">
@@ -52,5 +52,29 @@
     </div>
 
 
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+     <script>
+        jQuery(document).ready(function(){
+          $("#loginbtn").click(function(){
+
+              $.ajax({
+                url: "exe/login_exe.php",
+                method: "POST",
+                data: {user: $("#emailadd").val(), pass: $("#password").val()},
+                success: function(data){
+                  if(data == "success"){
+                    window.location.replace("home.php");
+                  }else{
+                    alert(data);
+                  }
+                },
+                error: function(data){
+                  console.log(data);
+                }
+              })
+          });
+        });
+     </script>
   </body>
 </html>

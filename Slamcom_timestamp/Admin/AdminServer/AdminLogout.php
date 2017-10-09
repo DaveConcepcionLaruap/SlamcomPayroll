@@ -1,7 +1,7 @@
 <?php
     include("DBconnect.php");
 
-   // session_start();
+    session_start();
 
 
     session_destroy();

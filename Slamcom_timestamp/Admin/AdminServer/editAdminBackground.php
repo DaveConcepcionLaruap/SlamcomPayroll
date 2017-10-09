@@ -10,7 +10,7 @@
 
     $sql = "UPDATE `adminusers`
     SET `firstname` = '$firstname', `lastname` = '$lastname',
-    `emailaddress` = '$emailaddress'
+    `email` = '$emailaddress'
     WHERE `userID` = '$userID'";
 
     if(mysqli_query($conn, $sql)){

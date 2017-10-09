@@ -158,10 +158,10 @@ include("../AdminServer/AdminLoginVerification.php");
                                                       <?php
 
                                                           include("../AdminServer/DBconnect.php");
-                                                          $query = 'SELECT `userID`, `firstname`, `lastname`, `emailaddress` FROM `adminusers` WHERE `Active` = 1';
+                                                          $query = 'SELECT `userID`, `firstname`, `lastname`, `email` FROM `adminusers` WHERE `Active` = 1';
 
                                                           $result = mysqli_query($conn,$query);
-                                                          if($result){
+                                                          if(mysqli_num_rows($result)){
 
                                                             $dataArray = array();
                                                             while($row = mysqli_fetch_array($result)){
@@ -172,7 +172,7 @@ include("../AdminServer/AdminLoginVerification.php");
                                                                       <td>'.$row[2].'</td>
                                                                       <td>'.$row[3].'</td>
                                                                       <td><button id="delbutton" type="button" class="btn btn-sm btn-danger">Delete</button>
-                                                                          <button id="editbutton" type="button" class="btn btn-sm btn-warning">Edit</button></td>
+
 
                                                                       </tr>';
                                                             }
@@ -200,7 +200,7 @@ include("../AdminServer/AdminLoginVerification.php");
                                                             <th>First name</th>
                                                             <th>Last name</th>
                                                             <th>Email add</th>
-                                                            <th>Delete/edit</th>
+                                                            <th>Delete</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -269,22 +269,17 @@ include("../AdminServer/AdminLoginVerification.php");
 
                     </div>
                 </div>
-                <button type="button" id="employeeEditButton" class="btn btn-info btn-lg" data-toggle="modal" data-target="#employeeEditModal" style="display: none">Open Modal</button>
+              <!--  <button type="button" id="employeeEditButton" class="btn btn-info btn-lg" data-toggle="modal" data-target="#employeeEditModal" style="display: none">Open Modal</button>
                 <div class="modal fade" id="employeeEditModal" role="dialog">
                     <div class="modal-dialog">
 
-                            <!-- Modal content-->
+
                             <div class="modal-content">
                                 <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                                 </div>
-                                <div class="modal-body">
-                                  <!--
-                                    <div class="form-group">
-                                      <h4>user ID</h4>
-                                        <input class="form-control" id="edituserID" name="txt_userID" type="text" readonly="readonly" autofocus required>
-                                    </div>-->
+
                                       <div class="form-group">
                                         <h4>first name</h4>
                                           <input class="form-control" id="editFirstname" placeholder="first name" name="txt_firstname" type="text" autofocus required>
@@ -312,7 +307,7 @@ include("../AdminServer/AdminLoginVerification.php");
                                 </div>
                             </div>
 
-                    </div>
+                    </div>-->
                 </div>
 
                 <div class="modal fade" id="adminAddModal" role="dialog">
@@ -594,7 +589,7 @@ include("../AdminServer/AdminLoginVerification.php");
                   });
                 });
             });
-
+          
             $("#ActiveAdminTable").on('click','#delbutton', function(){
               var data = ActiveAdminTable.row($(this).parents('tr')).data();
               //alert(data[0]);

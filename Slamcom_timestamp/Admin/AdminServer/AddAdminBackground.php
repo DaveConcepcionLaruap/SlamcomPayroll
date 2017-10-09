@@ -8,9 +8,9 @@
         $password = mysqli_real_escape_string($conn, $_POST['password']);
 
 
-        $sql = "SELECT `userID`, `firstname`, `lastname`, `emailaddress`, `password`
+        $sql = "SELECT `userID`, `firstname`, `lastname`, `email`, `password`
            FROM `adminusers`
-           WHERE `emailaddress` = '$emailaddress'";
+           WHERE `email` = '$emailaddress'";
 
         $result = mysqli_query($conn,$sql);
         if(mysqli_num_rows($result)){
@@ -20,7 +20,7 @@
           $hash = password_hash($password, PASSWORD_DEFAULT);
 
           $sql = "INSERT INTO `adminusers`(`firstname`, `lastname`,
-             `emailaddress`, `password`, `Active`)
+             `email`, `password`, `Active`)
            VALUES ('$firstname','$lastname','$emailaddress',
              '$hash',1)";
 
