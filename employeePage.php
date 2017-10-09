@@ -51,6 +51,7 @@ session_start();
           <hr>
             <div class = "col-lg-6">
                 <div class = "panel panel-default">
+                  <div class = "panel-heading">Employee Info</div>
                     <div class = "panel-body" >
                         <div class = "form-group">
                                 <label class = "col-sm-3">Work Days</label>
@@ -72,32 +73,34 @@ session_start();
                                 <label class = "col-sm-3">Adjustment</label>
                                 <input class = "col-sm-8" id = "adjustment" disabled></input>
                             </div></br></br>
+                            <div class = "form-group">
+                                    <label class = "col-sm-3">Work Days</label>
+                                    <input class = "col-sm-8" id = "workDays" disabled></input>
+                                </div></br></br>
+                                <div class = "form-group">
+                                    <label class = "col-sm-3">Late</label>
+                                    <input class = "col-sm-8" id = "late" disabled></input>
+                                </div></br></br>
+                                <div class = "form-group">
+                                    <label class = "col-sm-3">Absent</label>
+                                    <input class = "col-sm-8" id = "absent" disabled></input>
+                                </div></br></br>
+                                <div class = "form-group">
+                                    <label class = "col-sm-3">Overtime</label>
+                                    <input class = "col-sm-8" id = "overtime" disabled></input>
+                                </div></br></br>
+                                <div class = "form-group">
+                                    <label class = "col-sm-3">Adjustment</label>
+                                    <input class = "col-sm-8" id = "adjustment" disabled></input>
+                                </div></br></br>
                     </div>
                 </div>
             </div>
             <div class = "col-lg-6">
                 <div class = "panel panel-default">
+                  <div class = "panel-heading">Tax and Deductions</div>
                     <div class = "panel-body" >
-                        <div class = "form-group">
-                                <label class = "col-sm-3">Work Days</label>
-                                <input class = "col-sm-8" id = "workDays" disabled></input>
-                            </div></br></br>
-                            <div class = "form-group">
-                                <label class = "col-sm-3">Late</label>
-                                <input class = "col-sm-8" id = "late" disabled></input>
-                            </div></br></br>
-                            <div class = "form-group">
-                                <label class = "col-sm-3">Absent</label>
-                                <input class = "col-sm-8" id = "absent" disabled></input>
-                            </div></br></br>
-                            <div class = "form-group">
-                                <label class = "col-sm-3">Overtime</label>
-                                <input class = "col-sm-8" id = "overtime" disabled></input>
-                            </div></br></br>
-                            <div class = "form-group">
-                                <label class = "col-sm-3">Adjustment</label>
-                                <input class = "col-sm-8" id = "adjustment" disabled></input>
-                            </div></br></br>
+
                     </div>
                 </div>
             </div>
