@@ -5,7 +5,7 @@
 
 
     session_destroy();
-    header("Location: ../../LoginOrSignup.php");
+    header("Location: ../../../Home.php");
 
     mysqli_close($conn);
 

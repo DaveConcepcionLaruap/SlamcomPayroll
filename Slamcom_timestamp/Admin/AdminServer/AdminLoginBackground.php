@@ -25,6 +25,7 @@
           $_SESSION['Adminfirstname'] = $row['firstname'];
           $_SESSION['Adminlastname'] = $row['lastname'];
           $_SESSION['AdminLoginValid'] = true;
+          $_SESSION['checker'] = true;
           echo "success";
           //header("Location: AdminDashboard.php");
         //}else{

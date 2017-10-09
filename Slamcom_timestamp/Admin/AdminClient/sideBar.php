@@ -133,7 +133,7 @@
                         <a href="SpecialCasesPage.php"><i class="fa fa-fw fa-edit"></i>Special Cases</a>
                     </li>
                     <li>
-                        <a href="../../../"><i class="fa fa-fw fa-edit"></i>Slamcom Payroll</a>
+                        <a href="../../../home.php"><i class="fa fa-fw fa-edit"></i>Slamcom Payroll</a>
                     </li>
 
                 </ul>
