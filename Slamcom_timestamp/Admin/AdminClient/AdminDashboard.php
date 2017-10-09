@@ -78,7 +78,7 @@ include("../AdminServer/AdminLoginVerification.php");
                         </ol>
                     </div>
                 </div>
-                <button id="deleteDataMonthBtn">Reset month</button>
+                <button id="deleteDataMonthBtn" class="btn btn-primary" style="margin-bottom: 10px;">Reset month</button>
                 <div class="table-responsive">
                     <table id="TotalHoursperMonth" class="table table-hover table-striped" cellspacing="0" width="100%" style= "width: 80%">
                         <thead>

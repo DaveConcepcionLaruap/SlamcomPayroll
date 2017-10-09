@@ -46,9 +46,12 @@
         $intervalOvertime->s
     );
   }
-
-  $monthlySql = "SELECT * FROM `totalhourspermonth` WHERE `userID` = '$userID'";
-
+  //still have to consult with dave how to implement special cases
+  //if($specialDay == 0){
+    $monthlySql = "SELECT * FROM `totalhourspermonth` WHERE `userID` = '$userID'";
+  //}else{
+  //  $monthlySql = "SELECT * FROM `specialcases` WHERE `userID` = '$userID'";
+  //}
   $monthlyResult = mysqli_query($conn, $monthlySql);
 
 

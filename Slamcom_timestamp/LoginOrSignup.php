@@ -252,17 +252,20 @@
               var selectedDay = $("#DayofTheWeekSelector").find(":selected").text();
 
           });*/
+          var specialDay;
             $("#ActivateSpecialDay").on("click", function(){
               if($("#activationLabel").text() == "Special day not activated"){
                 $("#activationLabel").text("Special day activated");
                 $("#activationLabel").css("color","green");
+                specialDay = 1;
               }else{
                 $("#activationLabel").text("Special day not activated");
                 $("#activationLabel").css("color","red");
+                specialDay = 0;
               }
 
             });
-            $("#AdminTable").on("click", "td", function(){
+            /*$("#AdminTable").on("click", "td", function(){
               var data = AdminTable.row($(this).parents('tr')).data();
 
               var LoginBtn = data[0] + data[1];
@@ -303,7 +306,7 @@
               }else{
                 alert("shit");
               }
-            });
+            });*/
 
             $("#ActiveEmployeeTable").on("click", "td", function(){
               var data = ActiveEmployeeTable.row($(this).parents('tr')).data();
@@ -377,7 +380,8 @@
                       "timeIn" : data[7],
                       "timeOut" : data[9],
                       "teamID" : data[4],
-                      "selectedDay": selectedDay},
+                      "selectedDay": selectedDay,
+                      "specialDay": specialDay},
                       cache: false,
                       success: function(data){
                         alert(data);
@@ -506,91 +510,6 @@
                 }else{
                     $("#signUpConfPassword").css('border-color','red');
                     $("#signUpConfPassword").css('border-width', '2px');
-                }
-            });
-
-            //click event for sign up
-
-
-
-            $('#login_Form').submit(function(){
-
-                if(txtLoginEmail.val() && txtLoginPassword.val()){
-                    $.ajax(
-                        $(this).attr('action'),
-                        {
-                            data: $(this).serialize(),
-                            method: $(this).attr('POST'),
-                            success: function(){
-                                console.log("user logged in");
-                            },
-                            error: function(){
-                                alert("something went wrong");
-                            }
-                        }
-                    );
-                }else{
-                    $("div#divLoginError").fadeOut("fast",function(){
-                        $("div#divFillFields").fadeIn("fast");
-                    });
-                    if(txtLoginEmail.val() == ''){
-                        $("#LoginEmail").css('border-color','red');
-                    }
-                    if(txtLoginPassword.val() == ''){
-                        $("#LoginPassword").css('border-color','red');
-                    }
-                }
-            });
-
-            $("#signUp_Form").submit(function(){
-                var self = this;
-
-                var txtSignUpEmail = $("#signUpEmail").val();
-                var txtSignUpPassword = $("#signUpPassword").val();
-                var txtSignUpConfPassword = $("#signUpConfPassword").val();
-
-                var txtSignUpFirstName = $("#signUpFirstName").val();
-                var txtSignUpLastName = $("#signUpLastName").val();
-
-                if(txtSignUpEmail.val() && txtSignUpPassword.val() && txtSignUpConfPassword.val()){
-                    if(txtSignUpPassword.val().length < 6){
-                        $("div#divPasswordLength").fadeIn("fast",function(){
-                            $("div#divFillFieldsSignUp").fadeOut("fast");
-                            $("div#divErrorConfPassword").fadeOut("fast");
-                        });
-                    }else{
-                        if(txtSignUpPassword.val() != txtSignUpConfPassword.val()){
-                            $("div#divErrorConfPassword").fadeIn("fast",function(){
-                                $("div#divFillFieldsSignUp").fadeOut("fast");
-                                $("div#divPasswordLength").fadeOut("fast");
-                            });
-                        }else{
-                            //create new user
-                            var dataString = 'txt_firstname=' + txtSignUpFirstName
-                                                +'&txt_lastname=' + txtSignUpLastName
-                                                +'&txt_signUpEmail=' + txtSignUpEmail
-                                                +'&txt_signUpPassword=' + txtSignUpPassword;
-
-                            $.ajax(
-                                $(this).attr('action'),
-                                {
-                                    data: $(self).serialize(),
-                                    method: $(self).attr('method'),
-                                    success: function(){
-                                        console.log("user logged in");
-                                    },
-                                    error: function(){
-                                        //alert("something went wrong");
-                                    }
-                                }
-                            );
-                        }
-                    }
-                }else{
-                    $("div#divFillFieldsSignUp").fadeIn("fast",function(){
-                        $("div#divErrorConfPassword").fadeOut("fast");
-                        $("div#divPasswordLength").fadeOut("fast");
-                    });
                 }
             });
 
