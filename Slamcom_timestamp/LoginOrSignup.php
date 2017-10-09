@@ -47,20 +47,7 @@
 <body id="page-top" ng-app="Application">
 
 
-<!--
-    <header>
-        <div class="header-content">
-            <div class="header-content-inner">
-                <h1 id="homeHeading">Welcome to Slamcom!</h1>
-                <hr>
-            </div>
 
-
-            <?php/* include("loginAndSignUpSnippet.php");*/ ?>
-
-        </div>
-
-    </header> -->
     <div id="tabContainer" ng-controller = "tabController as ctrl" ng-cloak >
 
         <md-content layout = "column" layout-fill>
@@ -71,7 +58,7 @@
                     <md-tab-body>
                         <div class="tabContent">
                             Day of the week
-                          <select id="DayofTheWeekSelector">
+                          <select id="DayofTheWeekSelector" style="margin-bottom: 10px">
                             <option value="Sunday">Sunday</option>
                             <option value="Monday">Monday</option>
                             <option value="Tuesday">Tuesday</option>
@@ -128,14 +115,14 @@
 
                                               }else{
                                                   $LogInbtnID = $row[0].$row[4];
-                                                  $LogOutbtnID = $row[0]."N/A";
+                                                  $LogOutbtnID = $row[0]."none";
                                                   echo '<tr id='.$row[0].'>
                                                           <td>'.$row[0].'</td>
                                                           <td>'.$row[1].'</td>
                                                           <td>'.$row[2].'</td>
                                                           <td>'.$row[3].'</td>
                                                           <td>'.$row[4].'</td>
-                                                          <td>'."N/A".'</td>
+                                                          <td>'."none".'</td>
                                                           <td><button id="'.$LogInbtnID.'" type="button"
                                                           class="btn btn-sm btn-primary" value="LogIn">Login</button></td>
                                                           <td></td>
@@ -152,52 +139,7 @@
                       </div>
                     </md-tab-body>
                 </md-tab>
-                <md-tab id = "tab2">
-                    <md-tab-label>{{data.secondLabel}}</md-tab-label>
-                    <md-tab-body>
-                        <div class="tabContent">
-                          <table id="AdminTable" class="table table-hover table-striped" cellspacing="0" width="100%" style= "width: 80%">
-                              <thead>
-                                  <tr>
-                                      <th>User ID</th>
-                                      <th>First name</th>
-                                      <th>Last name</th>
-                                      <th>Email add</th>
-                                      <th>Log in</th>
 
-                                  </tr>
-                              </thead>
-                              <tbody>
-                              <!-- turn this into a form so we can serialize and pass to ajax POST  -->
-                                  <?php
-                                      include("Admin/AdminServer/DBconnect.php");
-                                      $query = "SELECT * FROM `adminusers` WHERE `Active` = 1";
-
-                                      $result = mysqli_query($conn,$query);
-
-                                      while($row = mysqli_fetch_array($result)){
-
-                                              $LogInbtnID = $row[0].$row[1];
-
-                                              echo '<tr id='.$row[0].'>
-                                                      <td>'.$row[0].'</td>
-                                                      <td>'.$row[1].'</td>
-                                                      <td>'.$row[2].'</td>
-                                                      <td>'.$row[3].'</td>
-
-                                                      <td><button id="'.$LogInbtnID.'" type="button"
-                                                      class="btn btn-sm btn-primary" value="LogIn">Login</button></td>
-
-
-                                                      </tr>';
-
-                                      }
-                                  ?>
-                              </tbody>
-                          </table>
-                      </div>
-                    </md-tab-body>
-                </md-tab>
             </md-tabs>
         </md-content>
 
@@ -416,7 +358,7 @@
                 var TimeOutcell = ActiveEmployeeTable.cell($(this).parents('tr'), 9);
                 TimeOutcell.data(getDateTime());
                 var selectedDay = $("#DayofTheWeekSelector").find(":selected").text();
-                if(data[4] != 0){
+
                     $.ajax({
                       url: "EmployeeClockTimeSaveTeam.php",
                       method: "POST",
@@ -434,11 +376,9 @@
                         alert(data);
                       }
                     });
-                }else{
-                    alert("nice");
-                }
+
               }else{
-                alert("shit");
+                console.log("shit");
               }
 
             });

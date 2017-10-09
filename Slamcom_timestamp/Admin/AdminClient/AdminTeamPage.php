@@ -739,7 +739,7 @@ include("../AdminServer/AdminLoginVerification.php");
                         }
                     });
 
-                    $("#submitEmployeeSchedule").on("click",function(){
+                    /*$("#submitEmployeeSchedule").on("click",function(){
 
                         var JSONData = getSchedJSONformat();
 
@@ -756,10 +756,10 @@ include("../AdminServer/AdminLoginVerification.php");
                                 alert(response);
                             }
                         });
-                    });
+                    });*/
                 }
             });
-            function getSchedJSONformat(){
+            /*function getSchedJSONformat(){
 
               var SundayArray = new Array($("#timepickerSundayTimeIn").val(),
                     $("#timepickerSundayTimeOut").val());
@@ -788,7 +788,7 @@ include("../AdminServer/AdminLoginVerification.php");
 
 
               return JSONstring;
-            }
+            }*/
 
 
 

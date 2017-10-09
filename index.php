@@ -56,6 +56,11 @@
 
      <script>
         jQuery(document).ready(function(){
+          $(document).keypress(function(e){
+            if(e.which == 13){
+              $("#loginbtn").trigger("click");
+            }
+          });
           $("#loginbtn").click(function(){
 
               $.ajax({

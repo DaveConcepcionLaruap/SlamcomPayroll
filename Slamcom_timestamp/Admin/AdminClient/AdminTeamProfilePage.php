@@ -282,97 +282,83 @@ include("../AdminServer/AdminLoginVerification.php");
                             <div ng-controller="inputController" layout="column" ng-cloak class="md-inline-form">
 
                                 <md-content layout-gt-sm="column" layout-padding>
-                                    <div class="form-group">
-                                      <input type="checkbox" id="sundayCheck"  value="Sunday">Sunday</br>
-                                    </div>
-                                    <div class="form-group" id="sundayGroup" style="display:none;">
-                                      <md-input-container md-no-float>
-                                        <label>Sunday Time In</label>
-                                        <input ng-model="sunday.timeIn"  type="text" id="timepickerSundayTimeIn">
-                                      </md-input-container>
-                                      <md-input-container md-no-float>
-                                        <label>Sunday Time Out</label>
-                                        <input ng-model="sunday.timeOut"  type="text" id="timepickerSundayTimeOut">
-                                      </md-input-container>
-                                    </div>
-                                    <div class="form-group">
-                                      <input type="checkbox" id="mondayCheck" value="Monday">Monday<br>
-                                    </div>
-                                    <div class="form-group" id="mondayGroup" style="display:none;">
-                                      <md-input-container md-no-float>
-                                        <label>Monday Time In</label>
-                                        <input ng-model="monday.timeIn"  type="text" id="timepickerMondayTimeIn">
-                                      </md-input-container>
-                                      <md-input-container md-no-float>
-                                        <label>Monday Time Out</label>
-                                        <input ng-model="monday.timeOut"  type="text" id="timepickerMondayTimeOut">
-                                      </md-input-container>
-                                    </div>
-                                    <div class="form-group">
-                                      <input type="checkbox" id="tuesdayCheck" value="Tuesday">Tuesday<br>
-                                    </div>
-                                    <div class="form-group" id="tuesdayGroup" style="display:none;">
-                                      <md-input-container md-no-float>
-                                        <label>Tuesday Time In</label>
-                                        <input ng-model="tuesday.timeIn"  type="text" id="timepickerTuesdayTimeIn">
-                                      </md-input-container>
-                                      <md-input-container md-no-float>
-                                        <label>Tuesday Time Out</label>
-                                        <input ng-model="tuesday.timeOut"  type="text" id="timepickerTuesdayTimeOut">
-                                      </md-input-container>
-                                    </div>
-                                    <div class="form-group">
-                                      <input type="checkbox" id="wednesdayCheck" value="Wednesday">Wednesday<br>
-                                    </div>
-                                    <div class="form-group" id="wednesdayGroup" style="display:none;">
-                                      <md-input-container md-no-float>
-                                        <label>Wednesday Time In</label>
-                                        <input ng-model="wednesday.timeIn"  type="text" id="timepickerWednesdayTimeIn">
-                                      </md-input-container>
-                                      <md-input-container md-no-float>
-                                        <label>Wednesday Time Out</label>
-                                        <input ng-model="wednesday.timeOut"  type="text" id="timepickerWednesdayTimeOut">
-                                      </md-input-container>
-                                    </div>
-                                    <div class="form-group">
-                                      <input type="checkbox" id="thursdayCheck" value="Thursday">Thursday<br>
-                                    </div>
-                                    <div class="form-group" id="thursdayGroup" style="display:none;">
-                                      <md-input-container md-no-float>
-                                        <label>Thursday Time In</label>
-                                        <input ng-model="thursday.timeIn"  type="text" id="timepickerThursdayTimeIn">
-                                      </md-input-container>
-                                      <md-input-container md-no-float>
-                                        <label>Thursday Time Out</label>
-                                        <input ng-model="thursday.timeOut"  type="text" id="timepickerThursdayTimeOut">
-                                      </md-input-container>
-                                    </div>
-                                    <div class="form-group">
-                                      <input type="checkbox" id="fridayCheck" value="Friday">Friday<br>
-                                    </div>
-                                    <div class="form-group" id="fridayGroup" style="display:none;">
-                                      <md-input-container md-no-float>
-                                        <label>Friday Time In</label>
-                                        <input ng-model="friday.timeIn"  type="text" id="timepickerFridayTimeIn">
-                                      </md-input-container>
-                                      <md-input-container md-no-float>
-                                        <label>Friday Time Out</label>
-                                        <input ng-model="friday.timeOut"  type="text" id="timepickerFridayTimeOut">
-                                      </md-input-container>
-                                    </div>
-                                    <div class="form-group">
-                                      <input type="checkbox" id="saturdayCheck" value="Saturday">Saturday<br>
-                                    </div>
-                                    <div class="form-group" id="saturdayGroup" style="display:none;">
-                                      <md-input-container md-no-float>
-                                        <label>Saturday Time In</label>
-                                        <input ng-model="saturday.timeIn"  type="text" id="timepickerSaturdayTimeIn">
-                                      </md-input-container>
-                                      <md-input-container md-no-float>
-                                        <label>Saturday Time Out</label>
-                                        <input ng-model="saturday.timeOut"  type="text" id="timepickerSaturdayTimeOut">
-                                      </md-input-container>
-                                    </div>
+                                  <div class="form-group" id="sundayGroup" >
+
+                                      <label>Sunday Time In</label>
+                                      <input ng-model="sunday.timeIn"  type="text" id="timepickerSundayTimeIn">
+
+                                      <br>
+                                      <label>Sunday Time Out</label>
+                                      <input ng-model="sunday.timeOut"  type="text" id="timepickerSundayTimeOut">
+
+                                  </div>
+
+                                  <div class="form-group" id="mondayGroup" >
+
+                                      <label>Monday Time In</label>
+                                      <input ng-model="monday.timeIn"  type="text" id="timepickerMondayTimeIn">
+
+                                      <br>
+                                      <label>Monday Time Out</label>
+                                      <input ng-model="monday.timeOut"  type="text" id="timepickerMondayTimeOut">
+
+                                  </div>
+
+                                  <div class="form-group" id="tuesdayGroup" >
+
+                                      <label>Tuesday Time In</label>
+                                      <input ng-model="tuesday.timeIn"  type="text" id="timepickerTuesdayTimeIn">
+
+                                      <br>
+                                      <label>Tuesday Time Out</label>
+                                      <input ng-model="tuesday.timeOut"  type="text" id="timepickerTuesdayTimeOut">
+
+                                  </div>
+
+                                  <div class="form-group" id="wednesdayGroup" >
+
+
+                                      <label>Wednesday Time In</label>
+                                      <input ng-model="wednesday.timeIn"  type="text" id="timepickerWednesdayTimeIn">
+
+                                      <br>
+                                      <label>Wednesday Time Out</label>
+                                      <input ng-model="wednesday.timeOut"  type="text" id="timepickerWednesdayTimeOut">
+
+                                  </div>
+
+                                  <div class="form-group" id="thursdayGroup">
+
+                                      <label>Thursday Time In</label>
+                                      <input ng-model="thursday.timeIn"  type="text" id="timepickerThursdayTimeIn">
+
+                                      <br>
+                                      <label>Thursday Time Out</label>
+                                      <input ng-model="thursday.timeOut"  type="text" id="timepickerThursdayTimeOut">
+
+                                  </div>
+
+                                  <div class="form-group" id="fridayGroup" >
+
+                                      <label>Friday Time In</label>
+                                      <input ng-model="friday.timeIn"  type="text" id="timepickerFridayTimeIn">
+
+                                      <br>
+                                      <label>Friday Time Out</label>
+                                      <input ng-model="friday.timeOut"  type="text" id="timepickerFridayTimeOut">
+
+                                  </div>
+
+                                  <div class="form-group" id="saturdayGroup">
+
+                                      <label>Saturday Time In</label>
+                                      <input ng-model="saturday.timeIn"  type="text" id="timepickerSaturdayTimeIn">
+
+                                      <br>
+                                      <label>Saturday Time Out</label>
+                                      <input ng-model="saturday.timeOut"  type="text" id="timepickerSaturdayTimeOut">
+
+                                  </div>
                                 </md-content>
                             </div>
 
@@ -450,7 +436,7 @@ include("../AdminServer/AdminLoginVerification.php");
 
     <script>
 
-         var app = angular.module("tableApplication", ['ngMaterial', 'ngMessages', 'ui.grid','ui.grid.importer','ngTouch','ngAnimate']);
+         var app = angular.module("tableApplication", ['ngMaterial', 'ngMessages','ngAnimate']);
        var STARTDate;
        var ENDDate;
         app.controller('tabController', function($scope){
@@ -473,31 +459,6 @@ include("../AdminServer/AdminLoginVerification.php");
 
         });
 
-        app.controller('GridTableController', ['$scope', '$http', '$interval', function($scope, $http, $interval){
-            $scope.myData = [];
-            $scope.gridOptions = {
-                enableGridMenu: true,
-                enableSorting: true,
-                columnDefs: [
-                    {name: 'MondayTimeIn',field: 'mondayTimeIn'},
-                    {name: 'MondayTimeOut',field: 'mondayTimeOut'}
-                ]
-
-            }
-
-            $http.get('../AdminServer/TeamScheduleLoader.php')
-                .then(function(response){
-                    $scope.gridOptions.data = response;
-                })
-                .catch(function(err){
-                    $scope.loading = false;
-                    console.log($scope.gridOptions.data);
-                })
-                .finally(function(){
-                    $scope.loading = false;
-                    console.log($scope.gridOptions.data);
-                });
-        }]);
 
         app.controller('inputController', function($scope){
 
@@ -518,7 +479,7 @@ include("../AdminServer/AdminLoginVerification.php");
 
 
         jQuery(document).ready(function(){
-            $("#TeamscheduleTable").DataTable();
+            var teamtable = $("#TeamscheduleTable").DataTable();
             $("#TeamMatesTable").DataTable();
 
             $("#timepickerSundayTimeIn").mdtimepicker();
@@ -536,32 +497,94 @@ include("../AdminServer/AdminLoginVerification.php");
             $("#timepickerSaturdayTimeIn").mdtimepicker();
             $("#timepickerSaturdayTimeOut").mdtimepicker();
 
-            $("#sundayCheck").change(function(){
-              $("#sundayGroup").toggle();
+            $("#submitTeamSchedule").on("click", function(){
+                //alert("shit");
+                var JSONData = getSchedJSONformat();
+
+                 $.ajax({
+                    url: "../AdminServer/insertScheduleBackground.php",
+                    method: "POST",
+
+                    data: {schedule: JSONData,TeamID: <?php echo $_SESSION["ProfileTeamID"] ?>},
+                    success: function(response){
+                        if(response == "team schedule successful"){
+                          window.location.replace("AdminTeamProfilePage.php");
+                        }else{
+                          alert(response);
+                        }
+                    },
+                    error: function(response){
+                        console.log(response);
+                    }
+                });
             });
-            $("#mondayCheck").change(function(){
-              $("#mondayGroup").toggle();
+            function getSchedJSONformat(){
+
+              var SundayArray = new Array($("#timepickerSundayTimeIn").val(),
+                    $("#timepickerSundayTimeOut").val());
+              var MondayArray = new Array($("#timepickerMondayTimeIn").val(),
+                    $("#timepickerMondayTimeOut").val());
+              var TuesdayArray = new Array($("#timepickerTuesdayTimeIn").val(),
+                    $("#timepickerTuesdayTimeOut").val());
+              var WednesdayArray = new Array($("#timepickerWednesdayTimeIn").val(),
+                    $("#timepickerWednesdayTimeOut").val());
+              var ThursdayArray = new Array($("#timepickerThursdayTimeIn").val(),
+                    $("#timepickerThursdayTimeOut").val());
+              var FridayArray = new Array($("#timepickerFridayTimeIn").val(),
+                    $("#timepickerFridayTimeOut").val());
+              var SaturdayArray = new Array($("#timepickerSaturdayTimeIn").val(),
+                    $("#timepickerSaturdayTimeOut").val())
+            //  var ModayArray = new
+              //alert(SundayArray[0]+' '+SundayArray[1]);
+
+              var JSONstring = `[{"day":0, "period": ["`+ SundayArray[0] +`" ,"`+ SundayArray[1] +`"]},
+              {"day":1, "period": ["`+ MondayArray[0] +`","`+ MondayArray[1] +`"]},
+              {"day":2, "period": ["`+ TuesdayArray[0] +`","`+ TuesdayArray[1] +`"]},
+              {"day":3, "period": ["`+ WednesdayArray[0] +`","`+ WednesdayArray[1] +`"]},
+              {"day":4, "period": ["`+ ThursdayArray[0] +`","`+ ThursdayArray[1] +`"]},
+              {"day":5, "period": ["`+ FridayArray[0] +`","`+ FridayArray[1] +`"]},
+              {"day":6, "period": ["`+ SaturdayArray[0] +`","`+ SaturdayArray[1] +`"]}]`;//add the other days into the string same format
+
+
+              return JSONstring;
+            }
+
+            $("#AddorEditSchedule").on("click", function(){
+              var data = teamtable.row(0).data();
+
+              if(data[0] != "" && data[1] != ""){
+                $("#timepickerMondayTimeIn").val(data[0]);
+                $("#timepickerMondayTimeOut").val(data[1]);
+              }
+              if(data[2] != "" && data[3] != ""){
+                $("#timepickerTuesdayTimeIn").val(data[2]);
+                $("#timepickerTuesdayTimeOut").val(data[3]);
+              }
+              if(data[4] != "" && data[5] != ""){
+                $("#timepickerWednesdayTimeIn").val(data[4]);
+                $("#timepickerWednesdayTimeOut").val(data[5]);
+              }
+              if(data[6] != "" && data[7]){
+                $("#timepickerThursdayTimeIn").val(data[6]);
+                $("#timepickerThursdayTimeOut").val(data[7]);
+              }
+              if(data[8] != "" && data[9] != ""){
+                $("#timepickerFridayTimeIn").val(data[8]);
+                $("#timepickerFridayTimeOut").val(data[9]);
+              }
+              if(data[10] != "" && data[11] != ""){
+                $("#timepickerSaturdayTimeIn").val(data[10]);
+                $("#timepickerSaturdayTimeOut").val(data[11]);
+              }
+              if(data[12] != "" && data[13] != ""){
+                $("#timepickerSundayTimeIn").val(data[12]);
+                $("#timepickerSundayTimeOut").val(data[13]);
+              }
             });
-            $("#tuesdayCheck").change(function(){
-              $("#tuesdayGroup").toggle();
-            });
-            $("#wednesdayCheck").change(function(){
-              $("#wednesdayGroup").toggle();
-            });
-            $("#thursdayCheck").change(function(){
-              $("#thursdayGroup").toggle();
-            });
-            $("#fridayCheck").change(function(){
-              $("#fridayGroup").toggle();
-            });
-            $("#saturdayCheck").change(function(){
-              $("#saturdayGroup").toggle();
-            });
+
         });
 
-        $("#submitTeamSchedule").on("click", function(){
-            alert("shit");
-        });
+
     </script>
 
 

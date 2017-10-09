@@ -94,7 +94,7 @@ include("../AdminServer/AdminLoginVerification.php");
                         <!-- turn this into a form so we can serialize and pass to ajax POST  -->
                             <?php
                                 include("../AdminServer/DBconnect.php");
-                                $query = 'SELECT * FROM `totalhourspermonth` WHERE 1';
+                                $query = 'SELECT * FROM `totalhourspermonth` WHERE `Active` = 1';
 
 
                                 $result = mysqli_query($conn,$query);
@@ -164,7 +164,20 @@ include("../AdminServer/AdminLoginVerification.php");
 
             $("#TotalHoursperMonth").DataTable();
             $("#deleteDataMonthBtn").on("click",function(){
-                window.location.replace("../AdminServer/refreshMonthData.php");
+                //window.location.replace("../AdminServer/refreshMonthData.php");
+                $.ajax({
+                  url: "../AdminServer/refreshMonthData.php",
+                  success: function(data){
+                    if(data == "refresh successful"){
+                      window.location.replace("AdminDashboard.php");
+                    }else{
+                      alert(data);
+                    }
+                  },
+                  error: function(data){
+                    console.log(data);
+                  }
+                });
             });
         });
     </script>
