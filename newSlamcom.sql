@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2017 at 07:03 AM
+-- Generation Time: Oct 09, 2017 at 06:54 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -43,6 +43,10 @@ CREATE TABLE `adminusers` (
   `userID` int(11) NOT NULL,
   `firstname` varchar(30) NOT NULL,
   `lastname` varchar(30) NOT NULL,
+  `bday` date NOT NULL,
+  `address` varchar(60) NOT NULL,
+  `email` varchar(60) NOT NULL,
+  `mobileNo` varchar(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(200) NOT NULL,
   `Active` tinyint(1) NOT NULL
@@ -52,9 +56,10 @@ CREATE TABLE `adminusers` (
 -- Dumping data for table `adminusers`
 --
 
-INSERT INTO `adminusers` (`userID`, `firstname`, `lastname`, `username`, `password`, `Active`) VALUES
-(1, 'Voltaire', 'Caoile', 'slamcom.vjay@gmail.com', 'admin1234', 1),
-(2, 'Robin', 'Tubungbanua', 'dalmiet@gmail.com', '$2y$10$QiyEN0YqbNqd4', 1);
+INSERT INTO `adminusers` (`userID`, `firstname`, `lastname`, `bday`, `address`, `email`, `mobileNo`, `username`, `password`, `Active`) VALUES
+(1, 'Voltaire', 'Caoile', '0000-00-00', '', '', '', 'slamcom.vjay@gmail.com', 'admin1234', 1),
+(2, 'Robin', 'Tubungbanua', '0000-00-00', '', '', '', 'dalmiet@gmail.com', '$2y$10$QiyEN0YqbNqd4', 1),
+(3, 'Dave', 'Concepcion', '1997-10-20', 'Lower Camp 8, Toledo City', 'dkave123@gmail.com', '09420393483', 'user', 'user', 1);
 
 -- --------------------------------------------------------
 
@@ -85,8 +90,18 @@ CREATE TABLE `employeeinfo` (
 CREATE TABLE `item` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `category` enum('Office Equipments','Office Supplies','Some Stuff') NOT NULL
+  `category` enum('Office Equipments','Office Supplies','Some Stuff') NOT NULL,
+  `qty` int(11) NOT NULL,
+  `itemDesc` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `item`
+--
+
+INSERT INTO `item` (`id`, `name`, `category`, `qty`, `itemDesc`) VALUES
+(1, 'Computer', 'Office Equipments', 30, 'A Cool Computer Set'),
+(3, 'Keyboards', 'Office Equipments', 20, 'test');
 
 -- --------------------------------------------------------
 
@@ -282,6 +297,12 @@ ALTER TABLE `employeeinfo`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `item`
+--
+ALTER TABLE `item`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `specialcases`
 --
 ALTER TABLE `specialcases`
@@ -333,7 +354,12 @@ ALTER TABLE `userschedule`
 -- AUTO_INCREMENT for table `adminusers`
 --
 ALTER TABLE `adminusers`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `item`
+--
+ALTER TABLE `item`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `team`
 --
