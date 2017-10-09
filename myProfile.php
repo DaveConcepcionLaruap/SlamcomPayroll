@@ -143,7 +143,7 @@
                                     <section class="panel">
                                           <div class="panel-body bio-graph-info">
                                               <h1> Profile Info</h1>
-                                              <form class="form-horizontal" role="form">
+                                              <form class="form-horizontal" id = "edit_profile" role="form">
                                                   <div class="form-group">
                                                       <label class="col-lg-2 control-label">First Name</label>
                                                       <div class="col-lg-6">
@@ -159,7 +159,7 @@
                                                   <div class="form-group">
                                                       <label class="col-lg-2 control-label">Birthday</label>
                                                       <div class="col-lg-6">
-                                                          <input type="text" class="form-control" id="bday" placeholder=" ">
+                                                          <input type="date" class="form-control" id="bday" placeholder=" ">
                                                       </div>
                                                   </div>
                                                   <div class="form-group">
@@ -181,15 +181,21 @@
                                                       </div>
                                                   </div>
                                                   <div class="form-group">
-                                                      <label class="col-lg-2 control-label">Username</label>
+                                                      <label class="col-lg-2 control-label">Password</label>
                                                       <div class="col-lg-6">
-                                                          <input type="text" class="form-control" id="username" placeholder=" ">
+                                                          <input type="password" class="form-control" id="username" placeholder=" ">
                                                       </div>
                                                   </div>
                                                   <div class="form-group">
-                                                      <label class="col-lg-2 control-label">Password</label>
+                                                      <label class="col-lg-2 control-label">New Password</label>
                                                       <div class="col-lg-6">
-                                                          <input type="password" class="form-control" id="password">
+                                                          <input type="password" class="form-control" id="NewPassword">
+                                                      </div>
+                                                  </div>
+                                                  <div class="form-group">
+                                                      <label class="col-lg-2 control-label">Confirm New Password</label>
+                                                      <div class="col-lg-6">
+                                                          <input type="password" class="form-control" id="ConfirmNewPassword">
                                                       </div>
                                                   </div>
 
@@ -227,7 +233,22 @@
   </section>
 
   <script>
+    $("edit_profile").validate({
+      rules:{
+        NewPassword: {
+          required: true,
+          minLength: 8
 
+        }
+      },
+      messages: {
+        NewPassword: {
+          required: "stuff";
+          minLength: "min";
+        }
+      }
+
+    });
   </script>
 
 

@@ -9,10 +9,10 @@
   	$password = $_POST['pass'];
 
 
-      $check = mysqli_query($con,"SELECT * FROM `adminusers` WHERE username = '$username'");
+      $check = mysqli_query($con,"SELECT * FROM `adminusers` WHERE email = '$username'");
       $row = mysqli_fetch_assoc($check);
 
-      if($row['username'] == $username){
+      if($row['email'] == $username){
           if($row['password'] == $password){
 
               $_SESSION['id'] = $row['userID'];
