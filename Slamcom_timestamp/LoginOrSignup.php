@@ -67,6 +67,8 @@
                             <option value="Friday">Friday</option>
                             <option value="Saturday">Saturday</option>
                           </select>
+                          <button id="ActivateSpecialDay" style="margin-left: 20px;">special day</button>
+                          <h3 id="activationLabel" style="color: red;">Special day not activated</h3>
                           <div class="table-responsive">
                               <table id="ActiveEmployeeTable" class="table table-hover table-striped" cellspacing="0" width="100%" style= "width: 80%">
                                   <thead>
@@ -250,7 +252,16 @@
               var selectedDay = $("#DayofTheWeekSelector").find(":selected").text();
 
           });*/
+            $("#ActivateSpecialDay").on("click", function(){
+              if($("#activationLabel").text() == "Special day not activated"){
+                $("#activationLabel").text("Special day activated");
+                $("#activationLabel").css("color","green");
+              }else{
+                $("#activationLabel").text("Special day not activated");
+                $("#activationLabel").css("color","red");
+              }
 
+            });
             $("#AdminTable").on("click", "td", function(){
               var data = AdminTable.row($(this).parents('tr')).data();
 

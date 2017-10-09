@@ -2,13 +2,7 @@ Robin issues
 - add absent funcitonality
 - finish adding special cases module
 - make dashboard a page for marking rows in specific tables as finished ex: tableusersmonth
-<<<<<<< HEAD
-should be marked after every work month
-- fix login bug - table doesn't display users with no team
-=======
-should be marked after every work month (fixed)
-- fix login bug - table doesn't display users with no team (fixed)
->>>>>>> b478bcd4571dbb91c57aa4a2ac639c25e058a6db
+
 - Team Leader table issue
 
 to do list:
