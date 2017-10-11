@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2017 at 07:40 AM
+-- Generation Time: Oct 13, 2017 at 04:58 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -105,19 +105,6 @@ INSERT INTO `item` (`id`, `name`, `category`, `qty`, `itemDesc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `specialcases`
---
-
-CREATE TABLE `specialcases` (
-  `totalHoliday` varchar(10) NOT NULL,
-  `totalSpecialHoliday` varchar(10) NOT NULL,
-  `totalrestDay` varchar(10) NOT NULL,
-  `userID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `team`
 --
 
@@ -197,7 +184,79 @@ INSERT INTO `timetable` (`timeIn`, `timeOut`, `HoursMade`, `userID`) VALUES
 ('2017-09-26 09:31:00', '2017-09-26 09:31:00', '00:00:00.000000', 1),
 ('2017-09-26 09:32:00', '2017-09-26 09:32:00', '00:00:00.000000', 1),
 ('2017-10-09 06:00:00', '2017-10-09 06:08:00', '00:08:00.000000', 9),
-('2017-10-09 06:10:00', '2017-10-09 06:14:00', '00:04:00.000000', 9);
+('2017-10-09 06:10:00', '2017-10-09 06:14:00', '00:04:00.000000', 9),
+('2017-10-13 09:05:00', '2017-10-13 09:16:00', '00:11:00.000000', 1),
+('2017-10-13 09:19:00', '2017-10-13 09:25:00', '00:06:00.000000', 1),
+('2017-10-13 09:26:00', '2017-10-13 09:27:00', '00:01:00.000000', 1),
+('2017-10-13 09:29:00', '2017-10-13 09:32:00', '00:03:00.000000', 1),
+('2017-10-13 09:34:00', '2017-10-13 09:36:00', '00:02:00.000000', 1),
+('2017-10-13 09:21:00', '2017-10-13 09:24:00', '00:03:00.000000', 1),
+('2017-10-13 09:32:00', '2017-10-13 09:32:00', '00:00:00.000000', 1),
+('2017-10-13 09:42:00', '2017-10-13 09:42:00', '00:00:00.000000', 1),
+('2017-10-13 09:46:00', '2017-10-13 09:46:00', '00:00:00.000000', 1),
+('2017-10-13 09:54:00', '2017-10-13 09:55:00', '00:01:00.000000', 1),
+('2017-10-13 09:56:00', '2017-10-13 09:56:00', '00:00:00.000000', 1),
+('2017-10-13 09:57:00', '2017-10-13 09:58:00', '00:01:00.000000', 1),
+('2017-10-13 09:58:00', '2017-10-13 09:58:00', '00:00:00.000000', 1),
+('2017-10-14 02:47:00', '2017-10-14 02:47:00', '00:00:00.000000', 1),
+('2017-10-13 09:07:00', '2017-10-13 09:07:00', '00:00:00.000000', 1),
+('2017-10-13 09:07:00', '2017-10-13 09:08:00', '00:01:00.000000', 1),
+('2017-10-13 09:08:00', '2017-10-13 09:09:00', '00:01:00.000000', 1),
+('2017-10-13 09:09:00', '2017-10-13 09:09:00', '00:00:00.000000', 1),
+('2017-10-13 09:10:00', '2017-10-13 09:10:00', '00:00:00.000000', 1),
+('2017-10-13 09:11:00', '2017-10-13 09:11:00', '00:00:00.000000', 1),
+('2017-10-13 09:13:00', '2017-10-13 09:13:00', '00:00:00.000000', 1),
+('2017-10-13 09:23:00', '2017-10-13 09:23:00', '00:00:00.000000', 1),
+('2017-10-13 09:35:00', '2017-10-13 09:35:00', '00:00:00.000000', 1),
+('2017-10-13 09:35:00', '2017-10-13 09:35:00', '00:00:00.000000', 1),
+('2017-10-13 09:35:00', '2017-10-13 09:35:00', '00:00:00.000000', 1),
+('2017-10-13 09:37:00', '2017-10-13 09:37:00', '00:00:00.000000', 1),
+('2017-10-13 09:38:00', '2017-10-13 09:38:00', '00:00:00.000000', 1),
+('2017-10-13 09:38:00', '2017-10-13 09:38:00', '00:00:00.000000', 1),
+('2017-10-13 09:52:00', '2017-10-13 09:52:00', '00:00:00.000000', 1),
+('2017-10-13 09:53:00', '2017-10-13 09:53:00', '00:00:00.000000', 1),
+('2017-10-13 09:54:00', '2017-10-13 09:54:00', '00:00:00.000000', 1),
+('2017-10-13 09:57:00', '2017-10-13 09:57:00', '00:00:00.000000', 11),
+('2017-10-13 09:58:00', '2017-10-13 09:58:00', '00:00:00.000000', 9),
+('2017-10-13 10:03:00', '2017-10-13 10:03:00', '00:00:00.000000', 1),
+('2017-10-13 10:04:00', '2017-10-13 10:05:00', '00:01:00.000000', 1),
+('2017-10-13 10:05:00', '2017-10-13 10:05:00', '00:00:00.000000', 1),
+('2017-10-13 10:07:00', '2017-10-13 10:07:00', '00:00:00.000000', 1),
+('2017-10-13 10:08:00', '2017-10-13 10:08:00', '00:00:00.000000', 1),
+('2017-10-13 10:09:00', '2017-10-13 10:09:00', '00:00:00.000000', 1),
+('2017-10-13 10:09:00', '2017-10-13 10:09:00', '00:00:00.000000', 11),
+('2017-10-13 10:10:00', '2017-10-13 10:10:00', '00:00:00.000000', 9),
+('2017-10-13 10:11:00', '2017-10-13 10:11:00', '00:00:00.000000', 9),
+('2017-10-13 10:12:00', '2017-10-13 10:12:00', '00:00:00.000000', 11),
+('2017-10-13 10:13:00', '2017-10-13 10:13:00', '00:00:00.000000', 9),
+('2017-10-13 10:13:00', '2017-10-13 10:13:00', '00:00:00.000000', 10),
+('2017-10-13 10:13:00', '2017-10-13 10:13:00', '00:00:00.000000', 10),
+('2017-10-13 10:39:00', '2017-10-13 10:39:00', '00:00:00.000000', 11),
+('2017-10-13 10:40:00', '2017-10-13 10:40:00', '00:00:00.000000', 9),
+('2017-10-13 10:51:00', '2017-10-13 10:51:00', '00:00:00.000000', 1),
+('2017-10-13 10:51:00', '2017-10-13 10:51:00', '00:00:00.000000', 9),
+('2017-10-13 10:52:00', '2017-10-13 10:52:00', '00:00:00.000000', 11);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `totalholiday`
+--
+
+CREATE TABLE `totalholiday` (
+  `TotalLate` varchar(20) NOT NULL,
+  `TotalHours` varchar(20) NOT NULL,
+  `TotalOvertime` varchar(20) NOT NULL,
+  `userID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `totalholiday`
+--
+
+INSERT INTO `totalholiday` (`TotalLate`, `TotalHours`, `TotalOvertime`, `userID`) VALUES
+('00:00:00', '00:00:00', '00:00:00', 1),
+('00:00:00', '00:00:00', '00:00:00', 11);
 
 -- --------------------------------------------------------
 
@@ -209,7 +268,6 @@ CREATE TABLE `totalhourspermonth` (
   `TotalLate` varchar(20) NOT NULL,
   `TotalHours` varchar(20) NOT NULL,
   `TotalOvertime` varchar(20) NOT NULL,
-  `Active` tinyint(1) NOT NULL DEFAULT '1',
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -217,9 +275,43 @@ CREATE TABLE `totalhourspermonth` (
 -- Dumping data for table `totalhourspermonth`
 --
 
-INSERT INTO `totalhourspermonth` (`TotalLate`, `TotalHours`, `TotalOvertime`, `Active`, `userID`) VALUES
-('01:03:59', '00:00:00', '00:00:00', 1, 1),
-('01:10:00', '0:04:00', '00:00:00', 1, 9);
+INSERT INTO `totalhourspermonth` (`TotalLate`, `TotalHours`, `TotalOvertime`, `userID`) VALUES
+('00:00:00', '00:00:00', '00:00:00', 1),
+('00:00:00', '00:00:00', '00:00:00', 9),
+('00:00:00', '00:00:00', '00:00:00', 11);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `totalrestday`
+--
+
+CREATE TABLE `totalrestday` (
+  `TotalLate` varchar(20) NOT NULL,
+  `TotalHours` varchar(20) NOT NULL,
+  `TotalOvertime` varchar(20) NOT NULL,
+  `userID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `totalspecialholiday`
+--
+
+CREATE TABLE `totalspecialholiday` (
+  `TotalLate` varchar(20) NOT NULL,
+  `TotalHours` varchar(20) NOT NULL,
+  `TotalOvertime` varchar(20) NOT NULL,
+  `userID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `totalspecialholiday`
+--
+
+INSERT INTO `totalspecialholiday` (`TotalLate`, `TotalHours`, `TotalOvertime`, `userID`) VALUES
+('00:00:00', '00:00:00', '00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -245,12 +337,14 @@ INSERT INTO `user` (`userID`, `firstname`, `lastname`, `emailadd`, `password`, `
 (1, 'Rupert Dalmy', 'Tubungbanua', 'dalmiet@gmail.com', '$2y$10$1d.SE/noFB4d643Vz/iC6./s0I1ZjZP20jxmJFwJPae9NujtuN44q', 1, 1),
 (2, 'Hanneh Jonna', 'Wang', 'hannehwang@gmail.com', '$2y$10$t8QrMS9j.aqkAgIyd/Jw9OVZeumorcX8KUIaGJGbO/DD4hxYkso9q', 0, 1),
 (3, 'Wilmar bae', 'Zaragoza', 'wilmarzara@gmail.com', '$2y$10$ijbJe6chi3JeE4p/oCVQBepRlP8zd5LpM4CdWsADMnDFuCVSBAZ9y', 0, 0),
-(4, 'Jami Brent', 'The Faggot', 'jamifagget@yahoo.com', '$2y$10$XFNTYeSs395lvfk9sP16HOShCsJIAQHVTxyJpVfonxqbh57X6IoDa', 1, 1),
+(4, 'Jami Brent', 'The Faggot', 'jamifagget@yahoo.com', '$2y$10$XFNTYeSs395lvfk9sP16HOShCsJIAQHVTxyJpVfonxqbh57X6IoDa', 1, 0),
 (5, 'Dave Dexter', 'Faggot', 'davefaggot@gmail.com', '$2y$10$jp2ghrlSP.rd/Gir7OkomOb/5OlB0mVKgEJIhT2xyIwrjmwOM0oPi', 2, 1),
-(6, 'Jeremy', 'Shawarma', 'shawarmalover@gmail.com', '$2y$10$yBj0PKwK9jpUeqBovUomk.wKGJ.jH4kAgbeiuNxks.HTPxWi3SZnq', 1, 1),
+(6, 'Jeremy', 'Shawarma', 'shawarmalover@gmail.com', '$2y$10$yBj0PKwK9jpUeqBovUomk.wKGJ.jH4kAgbeiuNxks.HTPxWi3SZnq', 1, 0),
 (7, 'Jesus', 'Ramos', 'thechosenone@gmail.com', '$2y$10$SRB6LztBH071r.cs56v0de2v4q5yfi2Mz2D1Pri2RpcOLwISi8KPy', 3, 1),
 (8, 'Kirby', 'Cataluna', 'therealmorty@gmail.com', '$2y$10$Hl/DXyNavH53Q1k0K3IKMuCw5wogvMzNnSsyMdx4LAu5UAk9xRu/q', 0, 0),
-(9, 'Sherbert', 'Takumi', 'shertbertEmp@gmail.com', '$2y$10$tuhHBwoBcO.pCOIqNK7APODF.viRWHjy/WF/WFXgrRa48ZcW3bsOm', 0, 1);
+(9, 'Sherbert', 'Takumi', 'shertbertEmp@gmail.com', '$2y$10$tuhHBwoBcO.pCOIqNK7APODF.viRWHjy/WF/WFXgrRa48ZcW3bsOm', 0, 1),
+(10, 'Jeremy', 'Shawarma', 'jsham@gmail.com', '$2y$10$mD6oFCr2JdiWkr6q1S9wF.99/882UeOUJv/4Q1hRkRLsQ71xNzTKq', 1, 1),
+(11, 'Bobert', 'Takumi', 'BTak@gmail.com', '$2y$10$igg6kPd2b3ALt0Rpr2QCm.jNzj1hCdsfFCyQpEREgqRQIqUz0c2sy', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -315,12 +409,6 @@ ALTER TABLE `item`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `specialcases`
---
-ALTER TABLE `specialcases`
-  ADD KEY `userID` (`userID`);
-
---
 -- Indexes for table `team`
 --
 ALTER TABLE `team`
@@ -340,10 +428,27 @@ ALTER TABLE `timetable`
   ADD KEY `fk_timetable` (`userID`);
 
 --
+-- Indexes for table `totalholiday`
+--
+ALTER TABLE `totalholiday`
+  ADD PRIMARY KEY (`userID`),
+  ADD KEY `userID` (`userID`),
+  ADD KEY `userID_2` (`userID`);
+
+--
 -- Indexes for table `totalhourspermonth`
 --
 ALTER TABLE `totalhourspermonth`
-  ADD PRIMARY KEY (`userID`);
+  ADD PRIMARY KEY (`userID`),
+  ADD KEY `userID` (`userID`);
+
+--
+-- Indexes for table `totalspecialholiday`
+--
+ALTER TABLE `totalspecialholiday`
+  ADD PRIMARY KEY (`userID`),
+  ADD KEY `userID` (`userID`),
+  ADD KEY `userID_2` (`userID`);
 
 --
 -- Indexes for table `user`
@@ -386,7 +491,7 @@ ALTER TABLE `teamschedule`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `userschedule`
 --
@@ -403,12 +508,6 @@ ALTER TABLE `employeeinfo`
   ADD CONSTRAINT `employeeinfo_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`userID`);
 
 --
--- Constraints for table `specialcases`
---
-ALTER TABLE `specialcases`
-  ADD CONSTRAINT `specialcases_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`);
-
---
 -- Constraints for table `teamschedule`
 --
 ALTER TABLE `teamschedule`
@@ -421,10 +520,22 @@ ALTER TABLE `timetable`
   ADD CONSTRAINT `fk_timetable` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`);
 
 --
+-- Constraints for table `totalholiday`
+--
+ALTER TABLE `totalholiday`
+  ADD CONSTRAINT `totalholiday_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`);
+
+--
 -- Constraints for table `totalhourspermonth`
 --
 ALTER TABLE `totalhourspermonth`
   ADD CONSTRAINT `totalhourspermonth_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`);
+
+--
+-- Constraints for table `totalspecialholiday`
+--
+ALTER TABLE `totalspecialholiday`
+  ADD CONSTRAINT `totalspecialholiday_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`);
 
 --
 -- Constraints for table `userschedule`

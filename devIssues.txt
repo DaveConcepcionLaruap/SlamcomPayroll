@@ -16,3 +16,7 @@ add user information table that contains user Bio GraphS
 
 in LoginOrSignup -- if user team is 0, redirect to a different clocktimesave php that saves
 in userschedule instead of teamschedule (fixed)
+
+timestamp special holiday and holiday and normal day all works
+need to  finalize details for absent module
+need to finalize shit for rest day and NP hours what ever the fuck that is

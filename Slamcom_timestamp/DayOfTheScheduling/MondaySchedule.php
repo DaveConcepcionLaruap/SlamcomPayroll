@@ -1,8 +1,8 @@
 <?php
 
   $mondaySql = "SELECT `MondayShift`, `mondayTimeIn`, `mondayTimeOut`
-                FROM `teamschedule`
-                WHERE `TeamID` = '$teamID'";
+                FROM `". $teamOruser ."`
+                WHERE `". $tableID ."` = '$ID'";
 
   $result = mysqli_query($conn, $mondaySql);
   $row = mysqli_fetch_array($result);
@@ -47,7 +47,15 @@
     );
   }
 
-  $monthlySql = "SELECT * FROM `totalhourspermonth` WHERE `userID` = '$userID' AND `Active` = 1";
+  if($specialDay == 1){// holiday case
+    $tablecontroller = 'totalholiday';
+  }else if($specialDay == 2){
+    $tablecontroller = 'totalspecialholiday';
+  }else if($specialDay == 0){
+    $tablecontroller = 'totalhourspermonth';
+  }
+
+  $monthlySql = "SELECT * FROM `". $tablecontroller ."` WHERE `userID` = '$userID'";
 
   $monthlyResult = mysqli_query($conn, $monthlySql);
 
@@ -74,10 +82,10 @@
       $TotalOvertimeString = $row["TotalOvertime"];
     }
 
-    $updateMonthlysql = "UPDATE `totalhourspermonth`
+    $updateMonthlysql = "UPDATE `". $tablecontroller ."`
     SET `TotalLate`='$TotalLateString',`TotalHours`='$TotalHoursString',
     `TotalOvertime`='$TotalOvertimeString'
-     WHERE `userID` = '$userID' AND `Active` = 1";
+     WHERE `userID` = '$userID'";
 
      if(mysqli_query($conn, $updateMonthlysql)){
        echo "monday update success";
@@ -86,7 +94,7 @@
      }
   }else{
 
-    $insertMonthlysql = "INSERT INTO `totalhourspermonth`(`TotalLate`,
+    $insertMonthlysql = "INSERT INTO `". $tablecontroller ."`(`TotalLate`,
        `TotalHours`, `TotalOvertime`, `userID`)
        VALUES ('$timeLate','$time','$timeOvertime','$userID')";
 
