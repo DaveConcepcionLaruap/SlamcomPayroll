@@ -49,8 +49,6 @@ session_start();
                           <tr>
                               <th>ID</th>
                               <th>Name</th>
-                              <th>Team</th>
-                              <th>Position</th>
                               <th>Monthly Salary</th>
                               <th>Total Late</th>
                               <th>Total Absent</th>
@@ -62,9 +60,9 @@ session_start();
                       </thead>
                       <tbody>
                           <?php
-                            $con = mysqli_connect("localhost","root","","payroll_slamcom");
+                            $con = mysqli_connect("localhost","root","","slamcom");
 
-                            $query = 'SELECT `id`, `name`, `position`, `team` FROM employee';
+                            $query = 'SELECT `userID`, `firstname`, `lastname` FROM `user`';
                             $result = mysqli_query($con, $query);
 
                             while($row = mysqli_fetch_array($result)){
@@ -74,9 +72,7 @@ session_start();
                                 while($srow = mysqli_fetch_array($sresult)){
                                     echo '<tr id='.$row[0].'>
                                             <td>'.$row[0].'</td>
-                                            <td>'.$row[1].'</td>
-                                            <td>'.$row[2].'</td>
-                                            <td>'.$row[3].'</td>
+                                            <td>'.$row[1].' '.$row[2].'</td>
                                             <td>'.$srow[1].'</td>
                                             <td>'.$srow[2].'</td>
                                             <td>'.$srow[3].'</td>

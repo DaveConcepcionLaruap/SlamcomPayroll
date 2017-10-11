@@ -3,7 +3,7 @@
     if($_POST){
 
       include('database.php');
-      
+
       $name = $_POST['name'];
       $category = $_POST['category'];
       $qty = $_POST['qty'];
@@ -17,6 +17,6 @@
           echo "Edit Failed";
       }
     }else{
-      echo "wtf";
+      echo "Edit Error";
     }
  ?>
