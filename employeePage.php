@@ -49,6 +49,20 @@ session_start();
 			</div>
           <h3>Employee Data</h3>
           <hr>
+          <div class = "row">
+            <div class = "col-lg-12">
+              <div class = "panel panel-default">
+                <div class = "panel-body">
+                  <?php
+                    $result = mysqli_query($con,"SELECT firstname, lastname FROM user where userID =".$_GET['employeeID']);
+                    $row = mysqli_fetch_Array($result);
+                    echo '<p><span>Name </span>:<big> '.$row[0].' '.$row[1].' </big></p>';
+                  ?>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
             <div class = "col-lg-6">
                 <div class = "panel panel-default">
                   <div class = "panel-heading">Employee Info</div>
