@@ -47,7 +47,7 @@
     );
   }
 
-  $monthlySql = "SELECT * FROM `totalhourspermonth` WHERE `userID` = '$userID'";
+  $monthlySql = "SELECT * FROM `totalhourspermonth` WHERE `userID` = '$userID' AND `Active` = 1";
 
   $monthlyResult = mysqli_query($conn, $monthlySql);
 
@@ -77,7 +77,7 @@
     $updateMonthlysql = "UPDATE `totalhourspermonth`
     SET `TotalLate`='$TotalLateString',`TotalHours`='$TotalHoursString',
     `TotalOvertime`='$TotalOvertimeString'
-     WHERE `userID` = '$userID'";
+     WHERE `userID` = '$userID' AND `Active` = 1";
 
      if(mysqli_query($conn, $updateMonthlysql)){
        echo "thursday update success";

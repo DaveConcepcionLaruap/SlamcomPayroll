@@ -47,11 +47,18 @@
     );
   }
   //still have to consult with dave how to implement special cases
-  //if($specialDay == 0){
-    $monthlySql = "SELECT * FROM `totalhourspermonth` WHERE `userID` = '$userID'";
-  //}else{
-  //  $monthlySql = "SELECT * FROM `specialcases` WHERE `userID` = '$userID'";
-  //}
+  $tablecontroller = "";
+  
+  if($specialDay == 0){//no case
+    $tablecontroller = 'totalhourspermonth';
+  }else if($specialDay == 1){// holiday case
+    $tablecontroller = 'totalholiday';
+  }else{//special holiday case
+    $tablecontroller = 'totalspecialholiday';
+  }
+
+
+  $monthlySql = "SELECT * FROM `" . $tablecontroller . "` WHERE `userID` = '$userID' AND `Active` = 1";
   $monthlyResult = mysqli_query($conn, $monthlySql);
 
 
@@ -77,10 +84,11 @@
       $TotalOvertimeString = $row["TotalOvertime"];
     }
 
-    $updateMonthlysql = "UPDATE `totalhourspermonth`
-    SET `TotalLate`='$TotalLateString',`TotalHours`='$TotalHoursString',
-    `TotalOvertime`='$TotalOvertimeString'
-     WHERE `userID` = '$userID'";
+
+     $updateMonthlysql = "UPDATE `" . $tablecontroller . "`
+     SET `TotalLate`='$TotalLateString',`TotalHours`='$TotalHoursString',
+     `TotalOvertime`='$TotalOvertimeString'
+      WHERE `userID` = '$userID' AND `Active` = 1";
 
      if(mysqli_query($conn, $updateMonthlysql)){
        echo "friday update success";
@@ -89,7 +97,7 @@
      }
   }else{
 
-    $insertMonthlysql = "INSERT INTO `totalhourspermonth`(`TotalLate`,
+    $insertMonthlysql = "INSERT INTO `" . $tablecontroller . "` (`TotalLate`,
        `TotalHours`, `TotalOvertime`, `userID`)
        VALUES ('$timeLate','$time','$timeOvertime','$userID')";
 

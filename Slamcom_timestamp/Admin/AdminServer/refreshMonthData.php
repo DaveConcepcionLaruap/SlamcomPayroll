@@ -5,7 +5,7 @@
     SET`Active`= 0
     WHERE `Active` = 1";
 
-    $result = mysli_query($conn, $sql);
+    $result = mysqli_query($conn, $sql);
 
     if($result){
       echo "refresh successful";
