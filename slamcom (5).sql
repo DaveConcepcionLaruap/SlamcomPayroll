@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2017 at 04:58 PM
+-- Generation Time: Oct 12, 2017 at 12:33 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -235,7 +235,10 @@ INSERT INTO `timetable` (`timeIn`, `timeOut`, `HoursMade`, `userID`) VALUES
 ('2017-10-13 10:40:00', '2017-10-13 10:40:00', '00:00:00.000000', 9),
 ('2017-10-13 10:51:00', '2017-10-13 10:51:00', '00:00:00.000000', 1),
 ('2017-10-13 10:51:00', '2017-10-13 10:51:00', '00:00:00.000000', 9),
-('2017-10-13 10:52:00', '2017-10-13 10:52:00', '00:00:00.000000', 11);
+('2017-10-13 10:52:00', '2017-10-13 10:52:00', '00:00:00.000000', 11),
+('2017-10-14 01:07:00', '2017-10-14 01:07:00', '00:00:00.000000', 1),
+('2017-10-14 09:07:00', '2017-10-14 09:07:00', '00:00:00.000000', 1),
+('2017-10-13 09:08:00', '2017-10-13 09:08:00', '00:00:00.000000', 1);
 
 -- --------------------------------------------------------
 
@@ -268,6 +271,7 @@ CREATE TABLE `totalhourspermonth` (
   `TotalLate` varchar(20) NOT NULL,
   `TotalHours` varchar(20) NOT NULL,
   `TotalOvertime` varchar(20) NOT NULL,
+  `TotalAbsent` int(11) NOT NULL DEFAULT '0',
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -275,10 +279,10 @@ CREATE TABLE `totalhourspermonth` (
 -- Dumping data for table `totalhourspermonth`
 --
 
-INSERT INTO `totalhourspermonth` (`TotalLate`, `TotalHours`, `TotalOvertime`, `userID`) VALUES
-('00:00:00', '00:00:00', '00:00:00', 1),
-('00:00:00', '00:00:00', '00:00:00', 9),
-('00:00:00', '00:00:00', '00:00:00', 11);
+INSERT INTO `totalhourspermonth` (`TotalLate`, `TotalHours`, `TotalOvertime`, `TotalAbsent`, `userID`) VALUES
+('22:22:00', '00:00:00', '12:07:00', 0, 1),
+('00:00:00', '00:00:00', '00:00:00', 0, 9),
+('00:00:00', '00:00:00', '00:00:00', 0, 11);
 
 -- --------------------------------------------------------
 
@@ -287,9 +291,8 @@ INSERT INTO `totalhourspermonth` (`TotalLate`, `TotalHours`, `TotalOvertime`, `u
 --
 
 CREATE TABLE `totalrestday` (
-  `TotalLate` varchar(20) NOT NULL,
   `TotalHours` varchar(20) NOT NULL,
-  `TotalOvertime` varchar(20) NOT NULL,
+  `DaysRested` int(11) NOT NULL,
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
