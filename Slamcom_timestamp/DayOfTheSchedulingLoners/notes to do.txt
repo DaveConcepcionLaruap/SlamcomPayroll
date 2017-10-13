@@ -1,9 +1,0 @@
-okay so make 7 php pages for 7 days of the week,,
-call them when you need them in main php, if selected was
-monday, tuesday, etc....
-then validate user timein and timeout through the scheduling for
-that day
-
-finish the other days
-
-fix exact month table loader bug

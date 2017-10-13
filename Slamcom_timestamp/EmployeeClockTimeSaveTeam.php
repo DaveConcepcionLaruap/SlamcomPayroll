@@ -56,24 +56,15 @@
 
       if(mysqli_query($conn,$sql)){
           if($teamID != 0){
-            if($selectedDay == "Monday"){
-              include("DayOfTheScheduling/MondaySchedule.php");
-            }else if($selectedDay == "Tuesday"){
-              include("DayOfTheScheduling/TuesdaySchedule.php");
-            }else if($selectedDay == "Wednesday"){
-              include("DayOfTheScheduling/WednesdaySchedule.php");
-            }else if($selectedDay == "Thursday"){
-              include("DayOfTheScheduling/ThursdaySchedule.php");
-            }else if($selectedDay == "Friday"){
-              include("DayOfTheScheduling/FridaySchedule.php");
-            }else if($selectedDay == "Saturday"){
-              include("DayOfTheScheduling/SaturdaySchedule.php");
-            }else{
-              include("DayOfTheScheduling/SundaySchedule.php");
-            }
+            $teamOruser = 'teamschedule';
+            $tableID = 'TeamID';
+            $ID = $teamID;
         }else{
+          $teamOruser = 'userschedule';
+          $tableID = 'UserID';
+          $ID = $userID;
             //scheduling for users with no team;
-            if($selectedDay == "Monday"){
+            /*if($selectedDay == "Monday"){
               include("DayOfTheSchedulingLoners/MondaySchedule.php");
             }else if($selectedDay == "Tuesday"){
               include("DayOfTheSchedulingLoners/TuesdaySchedule.php");
@@ -87,7 +78,22 @@
               include("DayOfTheSchedulingLoners/SaturdaySchedule.php");
             }else{
               include("DayOfTheSchedulingLoners/SundaySchedule.php");
-            }
+            }*/
+        }
+        if($selectedDay == "Monday"){
+          include("DayOfTheScheduling/MondaySchedule.php");
+        }else if($selectedDay == "Tuesday"){
+          include("DayOfTheScheduling/TuesdaySchedule.php");
+        }else if($selectedDay == "Wednesday"){
+          include("DayOfTheScheduling/WednesdaySchedule.php");
+        }else if($selectedDay == "Thursday"){
+          include("DayOfTheScheduling/ThursdaySchedule.php");
+        }else if($selectedDay == "Friday"){
+          include("DayOfTheScheduling/FridaySchedule.php");
+        }else if($selectedDay == "Saturday"){
+          include("DayOfTheScheduling/SaturdaySchedule.php");
+        }else{
+          include("DayOfTheScheduling/SundaySchedule.php");
         }
       }else{
 
