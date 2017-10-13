@@ -380,15 +380,16 @@
               $.ajax({
                 url: "setRestDay.php",
                 method: "POST",
-                data {userID: userID, teamID: teamID},
+                data {UserID: userID, TeamID: teamID},
                 success: function(data){
-
+                  alert(data);
                 },
                 error: function(data){
-                  
+                  console.log(data);
                 }
               });
             }
+
             function getDateTime(){
               var datetime = new Date();
 
@@ -422,20 +423,7 @@
 
               return strTime;
             }
-            <?php
-                if(isset($_GET['err'])){
-                    echo '$("#divLoginError").css("display","block")
-                            setTimeout(function() {
-                                $("#divLoginError").fadeOut("slow");
-                            }, 10000); ';
-                }
-                if(isset($_GET['EmailalreadyExist'])){
-                    echo '$("#divEmailalreadyexist").css("display","block")
-                            setTimeout(function() {
-                                $("#divEmailalreadyexist").fadeOut("slow");
-                            }, 10000); ';
-                }
-            ?>
+
 
             //toggle between login and signup
             $("#LoginNoAccount").click(function(){
