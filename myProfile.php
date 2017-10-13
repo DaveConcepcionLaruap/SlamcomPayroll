@@ -61,161 +61,64 @@
               <div class="row">
                  <div class="col-lg-12">
                     <section class="panel">
-                          <header class="panel-heading tab-bg-info">
-                              <ul class="nav nav-tabs">
-                                  <li>
-                                      <a data-toggle="tab" href="#profile">
-                                          <i class="icon-user"></i>
-                                          Profile
-                                      </a>
-                                  </li>
-                                  <li class="">
-                                      <a data-toggle="tab" href="#edit-profile">
-                                          <i class="icon-envelope"></i>
-                                          Edit Profile
-                                      </a>
-                                  </li>
-                              </ul>
-                          </header>
-                          <div class="panel-body">
-                              <div class="tab-content">
-                                  <!-- profile -->
-                                  <div id="profile" class="tab-pane active">
-                                    <section class="panel">
-                                      <div class="bio-graph-heading">
-                                        Self Introduction Here
-                                      </div>
-                                      <div class="panel-body bio-graph-info">
-                                          <h1>Bio Graph</h1>
-                                          <div class="row">
-                                              <div class="bio-row">
-                                                <?php
-                                                  $result = mysqli_query($con,"SELECT firstname FROM adminusers where userID =".$_SESSION['id']);
-                                                  $row = mysqli_fetch_Array($result);
-                                                  echo '<p><span>First Name </span>: '.$row[0].'</p>';
-                                                ?>
-                                              </div>
-                                              <div class="bio-row">
-                                                <?php
-                                                  $result = mysqli_query($con,"SELECT lastname FROM adminusers where userID =".$_SESSION['id']);
-                                                  $row = mysqli_fetch_Array($result);
-                                                  echo '<p><span>Last Name </span>: '.$row[0].'</p>';
-                                                ?>
-                                              </div>
-                                              <div class="bio-row">
-                                                <?php
-                                                  $result = mysqli_query($con,"SELECT bday FROM adminusers where userID =".$_SESSION['id']);
-                                                  $row = mysqli_fetch_Array($result);
-                                                  echo '<p><span>Birthday </span>: '.$row[0].'</p>';
-                                                ?>
-                                              </div>
-                                              <div class="bio-row">
-                                                <?php
-                                                  $result = mysqli_query($con,"SELECT address FROM adminusers where userID =".$_SESSION['id']);
-                                                  $row = mysqli_fetch_Array($result);
-                                                  echo '<p><span>Address </span>: '.$row[0].'</p>';
-                                                ?>
-                                              </div>
-                                              <div class="bio-row">
-                                                <?php
-                                                  $result = mysqli_query($con,"SELECT mobileNo FROM adminusers where userID =".$_SESSION['id']);
-                                                  $row = mysqli_fetch_Array($result);
-                                                  echo '<p><span>Mobile No </span>: '.$row[0].'</p>';
-                                                ?>
-                                              </div>
-                                              <div class="bio-row">
-                                                <?php
-                                                  $result = mysqli_query($con,"SELECT email FROM adminusers where userID =".$_SESSION['id']);
-                                                  $row = mysqli_fetch_Array($result);
-                                                  echo '<p><span>Email Address </span>: '.$row[0].'</p>';
-                                                ?>
-                                              </div>
-                                          </div>
-                                      </div>
-                                    </section>
-                                      <section>
-                                          <div class="row">
-                                          </div>
-                                      </section>
+                      <div id="profile" class="tab-pane active">
+                        <section class="panel">
+                          <div class="bio-graph-heading">
+                            Self Introduction Here
+                          </div>
+                          <div class="panel-body bio-graph-info">
+                              <h1>Bio Graph</h1>
+                              <div class="row">
+                                  <div class="bio-row">
+                                    <?php
+                                      $result = mysqli_query($con,"SELECT firstname FROM adminusers where userID =".$_SESSION['id']);
+                                      $row = mysqli_fetch_Array($result);
+                                      echo '<p><span>First Name </span>: '.$row[0].'</p>';
+                                    ?>
                                   </div>
-                                  <!-- edit-profile -->
-                                  <div id="edit-profile" class="tab-pane">
-                                    <section class="panel">
-                                          <div class="panel-body bio-graph-info">
-                                              <h1> Profile Info</h1>
-                                              <div class="form-horizontal" id = "edit_profile" >
-                                                  <div class="form-group">
-                                                      <label class="col-lg-2 control-label">First Name</label>
-                                                      <div class="col-lg-6">
-                                                          <input type="text" class="form-control" id="firstname" placeholder=" ">
-                                                      </div>
-                                                  </div>
-                                                  <div class="form-group">
-                                                      <label class="col-lg-2 control-label">Last Name</label>
-                                                      <div class="col-lg-6">
-                                                          <input type="text" class="form-control" id="lastname" placeholder=" ">
-                                                      </div>
-                                                  </div>
-                                                  <div class="form-group">
-                                                      <label class="col-lg-2 control-label">Birthday</label>
-                                                      <div class="col-lg-6">
-                                                          <input type="date" class="form-control" id="bday" placeholder=" ">
-                                                      </div>
-                                                  </div>
-                                                  <div class="form-group">
-                                                      <label class="col-lg-2 control-label">Address</label>
-                                                      <div class="col-lg-6">
-                                                          <input type="text" class="form-control" id="address" placeholder=" ">
-                                                      </div>
-                                                  </div>
-                                                  <div class="form-group">
-                                                      <label class="col-lg-2 control-label">Email</label>
-                                                      <div class="col-lg-6">
-                                                          <input type="email" class="form-control" id="email" placeholder=" ">
-                                                      </div>
-                                                  </div>
-                                                  <div class="form-group">
-                                                      <label class="col-lg-2 control-label">Mobile Number</label>
-                                                      <div class="col-lg-6">
-                                                          <input type="text" class="form-control" id="mobileNo" placeholder=" ">
-                                                      </div>
-                                                  </div>
-                                                  <div class="form-group">
-                                                      <label class="col-lg-2 control-label">Password</label>
-                                                      <div class="col-lg-6">
-                                                          <input type="password" class="form-control" id="oldpassword" placeholder=" ">
-                                                      </div>
-                                                  </div>
-                                                  <div class="form-group">
-                                                      <label class="col-lg-2 control-label">New Password</label>
-                                                      <div class="col-lg-6">
-                                                          <input type="password" class="form-control" id="NewPassword">
-                                                      </div>
-                                                  </div>
-                                                  <div class="form-group">
-                                                      <label class="col-lg-2 control-label">Confirm New Password</label>
-                                                      <div class="col-lg-6">
-                                                          <input type="password" class="form-control" id="ConfirmNewPassword">
-                                                      </div>
-                                                  </div>
-
-                                                  <div class="form-group">
-                                                      <div class="col-lg-offset-2 col-lg-10">
-                                                          <button type="button" id="editbtn" class="btn btn-primary">Save</button>
-                                                          <button type="button" class="btn btn-danger">Cancel</button>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </section>
+                                  <div class="bio-row">
+                                    <?php
+                                      $result = mysqli_query($con,"SELECT lastname FROM adminusers where userID =".$_SESSION['id']);
+                                      $row = mysqli_fetch_Array($result);
+                                      echo '<p><span>Last Name </span>: '.$row[0].'</p>';
+                                    ?>
+                                  </div>
+                                  <div class="bio-row">
+                                    <?php
+                                      $result = mysqli_query($con,"SELECT bday FROM adminusers where userID =".$_SESSION['id']);
+                                      $row = mysqli_fetch_Array($result);
+                                      echo '<p><span>Birthday </span>: '.$row[0].'</p>';
+                                    ?>
+                                  </div>
+                                  <div class="bio-row">
+                                    <?php
+                                      $result = mysqli_query($con,"SELECT address FROM adminusers where userID =".$_SESSION['id']);
+                                      $row = mysqli_fetch_Array($result);
+                                      echo '<p><span>Address </span>: '.$row[0].'</p>';
+                                    ?>
+                                  </div>
+                                  <div class="bio-row">
+                                    <?php
+                                      $result = mysqli_query($con,"SELECT mobileNo FROM adminusers where userID =".$_SESSION['id']);
+                                      $row = mysqli_fetch_Array($result);
+                                      echo '<p><span>Mobile No </span>: '.$row[0].'</p>';
+                                    ?>
+                                  </div>
+                                  <div class="bio-row">
+                                    <?php
+                                      $result = mysqli_query($con,"SELECT email FROM adminusers where userID =".$_SESSION['id']);
+                                      $row = mysqli_fetch_Array($result);
+                                      echo '<p><span>Email Address </span>: '.$row[0].'</p>';
+                                    ?>
                                   </div>
                               </div>
                           </div>
-                      </section>
-                 </div>
-              </div>
-
-              <!-- page end-->
+                        </section>
+                          <section>
+                              <div class="row">
+                              </div>
+                          </section>
+                      </div>
           </section>
       </section>
       <!--main content end-->

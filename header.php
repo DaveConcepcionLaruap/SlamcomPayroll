@@ -24,7 +24,7 @@
                                 <a href="myProfile.php"><i class="icon_profile"></i> My Profile</a>
                             </li>
                             <li>
-                                <a href="#"><i class="icon_mail_alt"></i> My Inbox</a>
+                                <a href="settings.php"><i class="icon_cog"></i> Settings</a>
                             </li>
                             <li>
                                 <a href="#"><i class="icon_clock_alt"></i> Timeline</a>
