@@ -2,8 +2,8 @@
 
     if($_POST){
       include("Admin/AdminServer/DBconnect.php");
-      $userID = $POST["UserID"];
-      $teamID = $POST["TeamID"];
+      $userID = $_POST["UserID"];
+      $teamID = $_POST["TeamID"];
 
       $selectedDay = Date("l");
 
@@ -49,8 +49,9 @@
        $result = mysqli_query($conn, $sql);
 
        if(mysqli_num_rows($result) > 0){
+         $row = mysqli_fetch_array($result);
          if($row[0] != ""){
-           $row = mysqli_fetch_array($result);
+
 
            $difference = subtractTimes($row[0],$row[1]);
 
@@ -86,6 +87,7 @@
                 echo "rest day insert success";
               }else{
                 echo "rest day insert failed";
+                echo $difference . " " . $userID;
               }
            }
          }else{

@@ -376,11 +376,12 @@
               });
             }
 
+
             function SetRestDay(userID, teamID){
               $.ajax({
                 url: "setRestDay.php",
                 method: "POST",
-                data {UserID: userID, TeamID: teamID},
+                data: {UserID: userID, TeamID: teamID},
                 success: function(data){
                   alert(data);
                 },
