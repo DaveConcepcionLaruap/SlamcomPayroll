@@ -57,16 +57,7 @@
                     <md-tab-label>{{data.firstLabel}}</md-tab-label>
                     <md-tab-body>
                         <div class="tabContent">
-                            Day of the week
-                          <select id="DayofTheWeekSelector" style="margin-bottom: 10px">
-                            <option value="Sunday">Sunday</option>
-                            <option value="Monday">Monday</option>
-                            <option value="Tuesday">Tuesday</option>
-                            <option value="Wednesday">Wednesday</option>
-                            <option value="Thursday">Thursday</option>
-                            <option value="Friday">Friday</option>
-                            <option value="Saturday">Saturday</option>
-                          </select>
+
                           <!--<button id="ActivateSpecialDay" style="margin-left: 20px;">special day</button>-->
 
                           special cases
@@ -163,23 +154,18 @@
 
                     <div  class="modal-body">
                         <div class="form-group">
+                          <h4>Admin Validation</h4>
                           <div class="form-group">
-                              <input class="form-control" id="AdminID" name="txt_AdminID" type="text" readonly="readonly">
-                          </div>
-                          <div class="form-group">
-                              <input class="form-control" id="AdminFirstName" name="txt_Adminfirstname" type="text" readonly="readonly">
-                          </div>
-                          <div class="form-group">
-                              <input class="form-control" id="AdminLastName"  name="txt_Adminlastname" readonly="readonly">
+                              <input class="form-control" id="Adminemail" placeholder="email address" name="txt_Adminlastname" autofocus>
                           </div>
                           <div class="form-group">
 
-                              <input class="form-control" id="AdminPassword" placeholder="password" name="txt_Adminpassword" type="password" autofocus required >
+                              <input class="form-control" id="AdminPassword" placeholder="password" name="txt_Adminpassword" type="password" required >
                           </div>
 
                         </div>
                     </div>
-                    <button id="AdminLoginProceedBtn" type="submit" class="btn btn-primary" >Log in</button>
+                    <button id="AdminLoginProceedBtn" type="submit" class="btn btn-primary" >Submit</button>
                     <button id="AdminLoginCancelBtn" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </div>
 
@@ -280,6 +266,7 @@
               var cell = ActiveEmployeeTable.cell($(this).parents('tr'), 7);
               var LoginBtn = data[0] + data[4];
               var LogoutBtn = data[0] + data[5];
+              var selectedDay = $("#DayofTheWeekSelector").find(":selected").text();
 
               if($(this).index() == 6){
                 $("#EmployeeID").val(data[0]);
@@ -339,8 +326,8 @@
 
                 var TimeOutcell = ActiveEmployeeTable.cell($(this).parents('tr'), 9);
                 TimeOutcell.data(getDateTime());
-                var selectedDay = $("#DayofTheWeekSelector").find(":selected").text();
-                    alert(specialDay);
+
+                    //alert(specialDay);
                     $.ajax({
                       url: "EmployeeClockTimeSaveTeam.php",
                       method: "POST",
@@ -361,12 +348,47 @@
                     });
 
               }else{
-                console.log("shit");
+                //console.log("shit");
+                RestDayModule(data[0], data[4]);
+
               }
 
             });
 
+            function RestDayModule(userID, teamID){
+              $("#AdminLoginValidationModalButton").trigger("click");
+              $("#AdminLoginProceedBtn").unbind("click");
+              $("#AdminLoginProceedBtn").on("click",function(){
+                $.ajax({
+                  url: "../exe/login_exe.php",
+                  method: "POST",
+                  data: {user: $("#Adminemail").val(), pass: $("#AdminPassword").val()},
+                  success: function(data){
+                    //alert(data);
+                    if(data == "success"){
+                      SetRestDay(userID, teamID);
+                    }
+                  },
+                  error: function(data){
+                    console.log(data);
+                  }
+                });
+              });
+            }
 
+            function SetRestDay(userID, teamID){
+              $.ajax({
+                url: "setRestDay.php",
+                method: "POST",
+                data {userID: userID, teamID: teamID},
+                success: function(data){
+
+                },
+                error: function(data){
+                  
+                }
+              });
+            }
             function getDateTime(){
               var datetime = new Date();
 

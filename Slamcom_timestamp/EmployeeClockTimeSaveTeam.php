@@ -80,6 +80,8 @@
               include("DayOfTheSchedulingLoners/SundaySchedule.php");
             }*/
         }
+        $selectedDay = Date("l");
+        
         if($selectedDay == "Monday"){
           include("DayOfTheScheduling/MondaySchedule.php");
         }else if($selectedDay == "Tuesday"){
