@@ -35,7 +35,7 @@
       $timeOut = mysqli_real_escape_string($conn, $_POST['timeOut']);
       $teamID = mysqli_real_escape_string($conn, $_POST['teamID']);
       $selectedDay = mysqli_real_escape_string($conn, $_POST['selectedDay']);
-      $specialDay = mysqli_real_escape_string($conn, $_POST["specialDay"]);
+      $specialDay = mysqli_real_escape_string($conn, $_POST['specialDay']);
     //  echo "'$timeIn'";
       //echo "'$timeOut'";
       $start = new DateTime($timeIn);

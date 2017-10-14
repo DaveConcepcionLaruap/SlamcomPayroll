@@ -313,6 +313,7 @@ include("../AdminServer/AdminLoginVerification.php");
                                           <input class="form-control" id="editEmailadd" placeholder="email address" name="txt_signUpEmail" type="email" required>
                                     </div>
                                     <div class="form-group">
+                                      <h4>Team</h4>
                                         <select id="teamSelect">
                                             <?php
                                               include("DBconnect.php");
@@ -379,6 +380,11 @@ include("../AdminServer/AdminLoginVerification.php");
                                           <input class="form-control" id="addPassword" placeholder="password" name="txt_password" type="password" required>
                                     </div>
                                     <div class="form-group">
+                                        <h4>confirm password</h4>
+                                          <input class="form-control" id="confaddPassword" placeholder="confirm password" name="txt_confpassword" type="password" required>
+                                    </div>
+                                    <div class="form-group">
+                                      <h4>Team</h4>
                                         <select id="addteamSelect">
                                             <?php
                                               include("DBconnect.php");
@@ -459,32 +465,65 @@ include("../AdminServer/AdminLoginVerification.php");
                 $("#AddTeamModalButton").trigger("click");
             });
 
+            function validateEmail($email){
+                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,6})?$/;
+
+                return ($email.length > 0 && emailReg.test($email));
+            }
+            var validateFlagEmail;
+            var validateFlagPassword;
+
+            $("#addEmailadd").on("input",function(){
+              if(!validateEmail($("#addEmailadd").val())){
+                $("#addEmailadd").css('border-color', 'red');
+                $("#addEmailadd").css('border-width', '2px');
+                validateFlagEmail = 0;
+              }else{
+                $("#addEmailadd").css('border-color', 'green');
+                validateFlagEmail = 1;
+              }
+            });
+
+            $("#confaddPassword").on("input",function(){
+              if($("#confaddPassword").val() != $("#addPassword").val()){
+                $("#confaddPassword").css('border-color', 'red');
+                $("#confaddPassword").css('border-width', '2px');
+                validateFlagPassword = 0;
+              }else{
+                $("#confaddPassword").css('border-color', 'green');
+                validateFlagPassword = 1;
+              }
+            });
 
             $("#btnAddEmp").on("click",function(){
-              var addLastName = $("#addLastname").val();
-              var addEmailAdd = $("#addEmailadd").val();
-              var addFirstName = $("#addFirstname").val();
-              var addPassword = $("#addPassword").val();
-              var Teamselected = $("#addteamSelect option:selected").val();
+              if(validateFlagPassword == 1 && validateFlagEmail == 1){
+                var addLastName = $("#addLastname").val();
+                var addEmailAdd = $("#addEmailadd").val();
+                var addFirstName = $("#addFirstname").val();
+                var addPassword = $("#confaddPassword").val();
+                var Teamselected = $("#addteamSelect option:selected").val();
 
-              $.ajax({
-                url:"../AdminServer/signUpBackground.php",
-                method: "POST",
-                data: {firstname: addFirstName, lastname: addLastName, emailadd: addEmailAdd,
-                      password: addPassword, teamselected: Teamselected},
-                success: function(data){
-                  alert(data);
-                  $("#addLastname").val("");
-                  $("#addEmailadd").val("");
-                  $("#addFirstname").val("");
-                  $("#addPassword").val("");
-                  $("#AddCloseButton").trigger("click");
-                  window.location.reload();
-                },
-                error: function(data){
-                  alert(data);
-                }
-              });
+                $.ajax({
+                  url:"../AdminServer/signUpBackground.php",
+                  method: "POST",
+                  data: {firstname: addFirstName, lastname: addLastName, emailadd: addEmailAdd,
+                        password: addPassword, teamselected: Teamselected},
+                  success: function(data){
+                    alert(data);
+                    $("#addLastname").val("");
+                    $("#addEmailadd").val("");
+                    $("#addFirstname").val("");
+                    $("#addPassword").val("");
+                    $("#AddCloseButton").trigger("click");
+                    window.location.reload();
+                  },
+                  error: function(data){
+                    alert(data);
+                  }
+                });
+              }else{
+                alert("please input correctly")
+              }
             });
 
 

@@ -67,8 +67,15 @@
                             <option value="Friday">Friday</option>
                             <option value="Saturday">Saturday</option>
                           </select>
-                          <button id="ActivateSpecialDay" style="margin-left: 20px;">special day</button>
-                          <h3 id="activationLabel" style="color: red;">Special day not activated</h3>
+                          <!--<button id="ActivateSpecialDay" style="margin-left: 20px;">special day</button>-->
+
+                          special cases
+                          <select id="specialCasesSelector" style="margin-bottom: 10px">
+                            <option value="none">none</option>
+                            <option value="Holiday">Holiday</option>
+                            <option value="SpecialHoliday">Special Holiday</option>
+                          </select>
+                          <h3 id="activationLabel" style="color: green;"></h3>
                           <div class="table-responsive">
                               <table id="ActiveEmployeeTable" class="table table-hover table-striped" cellspacing="0" width="100%" style= "width: 80%">
                                   <thead>
@@ -252,61 +259,21 @@
               var selectedDay = $("#DayofTheWeekSelector").find(":selected").text();
 
           });*/
-          var specialDay;
-            $("#ActivateSpecialDay").on("click", function(){
-              if($("#activationLabel").text() == "Special day not activated"){
-                $("#activationLabel").text("Special day activated");
-                $("#activationLabel").css("color","green");
+          var specialDay = 0;
+
+
+            $(document).on("change","#specialCasesSelector",function(){
+              if($("#specialCasesSelector").find(":selected").text() == "none"){
+                $("#activationLabel").text("");
+                specialDay = 0;
+              }else if($("#specialCasesSelector").find(":selected").text() == "Holiday"){
+                $("#activationLabel").text("Holiday case activated");
                 specialDay = 1;
               }else{
-                $("#activationLabel").text("Special day not activated");
-                $("#activationLabel").css("color","red");
-                specialDay = 0;
+                $("#activationLabel").text("Special holiday case activated");
+                specialDay = 2;
               }
-
             });
-            /*$("#AdminTable").on("click", "td", function(){
-              var data = AdminTable.row($(this).parents('tr')).data();
-
-              var LoginBtn = data[0] + data[1];
-              var LogoutBtn = data[0] + data[2];
-
-              if($(this).index() == 4){
-
-//AdminPassword
-                $("#AdminID").val(data[0]);
-                $("#AdminFirstName").val(data[1]);
-                $("#AdminLastName").val(data[2]);
-
-                $("#AdminLoginValidationModalButton").trigger("click");
-                $("#AdminLoginProceedBtn").on("click", function(){
-                  var Adminpass = $("#AdminPassword").val();
-
-                  $.ajax({
-                    url: "Admin/AdminServer/AdminLoginBackground.php",
-                    method: "POST",
-                    data: {AdminID: data[0],AdminPassword: Adminpass},
-                    cache: false,
-                    success: function(data){
-
-                      if(data == "success"){
-                        location.replace("Admin/AdminClient/AdminDashboard.php");
-                      }else{
-                        console.log(data);
-                        alert(data);
-                      }
-                    },
-                    error: function(data){
-                      console.log(data);
-                    }
-                  });
-                });
-
-
-              }else{
-                alert("shit");
-              }
-            });*/
 
             $("#ActiveEmployeeTable").on("click", "td", function(){
               var data = ActiveEmployeeTable.row($(this).parents('tr')).data();
@@ -324,6 +291,7 @@
 
                 $("#EmployeeLoginProceedBtn").unbind("click");
                 $("#EmployeeLoginProceedBtn").click(function(){
+
                     var password = $("#EmployeePassword").val();
                     var request;
 
@@ -372,7 +340,7 @@
                 var TimeOutcell = ActiveEmployeeTable.cell($(this).parents('tr'), 9);
                 TimeOutcell.data(getDateTime());
                 var selectedDay = $("#DayofTheWeekSelector").find(":selected").text();
-
+                    alert(specialDay);
                     $.ajax({
                       url: "EmployeeClockTimeSaveTeam.php",
                       method: "POST",
