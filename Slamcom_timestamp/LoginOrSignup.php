@@ -66,6 +66,7 @@
                             <option value="Holiday">Holiday</option>
                             <option value="SpecialHoliday">Special Holiday</option>
                           </select>
+                          <button id="endOfDay">end of day</button>
                           <h3 id="activationLabel" style="color: green;"></h3>
                           <div class="table-responsive">
                               <table id="ActiveEmployeeTable" class="table table-hover table-striped" cellspacing="0" width="100%" style= "width: 80%">
@@ -354,6 +355,60 @@
               }
 
             });
+
+            $("#endOfDay").on("click", function(){
+              $("#AdminLoginValidationModalButton").trigger("click");
+
+              $("#AdminLoginProceedBtn").unbind("click");
+              $("#AdminLoginProceedBtn").on("click", function(){
+
+                $.ajax({
+                  url: "../exe/login_exe.php",
+                  method: "POST",
+                  data: {user: $("#Adminemail").val(), pass: $("#AdminPassword").val()},
+                  success: function(data){
+                    if(data == "success"){
+                      findAbsentEmployees();
+                    }else{
+                      alert(data);
+                    }
+                  },
+                  error: function(data){
+                    console.log(data);
+                  }
+                });
+              });
+            });
+
+            function findAbsentEmployees(){
+              var count = ActiveEmployeeTable.data().count();
+              var data;
+              var absentEmployees = [];
+
+              for(var x = 0;x < count;x++){
+                data = ActiveEmployeeTable.row(x).data();
+                if(data){
+                  if(data[9] == ""){
+                    absentEmployees[x] = data[0];
+                  }
+                }
+              }
+
+              var json = JSON.stringify(absentEmployees);
+              console.log(json);
+              console.log(absentEmployees);
+              $.ajax({
+                url: "StashAbsentEmployees.php",
+                type: "POST",
+                data: {absentees: json, count: count},
+                success: function(data){
+                  alert(data);
+                },
+                error: function(data){
+                  console.log(data);
+                }
+              });
+            }
 
             function RestDayModule(userID, teamID){
               $("#AdminLoginValidationModalButton").trigger("click");

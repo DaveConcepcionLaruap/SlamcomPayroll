@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2017 at 12:33 PM
+-- Generation Time: Oct 17, 2017 at 05:04 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -30,6 +30,19 @@ CREATE TABLE `absenttable` (
   `id` int(11) NOT NULL,
   `date` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `absenttable`
+--
+
+INSERT INTO `absenttable` (`id`, `date`) VALUES
+(1, '2017/10/12'),
+(2, '2017/10/12'),
+(5, '2017/10/12'),
+(7, '2017/10/12'),
+(9, '2017/10/12'),
+(10, '2017/10/12'),
+(11, '2017/10/12');
 
 -- --------------------------------------------------------
 
@@ -268,9 +281,9 @@ INSERT INTO `totalholiday` (`TotalLate`, `TotalHours`, `TotalOvertime`, `userID`
 --
 
 CREATE TABLE `totalhourspermonth` (
-  `TotalLate` varchar(20) NOT NULL,
-  `TotalHours` varchar(20) NOT NULL,
-  `TotalOvertime` varchar(20) NOT NULL,
+  `TotalLate` varchar(20) NOT NULL DEFAULT '00:00:00',
+  `TotalHours` varchar(20) NOT NULL DEFAULT '00:00:00',
+  `TotalOvertime` varchar(20) NOT NULL DEFAULT '00:00:00',
   `TotalAbsent` int(11) NOT NULL DEFAULT '0',
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -280,9 +293,13 @@ CREATE TABLE `totalhourspermonth` (
 --
 
 INSERT INTO `totalhourspermonth` (`TotalLate`, `TotalHours`, `TotalOvertime`, `TotalAbsent`, `userID`) VALUES
-('22:22:00', '00:00:00', '12:07:00', 0, 1),
-('00:00:00', '00:00:00', '00:00:00', 0, 9),
-('00:00:00', '00:00:00', '00:00:00', 0, 11);
+('00:00:00', '00:00:00', '00:00:00', 1, 1),
+('00:00:00', '00:00:00', '00:00:00', 2, 2),
+('00:00:00', '00:00:00', '00:00:00', 2, 5),
+('00:00:00', '00:00:00', '00:00:00', 2, 7),
+('00:00:00', '00:00:00', '00:00:00', 1, 9),
+('00:00:00', '00:00:00', '00:00:00', 2, 10),
+('00:00:00', '00:00:00', '00:00:00', 1, 11);
 
 -- --------------------------------------------------------
 
