@@ -328,6 +328,7 @@
                 var TimeOutcell = ActiveEmployeeTable.cell($(this).parents('tr'), 9);
                 TimeOutcell.data(getDateTime());
 
+                NPHoursCalc(data[7], data[9], data[4]);
                     //alert(specialDay);
                     $.ajax({
                       url: "EmployeeClockTimeSaveTeam.php",
@@ -355,6 +356,10 @@
               }
 
             });
+
+            function NPHoursCalc(timeIn, timeOut, userID){
+              
+            }
 
             $("#endOfDay").on("click", function(){
               $("#AdminLoginValidationModalButton").trigger("click");

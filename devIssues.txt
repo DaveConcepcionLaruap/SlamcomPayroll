@@ -20,3 +20,6 @@ in userschedule instead of teamschedule (fixed)
 timestamp special holiday and holiday and normal day all works
 need to  finalize details for absent module
 need to finalize shit for rest day and NP hours what ever the fuck that is
+
+use jquery to find out if employee worked in 10 pm - 6 am minus hours of if he is 
+later than 10 pm

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2017 at 05:04 PM
+-- Generation Time: Oct 17, 2017 at 05:40 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -114,6 +114,19 @@ CREATE TABLE `item` (
 INSERT INTO `item` (`id`, `name`, `category`, `qty`, `itemDesc`) VALUES
 (1, 'Computer', 'Office Equipments', 30, 'Dave sucks'),
 (3, 'Keyboards', 'Office Equipments', 20, 'test');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nightpremium`
+--
+
+CREATE TABLE `nightpremium` (
+  `timeIn` datetime NOT NULL,
+  `timeOut` datetime NOT NULL,
+  `HoursMade` varchar(10) NOT NULL,
+  `userID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -285,6 +298,7 @@ CREATE TABLE `totalhourspermonth` (
   `TotalHours` varchar(20) NOT NULL DEFAULT '00:00:00',
   `TotalOvertime` varchar(20) NOT NULL DEFAULT '00:00:00',
   `TotalAbsent` int(11) NOT NULL DEFAULT '0',
+  `TotalNPHours` varchar(10) NOT NULL,
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -292,14 +306,14 @@ CREATE TABLE `totalhourspermonth` (
 -- Dumping data for table `totalhourspermonth`
 --
 
-INSERT INTO `totalhourspermonth` (`TotalLate`, `TotalHours`, `TotalOvertime`, `TotalAbsent`, `userID`) VALUES
-('00:00:00', '00:00:00', '00:00:00', 1, 1),
-('00:00:00', '00:00:00', '00:00:00', 2, 2),
-('00:00:00', '00:00:00', '00:00:00', 2, 5),
-('00:00:00', '00:00:00', '00:00:00', 2, 7),
-('00:00:00', '00:00:00', '00:00:00', 1, 9),
-('00:00:00', '00:00:00', '00:00:00', 2, 10),
-('00:00:00', '00:00:00', '00:00:00', 1, 11);
+INSERT INTO `totalhourspermonth` (`TotalLate`, `TotalHours`, `TotalOvertime`, `TotalAbsent`, `TotalNPHours`, `userID`) VALUES
+('00:00:00', '00:00:00', '00:00:00', 1, '', 1),
+('00:00:00', '00:00:00', '00:00:00', 2, '', 2),
+('00:00:00', '00:00:00', '00:00:00', 2, '', 5),
+('00:00:00', '00:00:00', '00:00:00', 2, '', 7),
+('00:00:00', '00:00:00', '00:00:00', 1, '', 9),
+('00:00:00', '00:00:00', '00:00:00', 2, '', 10),
+('00:00:00', '00:00:00', '00:00:00', 1, '', 11);
 
 -- --------------------------------------------------------
 
