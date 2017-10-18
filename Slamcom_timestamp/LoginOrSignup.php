@@ -330,7 +330,7 @@
 
                 NPHoursCalc(data[7], data[9], data[4]);
                     //alert(specialDay);
-                    $.ajax({
+                  /*  $.ajax({
                       url: "EmployeeClockTimeSaveTeam.php",
                       method: "POST",
                       data: {"userID" : data[0],
@@ -347,7 +347,7 @@
                       error: function(data){
                         alert(data);
                       }
-                    });
+                    });delete comments when NP hours is finished*/
 
               }else{
                 //console.log("shit");
@@ -358,7 +358,24 @@
             });
 
             function NPHoursCalc(timeIn, timeOut, userID){
-              
+              var TimeInFormat = timeIn.substring(11,16);
+              var TimeOutFormat = timeOut.substring(11,16);
+              var MaxNPHours = 800;
+
+              TimeInFormat = parseInt(TimeInFormat.replace(':',''));
+              TimeOutFormat = parseInt(TimeOutFormat.replace(':',''));
+
+              In = 1000 - TimeInFormat;
+              Out = TimeOutFormat - 600;
+
+              if(In < 0){
+                MaxNPHours = MaxNPHours + In;
+              }
+              if(Out < 0){
+                MaxNPHours = MaxNPHours + Out;//doesn't go in becuase 1201 am is greater than 0600 am fix
+              }
+
+              alert(MaxNPHours);
             }
 
             $("#endOfDay").on("click", function(){
