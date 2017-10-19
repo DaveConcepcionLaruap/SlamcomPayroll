@@ -360,10 +360,13 @@
             function NPHoursCalc(timeIn, timeOut, userID){
               var TimeInFormat = timeIn.substring(11,16);
               var TimeOutFormat = timeOut.substring(11,16);
+
+              var TimeOutAMPM = timeOut.substring(17, 19);
               var MaxNPHours = 800;
 
               TimeInFormat = parseInt(TimeInFormat.replace(':',''));
               TimeOutFormat = parseInt(TimeOutFormat.replace(':',''));
+
 
               In = 1000 - TimeInFormat;
               Out = TimeOutFormat - 600;
@@ -371,10 +374,16 @@
               if(In < 0){
                 MaxNPHours = MaxNPHours + In;
               }
-              if(Out < 0){
+
+              if(Out < 0 ){
                 MaxNPHours = MaxNPHours + Out;//doesn't go in becuase 1201 am is greater than 0600 am fix
               }
 
+              if(TimeOutAMPM == "pm" && Out > 0){
+
+              }
+
+              alert(TimeOutAMPM);
               alert(MaxNPHours);
             }
 
