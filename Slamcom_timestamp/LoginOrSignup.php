@@ -328,7 +328,10 @@
                 var TimeOutcell = ActiveEmployeeTable.cell($(this).parents('tr'), 9);
                 TimeOutcell.data(getDateTime());
 
-                NPHoursCalc(data[7], data[9], data[4]);
+                if(data[7].getDate() != data[9].getDate()){//bug: if the employee has timein from 10 to 11:59, it wont go through... this is here so if employee works from 1-6 pm it wont go through
+                  NPHoursCalc(data[7], data[9], data[4]);
+                }
+
                     //alert(specialDay);
                   /*  $.ajax({
                       url: "EmployeeClockTimeSaveTeam.php",
@@ -362,11 +365,18 @@
               var TimeOutFormat = timeOut.substring(11,16);
 
               var TimeOutAMPM = timeOut.substring(17, 19);
+
               var MaxNPHours = 800;
 
               TimeInFormat = parseInt(TimeInFormat.replace(':',''));
               TimeOutFormat = parseInt(TimeOutFormat.replace(':',''));
 
+              //test vals
+              //TimeInFormat = 500;
+              //TimeOutFormat = 600;
+              if(TimeOutAMPM == "pm" && (TimeOutFormat > 1000 && TimeOutFormat < 1259)){
+                TimeOutFormat = TimeOutFormat - 1200;
+              }
 
               In = 1000 - TimeInFormat;
               Out = TimeOutFormat - 600;
@@ -379,11 +389,7 @@
                 MaxNPHours = MaxNPHours + Out;//doesn't go in becuase 1201 am is greater than 0600 am fix
               }
 
-              if(TimeOutAMPM == "pm" && Out > 0){
 
-              }
-
-              alert(TimeOutAMPM);
               alert(MaxNPHours);
             }
 
