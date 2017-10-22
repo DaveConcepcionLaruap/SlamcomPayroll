@@ -1,6 +1,6 @@
 <?php
 
-    function addTimes(Array $times)
+    function addTimes(Array $times, $type, $NPHours)
     {
       $total = 0;
       foreach($times as $time){
@@ -8,7 +8,10 @@
           $hour = (int)$hours + ((int)$minutes/60) + ((int)$seconds/3600);
           $total += $hour;
       }
-      $total = $total - (int)$NPHours;// if np hours 
+      if($type == 0){
+        $NPHours = str_replace(":","",$NPHours);
+        $total = $total - (int)$NPHours;// if np hours
+      }
       $h = floor($total);
       $total -= $h;
       $m = floor($total * 60);
@@ -87,11 +90,40 @@
           include("DayOfTheScheduling/SundaySchedule.php");
         }
 
-
       }else{
 
       // header("Location: LoginOrSignup.php");
           echo "failed";
+      }
+
+      $sql = "INSERT INTO `nightpremium`(`timeIn`, `timeOut`, `HoursMade`, `userID`) VALUES ('$timeIn','$timeOut','$NPHours','$userID')";
+
+      if(mysqli_query($conn, $sql)){
+        $sql = "SELECT * FROM `nightpremiummonthly` WHERE `userID` = '$userID'";
+
+        $result = mysqli_query($conn, $sql);
+        if(mysqli_num_rows($result) > 0){
+
+          $row = mysqli_fetch_array($result);
+          $times = array($row["TotalHours"], $NPHours);
+          $updatedTotalHours = addTimes($times, 1, $NPHours);
+
+          $query = "UPDATE `nightpremiummonthly` SET `TotalHours`='$updatedTotalHours' WHERE `userID` = '$userID'";
+
+          if(mysqli_query($conn, $query)){
+            echo "NPHours update ok";
+          }else{
+            echo "NPHours update failed";
+          }
+        }
+      }else{
+        $query = "INSERT INTO `nightpremiummonthly`(`TotalHours`, `userID`) VALUES ('$NPHours','$userID')";
+
+        if(mysqli_query($conn, $query)){
+          echo "NPHours insert ok";
+        }else{
+          echo "NPHours insert failed";
+        }
       }
     }
 ?>

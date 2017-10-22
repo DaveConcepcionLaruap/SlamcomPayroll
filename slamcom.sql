@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2017 at 05:40 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 5.6.28
+-- Generation Time: Oct 22, 2017 at 03:35 PM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -125,6 +127,17 @@ CREATE TABLE `nightpremium` (
   `timeIn` datetime NOT NULL,
   `timeOut` datetime NOT NULL,
   `HoursMade` varchar(10) NOT NULL,
+  `userID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nightpremiummonthly`
+--
+
+CREATE TABLE `nightpremiummonthly` (
+  `TotalHours` varchar(20) NOT NULL DEFAULT '00:00:00',
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -264,7 +277,8 @@ INSERT INTO `timetable` (`timeIn`, `timeOut`, `HoursMade`, `userID`) VALUES
 ('2017-10-13 10:52:00', '2017-10-13 10:52:00', '00:00:00.000000', 11),
 ('2017-10-14 01:07:00', '2017-10-14 01:07:00', '00:00:00.000000', 1),
 ('2017-10-14 09:07:00', '2017-10-14 09:07:00', '00:00:00.000000', 1),
-('2017-10-13 09:08:00', '2017-10-13 09:08:00', '00:00:00.000000', 1);
+('2017-10-13 09:08:00', '2017-10-13 09:08:00', '00:00:00.000000', 1),
+('2017-10-18 11:14:00', '2017-10-18 11:18:00', '00:04:00.000000', 1);
 
 -- --------------------------------------------------------
 
@@ -298,7 +312,6 @@ CREATE TABLE `totalhourspermonth` (
   `TotalHours` varchar(20) NOT NULL DEFAULT '00:00:00',
   `TotalOvertime` varchar(20) NOT NULL DEFAULT '00:00:00',
   `TotalAbsent` int(11) NOT NULL DEFAULT '0',
-  `TotalNPHours` varchar(10) NOT NULL,
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -306,14 +319,14 @@ CREATE TABLE `totalhourspermonth` (
 -- Dumping data for table `totalhourspermonth`
 --
 
-INSERT INTO `totalhourspermonth` (`TotalLate`, `TotalHours`, `TotalOvertime`, `TotalAbsent`, `TotalNPHours`, `userID`) VALUES
-('00:00:00', '00:00:00', '00:00:00', 1, '', 1),
-('00:00:00', '00:00:00', '00:00:00', 2, '', 2),
-('00:00:00', '00:00:00', '00:00:00', 2, '', 5),
-('00:00:00', '00:00:00', '00:00:00', 2, '', 7),
-('00:00:00', '00:00:00', '00:00:00', 1, '', 9),
-('00:00:00', '00:00:00', '00:00:00', 2, '', 10),
-('00:00:00', '00:00:00', '00:00:00', 1, '', 11);
+INSERT INTO `totalhourspermonth` (`TotalLate`, `TotalHours`, `TotalOvertime`, `TotalAbsent`, `userID`) VALUES
+('23:14:00', '00:04:00', '02:17:59', 1, 1),
+('00:00:00', '00:00:00', '00:00:00', 2, 2),
+('00:00:00', '00:00:00', '00:00:00', 2, 5),
+('00:00:00', '00:00:00', '00:00:00', 2, 7),
+('00:00:00', '00:00:00', '00:00:00', 1, 9),
+('00:00:00', '00:00:00', '00:00:00', 2, 10),
+('00:00:00', '00:00:00', '00:00:00', 1, 11);
 
 -- --------------------------------------------------------
 
@@ -443,6 +456,12 @@ ALTER TABLE `item`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `nightpremiummonthly`
+--
+ALTER TABLE `nightpremiummonthly`
+  ADD KEY `userID` (`userID`);
+
+--
 -- Indexes for table `team`
 --
 ALTER TABLE `team`
@@ -506,31 +525,37 @@ ALTER TABLE `userschedule`
 --
 ALTER TABLE `adminusers`
   MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `team`
 --
 ALTER TABLE `team`
   MODIFY `TeamID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `teamschedule`
 --
 ALTER TABLE `teamschedule`
   MODIFY `ScheduleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT for table `userschedule`
 --
 ALTER TABLE `userschedule`
   MODIFY `ScheduleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- Constraints for dumped tables
 --
@@ -576,6 +601,7 @@ ALTER TABLE `totalspecialholiday`
 --
 ALTER TABLE `userschedule`
   ADD CONSTRAINT `userschedule_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `user` (`userID`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

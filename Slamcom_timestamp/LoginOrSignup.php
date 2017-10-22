@@ -397,6 +397,8 @@
                 MaxNPHours = MaxNPHours + Out;//doesn't go in becuase 1201 am is greater than 0600 am fix
               }
 
+              MaxNPHours = MaxNPHours.toString();
+              MaxNPHours = MaxNPHours.substring(0,1) + ':' + MaxNPHours.substring(1);
 
               alert(MaxNPHours);
               return MaxNPHours;

@@ -70,18 +70,18 @@
     $row = mysqli_fetch_array($monthlyResult);
 
     $times = array($time, $row["TotalHours"]);
-    $TotalHoursString = addTimes($times);
+    $TotalHoursString = addTimes($times,0,$NPHours);
 
     if($lateFlag == 1){
       $times = array($timeLate,$row["TotalLate"]);
-      $TotalLateString = addTimes($times);
+      $TotalLateString = addTimes($times,0,$NPHours);
     }else{
       $TotalLateString = $row["TotalLate"];
     }
 
     if($overtimeFlag == 1){
       $times = array($timeOvertime, $row["TotalOvertime"]);
-      $TotalOvertimeString = addTimes($times);
+      $TotalOvertimeString = addTimes($times,0,$NPHours);
     }else{
       $TotalOvertimeString = $row["TotalOvertime"];
     }
