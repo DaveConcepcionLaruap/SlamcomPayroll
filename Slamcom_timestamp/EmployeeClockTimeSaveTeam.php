@@ -8,6 +8,7 @@
           $hour = (int)$hours + ((int)$minutes/60) + ((int)$seconds/3600);
           $total += $hour;
       }
+      $total = $total - (int)$NPHours;// if np hours 
       $h = floor($total);
       $total -= $h;
       $m = floor($total * 60);
@@ -34,8 +35,9 @@
       $timeIn = mysqli_real_escape_string($conn, $_POST['timeIn']);
       $timeOut = mysqli_real_escape_string($conn, $_POST['timeOut']);
       $teamID = mysqli_real_escape_string($conn, $_POST['teamID']);
-      $selectedDay = mysqli_real_escape_string($conn, $_POST['selectedDay']);
+
       $specialDay = mysqli_real_escape_string($conn, $_POST['specialDay']);
+      $NPHours = mysqli_real_escape_string($conn, $_POST['NPHours']);
     //  echo "'$timeIn'";
       //echo "'$timeOut'";
       $start = new DateTime($timeIn);
@@ -54,6 +56,8 @@
       $sql = "INSERT INTO `timetable`(`timeIn`, `timeOut`,`HoursMade` ,`userID`)
               VALUES ('$timeIn','$timeOut','$time','$userID')";
 
+
+
       if(mysqli_query($conn,$sql)){
           if($teamID != 0){
             $teamOruser = 'teamschedule';
@@ -63,25 +67,10 @@
           $teamOruser = 'userschedule';
           $tableID = 'UserID';
           $ID = $userID;
-            //scheduling for users with no team;
-            /*if($selectedDay == "Monday"){
-              include("DayOfTheSchedulingLoners/MondaySchedule.php");
-            }else if($selectedDay == "Tuesday"){
-              include("DayOfTheSchedulingLoners/TuesdaySchedule.php");
-            }else if($selectedDay == "Wednesday"){
-              include("DayOfTheSchedulingLoners/WednesdaySchedule.php");
-            }else if($selectedDay == "Thursday"){
-              include("DayOfTheSchedulingLoners/ThursdaySchedule.php");
-            }else if($selectedDay == "Friday"){
-              include("DayOfTheSchedulingLoners/FridaySchedule.php");
-            }else if($selectedDay == "Saturday"){
-              include("DayOfTheSchedulingLoners/SaturdaySchedule.php");
-            }else{
-              include("DayOfTheSchedulingLoners/SundaySchedule.php");
-            }*/
+
         }
         $selectedDay = Date("l");
-        
+
         if($selectedDay == "Monday"){
           include("DayOfTheScheduling/MondaySchedule.php");
         }else if($selectedDay == "Tuesday"){
@@ -97,6 +86,8 @@
         }else{
           include("DayOfTheScheduling/SundaySchedule.php");
         }
+
+
       }else{
 
       // header("Location: LoginOrSignup.php");

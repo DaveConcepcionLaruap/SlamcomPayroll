@@ -267,7 +267,7 @@
               var cell = ActiveEmployeeTable.cell($(this).parents('tr'), 7);
               var LoginBtn = data[0] + data[4];
               var LogoutBtn = data[0] + data[5];
-              var selectedDay = $("#DayofTheWeekSelector").find(":selected").text();
+
 
               if($(this).index() == 6){
                 $("#EmployeeID").val(data[0]);
@@ -328,8 +328,16 @@
                 var TimeOutcell = ActiveEmployeeTable.cell($(this).parents('tr'), 9);
                 TimeOutcell.data(getDateTime());
 
-                if(data[7].getDate() != data[9].getDate()){//bug: if the employee has timein from 10 to 11:59, it wont go through... this is here so if employee works from 1-6 pm it wont go through
-                  NPHoursCalc(data[7], data[9], data[4]);
+                var TimeOut = data[9].substring(11,16);
+                var NPHoursretrieved = 0;
+                TimeOut = parseInt(TimeOut.replace(':',''));
+                var TimeInDate = new Date(data[7]);
+                var TimeOutDate = new Date(data[9]);
+
+                if((TimeInDate.getDate() != TimeOutDate.getDate()) || (TimeOut < 1159 && TimeOut > 1000)){//bug: if the employee has timein from 10 to 11:59, it wont go through... this is here so if employee works from 1-6 pm it wont go through
+                  NPHoursretrieved = NPHoursCalc(data[7], data[9], data[4]);
+                }else{
+                  alert("no np hours");
                 }
 
                     //alert(specialDay);
@@ -340,8 +348,8 @@
                       "timeIn" : data[7],
                       "timeOut" : data[9],
                       "teamID" : data[4],
-                      "selectedDay": selectedDay,
-                      "specialDay": specialDay},
+                      "specialDay": specialDay,
+                      "NPHours": NPHoursretrieved},
                       cache: false,
                       success: function(data){
                         alert(data);
@@ -391,6 +399,7 @@
 
 
               alert(MaxNPHours);
+              return MaxNPHours;
             }
 
             $("#endOfDay").on("click", function(){
